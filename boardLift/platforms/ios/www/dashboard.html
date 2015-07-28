@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="true" />
+    <title>Boardlift | Dashboard</title>
+    <link rel="stylesheet" href="http://web.boardlift.com/assets/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="http://web.boardlift.com/assets/fonts/font.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="http://web.boardlift.com/assets/css/mobile-styles.css">
+<link rel="stylesheet" type="text/css" href="http://web.boardlift.com/assets/css/mobile-media.css">
+<link rel="stylesheet" href="http://web.boardlift.com/assets/css/jquery-ui.css" type="text/css">
+<link rel="stylesheet" href="http://web.boardlift.com/assets/css/jquery.datetimepicker.css" type="text/css">
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/jquery-ui.js"></script>
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/main.js"></script>
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/hammer.js"></script>
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/jquery.hammer.js"></script>
+<script type="text/javascript" src="http://web.boardlift.com/assets/js/dragSidebars.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js??key=AIzaSyCnDcRQqW0YVVSRK3tn9xK3qsMgInHkaNo&sensor=false&libraries=places"></script>    <style type="text/css">
+        .reminder_message {
+            margin-bottom: 0px;
+            padding-left: 35px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main_container">
+        <div id="edit_profile">
+            <div class="dashboard_heading">
+                <div class="cm_hdng_lt"><h1>Dashboard</h1></div>
+                <div class="cm_hdng_rt">
+                    <script type="text/javascript">
+$(function() {
+  $('#progress-bar').progressbar({
+      value: 0  });
+});
+</script>
+<style type="text/css">
+    #progress-bar {
+        height: 100%;
+        border-radius : 0px;
+        border : none;
+    }
+    
+    #progress-bar .ui-progressbar-value {
+        background-color: #e56a73 !important;
+        border-radius: 0px;
+        margin: 0px;
+    }
+    
+    #progress-bar .ui-widget-header {
+        background: none;
+    }
+</style>
+<div class="cm_profile_sec">
+    <h5>Your profile is 0% complete</h5>
+    <div class="cm_pro_wrap">
+        <div class="cm_pro_outer">
+            <div id="progress-bar"></div>
+            <div class="clearboth"></div>
+        </div>
+        <div class="clearboth"></div>
+    </div>
+    <div class="clearboth"></div>
+</div>
+<div class="clearboth"></div>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+                        <div class="profile-row">
+                                                            <div class="reminder_message">
+                            Complete your profile information to list sessions and request seats.
+                        </div>
+                                                                <div class="reminder_message">
+                            Complete your account information to list sessions and request seats.
+                        </div>
+                                                    <div class="profile-info" style="border-bottom: none;">
+                    <a href="http://web.boardlift.com/account/users/profile">
+                        <div class="profile-img" style="background:url('http://web.boardlift.com/assets/images/users/default.png') no-repeat center center"></div>
+                    </a>
+                    <div class="profile-text">
+                        <h2 class="uname"><a style="color:#666;" href="http://web.boardlift.com/account/users/profile"> </a></h2>
+                        <ul>
+                            <li><span>Member since:</span> July 2015,<br>1 sessions</li>
+                        </ul>
+                    </div>
+                    <div style="text-align:center;float:right;width:28%;margin:10px;">
+                        <a href="http://web.boardlift.com/account/users/edit"><input type="button" class="edit-profile-btn" value="Edit profile"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-element">
+                <div class="pro-alert pro-msg">
+                    <a href="http://web.boardlift.com/account/sessions"><h3>Sessions (As driver)</h3></a>
+                    <ul>
+                                                    <a href="http://web.boardlift.com/account/sessions/view/155">
+                                <li>
+                                    <h4>kedarnath</h4><span class="time-msg"><div class="alert-icon"></div>23/07/2015</span><div class="gt-link-to-node">&gt;</div>
+                                    <div class="v-spacer"></div>
+                                </li>
+                            </a>
+                                                    <div class="v-spacer"></div>
+                    </ul>
+                </div>
+                <div class="pro-alert pro-msg">
+                    <a href="http://web.boardlift.com/account/bookings"><h3>Bookings (As passenger)</h3></a>
+                    <ul>
+                                                            <li>
+                                        <span style="float:left !important;font:14px AvenirLTStdLight;">You don't have any bookings yet.</span>
+                                        <div class="v-spacer"></div>
+                                    </li>
+                                                             <div class="v-spacer"></div>
+                    </ul>
+                </div>
+                <div class="pro-msg">
+                    <a href="http://web.boardlift.com/account/messages"><h3>Messages</h3><span class="read-msg"></span></a>
+                    <ul>
+                                                     <li>
+                                <span style="float:left !important;font:14px AvenirLTStdLight;">You don't have any messages yet.</span>
+                                <div class="v-spacer"></div>
+                            </li>
+                                                <div class="v-spacer"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearboth"></div>
+<div id="mobile_footer"> 
+        <a href="http://web.boardlift.com/" class="footer_logo"></a> 
+    <a href="#" class="footer_srch"></a>
+        
+            <div class="footer_menu_loggedin"></div>
+        
+    <div class="clearboth"></div>
+</div>
+<div id="filter_search">
+        <div class="filtr_srchBtn">
+            <a href="javascript:void(0)" id="filter-search-anchor">
+                <button id="filter-search-btn" type="button">Filter Search</button>
+            </a>
+        </div>
+        <div class="main_row">
+            <div class="search_sec">
+                <div class="close_srch_popup">X</div>
+                <div class="depart_date_holder">
+                                        <input id="search_departureDate_regional" type="text" readonly placeholder="Date" value="">
+                    <span id="clear_slideup_date" style="visibility: hidden;">X</span>
+                </div>
+                <div class="search_main_row">
+                    <a href="javascript:void(0);" id="search-in-victoria">
+                        <div class="victoria_sec">
+                            <div class="content_sec">
+                                <h1>Victoria</h1>
+                                <p>Search sessions</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" id="search-in-sa">
+                        <div class="sa_sec spacer">
+                            <div class="content_sec">
+                                <h1>SA</h1>
+                                <p>Search sessions</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" id="search-in-nsw">
+                        <div class="nsw_sec spacer">
+                            <div class="content_sec">
+                                <h1>NSW</h1>
+                                <p>Search sessions</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+                
+        </div>
+        <div class="v-spacer"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#filterBtn").click(function () {
+        $("#dialog-filter").slideToggle("slow");
+    });
+    
+    $('#search_departureDate_regional').datetimepicker({
+      format:'d/m/Y',
+      minDate:0,
+      timepicker: false,
+      closeOnDateSelect:true,
+      scrollMonth: false,
+      onChangeDateTime:function(){$("#clear_slideup_date").css("visibility", "visible");}
+    });
+    
+    $("#search_departureDate_regional").keydown(function (e) {
+        e.preventDefault();
+    });
+    
+    $("#search-in-victoria").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=Victoria%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=Victoria%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#search-in-sa").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=South+Australia%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=South+Australia%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#search-in-nsw").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=New+South+Wales%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=New+South+Wales%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#filter-search-anchor").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var today = new Date();
+            var dd = ("0" + (today.getDate())).slice(-2);
+            var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+            var yyyy = today.getFullYear();
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?departureDate="+yyyy+"-"+mm+"-"+dd);
+        } else {
+        	var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+});
+</script><script>
+
+function getNotifications()
+{
+    $.ajax({
+        method: "GET",
+        url: "http://web.boardlift.com/account/users/get_user_notifications"
+    }).done(function( msg ) {
+        data = jQuery.parseJSON(msg);
+        
+        if(data.count.Message > 0)
+        {
+            $('#message-side-notification').text(data.count.Message);
+            $('#message-side-notification').show();
+        }
+        else
+        {
+            $('#message-side-notification').hide();
+        }
+        
+        if(data.count.Session > 0)
+        {
+            $('#session-side-notification').text(data.count.Session);
+            $('#session-side-notification').show();
+        }
+        else
+        {
+            $('#session-side-notification').hide();
+        }
+        
+        if(data.count.Booking > 0)
+        {
+            $('#booking-side-notification').text(data.count.Booking);
+            $('#booking-side-notification').show();
+        }
+        else
+        {
+            $('#booking-side-notification').hide();
+        }
+        
+        /*
+        $( ".sessions-notification" ).text();
+        
+        jQuery.each( data.Booking, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#booking_"+i ).length ) { $( "#booking_"+i ).text(val);
+        });
+        
+        jQuery.each( data.Session, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#session_"+i ).length ) { $( "#session_"+i ).text(val);
+        });
+        
+        jQuery.each( data.Message, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#message_"+i ).length ) { $( "#message_"+i ).text(val);
+        });
+        
+        
+        */
+        //console.log(data);                    
+    });
+}
+</script>    <div id="slide_menu">
+    <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
+        <div class="pro_pic"> 
+            <a href="http://web.boardlift.com/account/users/profile" style="color:#999;">
+                                <div class="actual-profile-image" style="background:url('http://web.boardlift.com/assets/images/users/default.png') center center no-repeat;">
+                </div>
+                <span class="pro_pic_name"> </span>            </a>
+        </div>
+        <ul class="mb_nav">
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/users/dashboard">
+                        <div class="sb_nav_img sb_nav_img1"></div>
+                        <h2>Dashboard</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/messages">
+                        <div id="message-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img2"></div>
+                        <h2>Messages<span></span></h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/sessions">
+                        <div id="session-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img3"></div>
+                        <h2>Sessions<br>(As driver)</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/bookings">
+                        <div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img4"></div>
+                        <h2>Bookings<br>(As passenger)</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/help">
+                        <div class="sb_nav_img sb_nav_img5"></div>
+                        <h2>Help</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/settings">
+                        <div class="sb_nav_img sb_nav_img6"></div>
+                        <h2>Account</h2>
+                    </a> 
+                </div>
+            </li>
+        </ul>
+        <ul class="wl_mb_nav nav_gap">
+            <li><a href="http://web.boardlift.com/account/users/invite" id="share-friends">Invite friends</a></li>
+            <li><a href="http://web.boardlift.com/help/legal_stuff">Legal stuff</a></li>
+            <li><a href="http://web.boardlift.com/help/contact_us">Contact us</a></li>
+            <li><a href="http://web.boardlift.com/account/users/logout">Log out</a></li>
+        </ul>
+    </div>
+</div>
+    <script>
+        (function() {
+            var image_width = $(".profile-img").width();
+            $(".profile-img").height(image_width);
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+
+@media (min-width:768px){body{display:none;}}
+
+@media (max-width:767px){
+body{display:block;}
+
+.port a .port_img, .port a:hover .port_img, .port a.active .port_img{min-height:100px; background-size:100% auto;
+-webkit-background-size:100% auto;-moz-background-size:100% auto;-ms-background-size:100% auto;-o-background-size:100% auto;}
+.step_ryt_txt img{width:20%;}
+.how_close img{width:90%;}
+.step_img img{width:84%;}
+
+@media (max-width:640px){
+.logo img{max-width:112px;}
+.port a h2{font-size:20px;margin: 10px 0 15px;}
+.port a .port_img, .port a:hover .port_img, .port a.active .port_img{min-height:86px;}
+.victoria_sec p, .sa_sec p, .nsw_sec p, .qld_sec p{font-size:18px;}
+.victoria_sec h1, .sa_sec h1, .nsw_sec h1, .qld_sec h1{font-size:32px;}
+.main_row2{margin:6% 20%;}
+.fb_login button{font-size:22px;}
+.main_form .submit_btn{font-size:22px;}
+.main_form .inp{font-size:22px; line-height:26px}
+.or_divider{font-size:18px;}
+.main_form{font-size:16px;}
+.how_work_list ul li h2{font-size:24px;}
+.how_work_list ul li p{font-size:18px;}
+.how_close img{width:80%;}
+.without_login .logo_pic img{width:90%;}
+.with_login .pro_pic img{width:70%;}
+ul.wl_mb_nav li a{font-size:18px;}
+ul.mb_nav li a h2{font-size:20px;}
+.with_login .pro_pic .pro_pic_name{font-size:22px;}
+ul.mb_nav li a .sb_nav_img, ul.mb_nav li a:hover .sb_nav_img, ul.mb_nav li a.active .sb_nav_img{min-height:84px;}
+
+.list_sessn_hdng h1, .ssn_hdng h1, .msg_hdng h1{font-size:33px;}
+.list_ssn_hdng_rt{font-size:26px;}
+.default_inp, .default_select, .default_textarea, .edit_pro_form .inp, #list_my_session .select, #list_my_session .input, #list_my_session .textarea{font-size:21px; line-height:25px;}
+.cost_seat{font-size:21px;}
+.required_txt{font-size:19px;}
+.board_skill_txt{font-size:26px;}
+.board_rtng_head{font-size:22px;}
+#list_my_session .list_btn{font-size:24px;}
+#list_my_session .list_btn{padding:6% 15%; font-size:24px;}
+#list_my_session input[type="checkbox"] + label span, input[type="checkbox"]:checked + label span,
+#acc_notfctn_chck input[type="checkbox"] + label span, #acc_notfctn_chck input[type="checkbox"]:checked + label span{width:43px; height:43px; background-size:100% auto;}
+
+.list_ssn1_img img{width:80%;}
+.list_ssn1_txt{font-size:26px; line-height:30px;}
+
+.list_ssn3_txt{font-size:26px; line-height:30px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:23px; line-height:27px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label span, 
+#list_my_session #list_ssn3_radio input[type="radio"]:checked + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"]:checked + label span{width:46px; height:46px;}
+
+.list_ssn5_hdng h2{font-size:27px;}
+.list_ssn5_detail_lt, .list_ssn5_detail_rt{font-size:21px; line-height:25px;}
+.list_ssn5_detail_btn .button{font-size:24px; min-width:138px;}
+#list_my_session .list_ssn5_btn{padding-left:6%; padding-right:6%;}
+
+.list_ssn_pop_main{font-size:25px; line-height:29px; border-radius:30px;}
+.list_ssn_pop_btn{font-size:22px;}
+
+.help_pg_header ul li{font-size:25px;}
+ul.help_nav li a .hdng_sec h2{font: 20px/24px AvenirLTStdRoman; height:76px; padding:5px 20px 10px;}
+ul.help_nav li a .hlp_menu_img, ul.help_nav li a:hover .hlp_menu_img, ul.help_nav li a.active .hlp_menu_img{min-height:100px; margin-top:22px; background-size: 94% auto;}
+
+.share_hdng{font-size:29px;}
+.main_form .send_btn{font-size:22px;}
+.main_form .gray_btn{font-size:19px;}
+
+.acc_main_hdng_lt h1, .cm_hdng_lt h1{font-size:33px;}
+.acc_main_profile_sec h5, .cm_profile_sec h5{font-size:18px;}
+.acc_main_pro_outer, .cm_pro_outer{height:22px;}
+.acc_main_check img, .cm_check img{width:25%;}
+.acc_main_blk_txt, .cm_blk_txt{font-size:28px;}
+.acc_main_red_txt1, .cm_red_txt1{font-size:26px;}
+.acc_main_red_txt2, .cm_red_txt2{font-size:18px;line-height:18px;}
+.acc_main_links, .acc_main_icon_link, .cm_links, .cm_icon_links{font-size:26px;}
+
+
+.acc_notfctn_txt1, .acc_notfctn_txt3, #acc_notfctn_chck span, .acc_settng_txt{font-size:22px; line-height:28px;}
+.acc_notfctn_txt2{font-size:25px;}
+.main_btn{font-size:23px; line-height:27px; padding:3% 10% 4%;}
+.blue_btn{padding:1.5% 5% 2%}
+
+.paypal_img img{width:30%;}
+
+.acc_hdng h1{font-size:33px;}
+.acc_back img, .cm_back img{width:14px; height:14px;}
+ul.acc_trans li, ul.tabs_crtl li{font-size:18px; line-height:22px;}
+.acc_trans_histry_hdr, .acc_trans_histry_cnt{font-size:22px; line-height:26px;}
+
+.acc_ssn_photo_plus, .edit_photo_plus{font-size:62px;}
+.acc_ssn_photo_txt, .edit_photo_txt{font-size:26px;}
+.acc_ssn_photo_txt2, .edit_photo_txt2{font-size:21px; line-height:27px;}
+.acc_ssn_btn .btn, .edit_photo_btn .btn{font-size:18px; line-height:24px;}
+
+.gray_txt26{font-size:22px; line-height:28px;}
+.drkgray_txt25{font-size:21px; line-height:27px;}
+.drkgray_txt26{font-size:22px; line-height:28px;}
+.drkgray_txtBlk28{font-size:24px; line-height:30px;}
+.edit_brdSkl_rate img{width:12%;}
+.edit_brdSkl_rate{margin-top:2%;}
+.edit_brdSkl_img img{width:92%;}
+
+.edit_pro_form input#user-profile-gender-male[type="radio"] + label span, 
+.edit_pro_form input#user-profile-gender-male[type="radio"]:checked + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"] + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"]:checked + label span{background-size:100% auto; height:98px; width:48px;}
+
+.edit_pro_form .user_pro_music input[type="checkbox"] + label, 
+#pro_smoking_field input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:20px; line-height:26px;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label span, 
+.edit_pro_form .user_pro_music input[type="checkbox"]:checked + label span{width:70px; height:53px;}
+#pro_smoking_field input#smoking-yes[type="radio"] + label span, 
+#pro_smoking_field input#smoking-no[type="radio"] + label span,
+#pro_smoking_field input#smoking-yes[type="radio"]:checked + label span, 
+#pro_smoking_field input#smoking-no[type="radio"]:checked + label span{width:109px; height:102px;}
+.edit_pro_form .user_pro_wheels input[type="radio"] + label span, 
+.edit_pro_form .user_pro_wheels input[type="radio"]:checked + label span{width:128px; height:57px;}
+
+.ssn_img_sec{min-height:250px;}
+.ssn_img_icon{right:7%;}
+.ssn_img_icon img{width:90%;}
+.ssn_content_sec{margin-top:420px;}
+
+.msg_txt{font-size:23px; line-height:31px;}
+.msg_txt2{font-size:22px; line-height:30px;}
+.msg_icon img, .msg_reply_sec1_lt img, .msg_reply_sec2_lt img{width:51px; height:32px;}
+.reply_link{font-size:26px;}
+.reply_arrowleft, .reply_arrowdown{width:15px; height:15px;}
+}
+
+@media (max-width:560px){
+.logo img{max-width:100px;}
+.port a h2{font-size:18px;margin:5px 0 10px;}
+.port a .port_img, .port a:hover .port_img, .port a.active .port_img{min-height:77px;}
+.victoria_sec p, .sa_sec p, .nsw_sec p, .qld_sec p{font-size:16px;}
+.victoria_sec h1, .sa_sec h1, .nsw_sec h1, .qld_sec h1{font-size:28px;}
+.main_row2{margin:6% 20%;}
+.fb_login button{font-size:20px;}
+.main_form .submit_btn{font-size:20px;}
+.main_form .inp{font-size:20px; line-height:24px;}
+.or_divider{font-size:16px;}
+.main_form{font-size:14px;}
+.how_work_list ul li h2{font-size:21px;}
+.how_work_list ul li p{font-size:16px;}
+.how_close img{width:70%;}
+.without_login .logo_pic img{width:80%;}
+.with_login .pro_pic img{width:60%;}
+ul.wl_mb_nav li a{font-size:15px;}
+ul.mb_nav li a h2{font-size:18px;}
+.with_login .pro_pic .pro_pic_name{font-size:20px;}
+ul.mb_nav li a .sb_nav_img, ul.mb_nav li a:hover .sb_nav_img, ul.mb_nav li a.active .sb_nav_img{min-height:76px;}
+
+.list_sessn_hdng h1, .ssn_hdng h1, .msg_hdng h1{font-size:29px;}
+.list_ssn_hdng_rt{font-size:23px;}
+.default_inp, .default_select, .default_textarea, .edit_pro_form .inp, #list_my_session .select, #list_my_session .input, #list_my_session .textarea{font-size:19px; line-height:23px;}
+.cost_seat{font-size:19px;}
+.required_txt{font-size:16px;}
+.board_skill_txt{font-size:22px;}
+.board_rtng_head{font-size:19px;}
+#list_my_session .list_btn{padding:5% 15%; font-size:19px;}
+#list_my_session input[type="checkbox"] + label span, input[type="checkbox"]:checked + label span,
+#acc_notfctn_chck input[type="checkbox"] + label span, #acc_notfctn_chck input[type="checkbox"]:checked + label span{width:37px; height:37px;}
+
+.list_ssn1_img img{width:70%;}
+.list_ssn1_txt{font-size:23px; line-height:27px;}
+
+.list_ssn3_txt{font-size:22px; line-height:26px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:20px; line-height:24px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label span, 
+#list_my_session #list_ssn3_radio input[type="radio"]:checked + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"]:checked + label span{width:40px; height:40px; margin-right:5px;}
+
+.list_ssn5_hdng h2{font-size:23px;}
+.list_ssn5_detail_lt, .list_ssn5_detail_rt{font-size:18px; line-height:22px;}
+.list_ssn5_detail_btn .button{font-size:20px; min-width:115px;}
+#list_my_session .list_ssn5_btn{padding-left:6%; padding-right:6%;}
+
+.list_ssn_pop_main{font-size:22px; line-height:26px; border-radius:26px;}
+.list_ssn_pop_btn{font-size:19px; border-radius:5px;}
+
+.help_pg_header ul li{font-size:22px;}
+ul.help_nav li a .hdng_sec h2{font: 18px/22px AvenirLTStdRoman; height:60px; padding:0 20px 10px;}
+ul.help_nav li a .hlp_menu_img, ul.help_nav li a:hover .hlp_menu_img, ul.help_nav li a.active .hlp_menu_img{min-height:90px; margin-top:16px; background-size: 90% auto;}
+
+.share_hdng{font-size:25px;}
+.main_form .send_btn{font-size:19px;}
+.main_form .gray_btn{font-size:16px;}
+
+.acc_main_hdng_lt h1, .cm_hdng_lt h1{font-size:29px;}
+.acc_main_profile_sec h5, .cm_profile_sec h5{font-size:15px;}
+.acc_main_pro_outer, .cm_pro_outer{height:20px;}
+.acc_main_blk_txt, .cm_blk_txt{font-size:23px;}
+.acc_main_red_txt1, .cm_red_txt1{font-size:22px;}
+.acc_main_red_txt2, .cm_red_txt2{font-size:16px;line-height:16px;}
+.acc_main_links, .acc_main_icon_link, .cm_links, .cm_icon_links{font-size:22px;}
+
+.acc_notfctn_txt1, .acc_notfctn_txt3, #acc_notfctn_chck span, .acc_settng_txt{font-size:19px; line-height:25px;}
+.acc_notfctn_txt2{font-size:22px;}
+.main_btn{font-size:20px; line-height:24px; padding:3% 8% 3.5%;}
+.blue_btn{padding:1.5% 5% 2%}
+
+.acc_hdng h1{font-size:29px;}
+.acc_back img, .cm_back img{width:13px; height:13px;}
+ul.acc_trans li, ul.tabs_crtl li{font-size:16px; line-height:20px;}
+.acc_trans_histry_hdr, .acc_trans_histry_cnt{font-size:19px; line-height:23px;}
+
+.acc_ssn_photo_plus, .edit_photo_plus{font-size:54px;}
+.acc_ssn_photo_txt, .edit_photo_txt{font-size:22px;}
+.acc_ssn_photo_txt2, .edit_photo_txt2{font-size:18px; line-height:24px;}
+.acc_ssn_btn .btn, .edit_photo_btn .btn{font-size:16px; line-height:22px;}
+
+.gray_txt26{font-size:19px; line-height:25px;}
+.drkgray_txt25{font-size:18px; line-height:24px;}
+.drkgray_txt26{font-size:19px; line-height:25px;}
+.drkgray_txtBlk28{font-size:21px; line-height:27px;}
+
+.edit_pro_form input#user-profile-gender-male[type="radio"] + label span, 
+.edit_pro_form input#user-profile-gender-male[type="radio"]:checked + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"] + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"]:checked + label span{background-size:100% auto; height:86px; width:43px;}
+
+.edit_pro_form .user_pro_music input[type="checkbox"] + label, 
+#pro_smoking_field input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:18px; line-height:24px;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label span, 
+.edit_pro_form .user_pro_music input[type="checkbox"]:checked + label span{width:62px; height:47px;}
+#pro_smoking_field input#smoking-yes[type="radio"] + label span, 
+#pro_smoking_field input#smoking-no[type="radio"] + label span,
+#pro_smoking_field input#smoking-yes[type="radio"]:checked + label span, 
+#pro_smoking_field input#smoking-no[type="radio"]:checked + label span{width:95px; height:89px;}
+.edit_pro_form .user_pro_wheels input[type="radio"] + label span, 
+.edit_pro_form .user_pro_wheels input[type="radio"]:checked + label span{width:112px; height:49px;}
+
+.ssn_img_sec{min-height:220px;}
+.ssn_img_icon{right:6%;}
+.ssn_img_icon img{width:80%;}
+.ssn_content_sec{margin-top:374px;}
+
+.msg_txt{font-size:20px; line-height:28px;}
+.msg_txt2{font-size:19px; line-height:27px;}
+.msg_icon img, .msg_reply_sec1_lt img, .msg_reply_sec2_lt img{width:45px; height:28px;}
+.reply_link{font-size:22px;}
+.reply_arrowleft, .reply_arrowdown{width:13px; height:13px;}
+}
+
+@media (max-width:480px){
+.logo img{max-width:86px;}
+.port a h2{font-size:16px;margin:0px 0 10px;}
+.port a .port_img, .port a:hover .port_img, .port a.active .port_img{min-height:65px;}
+.victoria_sec p, .sa_sec p, .nsw_sec p, .qld_sec p{font-size:14px;}
+.victoria_sec h1, .sa_sec h1, .nsw_sec h1, .qld_sec h1{font-size:24px;}
+.fb_login button{font-size:16px;}
+.main_form .submit_btn{font-size:16px;}
+.main_form .inp{font-size:16px; line-height:20px;}
+.main_form{font-size:12px;}
+.or_divider{font-size:16px;}
+.or_divider{padding:2% 0 7%;}
+.how_work_list ul li h2{font-size:18px; min-height:50px;}
+.how_work_list ul li p{font-size:14px;}
+.how_close img{width:60%;}
+.without_login .logo_pic img{width:70%;}
+.with_login .pro_pic img{width:50%;}
+ul.wl_mb_nav li a{font-size:13px;}
+ul.mb_nav li a h2{font-size:15px;}
+.with_login .pro_pic .pro_pic_name{font-size:16px;}
+ul.mb_nav li a .sb_nav_img, ul.mb_nav li a:hover .sb_nav_img, ul.mb_nav li a.active .sb_nav_img{min-height:64px;}
+
+.list_sessn_hdng h1, .ssn_hdng h1, .msg_hdng h1{font-size:25px;}
+.list_ssn_hdng_rt{font-size:20px;}
+.default_inp, .default_select, .default_textarea, .edit_pro_form .inp, #list_my_session .select, #list_my_session .input, #list_my_session .textarea{font-size:16px; line-height:20px;}
+.cost_seat{font-size:16px;}
+.required_txt{font-size:15px;}
+.board_skill_txt{font-size:19px;}
+.board_rtng_head{font-size:16.6px;}
+#list_my_session .list_btn{padding:5% 15%; font-size:18px;}
+#list_my_session input[type="checkbox"] + label span, input[type="checkbox"]:checked + label span,
+#acc_notfctn_chck input[type="checkbox"] + label span, #acc_notfctn_chck input[type="checkbox"]:checked + label span{width:31px; height:31px;}
+
+.list_ssn1_img img{width:60%;}
+.list_ssn1_txt{font-size:20px; line-height:24px;}
+
+.list_ssn3_txt{font-size:20px; line-height:24px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:17px; line-height:21px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label span, 
+#list_my_session #list_ssn3_radio input[type="radio"]:checked + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"]:checked + label span{width:35px; height:35px;}
+
+.list_ssn5_hdng h2{font-size:20px;}
+.list_ssn5_detail_lt, .list_ssn5_detail_rt{font-size:16px; line-height:20px;}
+.list_ssn5_detail_btn .button{font-size:17px; min-width:98px;}
+#list_my_session .list_ssn5_btn{padding-left:6%; padding-right:6%;}
+
+.list_ssn_pop_main{font-size:18px; line-height:22px; border-radius:22px;}
+.list_ssn_pop_btn{font-size:16px; border-radius:4px; padding:2.8% 7%;}
+
+.help_pg_header ul li{font-size:19px;}
+ul.help_nav{width:92%; margin-left:4%; margin-right:4%;}
+ul.help_nav li{width:42.5%;}
+ul.help_nav li a .hdng_sec h2{font: 15px/18px AvenirLTStdRoman; height:50px; padding:0 10px 10px;}
+ul.help_nav li a .hlp_menu_img, ul.help_nav li a:hover .hlp_menu_img, ul.help_nav li a.active .hlp_menu_img{min-height:76px; margin-top:13px; background-size: 86% auto;}
+
+.share_hdng{font-size:22px;}
+.main_form .send_btn{font-size:16px;}
+.main_form .gray_btn{font-size:14px;}
+
+.acc_main_hdng_lt h1, .cm_hdng_lt h1{font-size:25px;}
+.acc_main_profile_sec h5, .cm_profile_sec h5{font-size:12.5px;}
+.acc_main_pro_outer, .cm_pro_outer{height:18px;}
+.acc_main_blk_txt, .cm_blk_txt{font-size:20px;}
+.acc_main_red_txt1, .cm_red_txt1{font-size:19px;}
+.acc_main_red_txt2, .cm_red_txt2{font-size:14px;line-height:14px;}
+.acc_main_links, .acc_main_icon_link, .cm_links, .cm_icon_links{font-size:19px;}
+
+.acc_notfctn_txt1, .acc_notfctn_txt3, #acc_notfctn_chck span, .acc_settng_txt{font-size:16px; line-height:22px;}
+.acc_notfctn_txt2{font-size:19px;}
+.main_btn{font-size:17px; line-height:21px; padding:3% 8% 3.5%;}
+.blue_btn{padding:1.5% 5% 2%}
+
+.acc_hdng h1{font-size:25px;}
+.acc_back, .cm_back{padding-bottom:2%;}
+.acc_back img, .cm_back img{width:11px; height:11px;}
+ul.acc_trans li, ul.tabs_crtl li{font-size:14px; line-height:18px;}
+.acc_trans_histry_hdr, .acc_trans_histry_cnt{font-size:16px; line-height:20px;}
+
+.acc_ssn_photo_plus, .edit_photo_plus{font-size:46px;}
+.acc_ssn_photo_txt, .edit_photo_txt{font-size:19px;}
+.acc_ssn_photo_txt2, .edit_photo_txt2{font-size:15px; line-height:21px;}
+.acc_ssn_btn .btn, .edit_photo_btn .btn{font-size:13px; line-height:19px;}
+
+.gray_txt26{font-size:16px; line-height:22px;}
+.drkgray_txt25{font-size:15px; line-height:21px;}
+.drkgray_txt26{font-size:16px; line-height:22px;}
+.drkgray_txtBlk28{font-size:18px; line-height:24px;}
+
+.edit_pro_form input#user-profile-gender-male[type="radio"] + label span, 
+.edit_pro_form input#user-profile-gender-male[type="radio"]:checked + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"] + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"]:checked + label span{background-size:100% auto; height:74px; width:36px;}
+
+.edit_pro_form .user_pro_music input[type="checkbox"] + label, 
+#pro_smoking_field input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:15px; line-height:21px;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label span, 
+.edit_pro_form .user_pro_music input[type="checkbox"]:checked + label span{width:54px; height:40px;}
+#pro_smoking_field input#smoking-yes[type="radio"] + label span, 
+#pro_smoking_field input#smoking-no[type="radio"] + label span,
+#pro_smoking_field input#smoking-yes[type="radio"]:checked + label span, 
+#pro_smoking_field input#smoking-no[type="radio"]:checked + label span{width:81px; height:76px;}
+.edit_pro_form .user_pro_wheels input[type="radio"] + label span, 
+.edit_pro_form .user_pro_wheels input[type="radio"]:checked + label span{width:96px; height:42px;}
+
+.ssn_img_sec{min-height:187px;}
+.ssn_img_icon{right:5%;}
+.ssn_img_icon img{width:70%;}
+
+.ssn_content_sec{margin-top:324px;}
+
+.msg_txt{font-size:17px; line-height:25px;}
+.msg_txt2{font-size:16px; line-height:24px;}
+.msg_icon img, .msg_reply_sec1_lt img, .msg_reply_sec2_lt img{width:39px; height:25px;}
+.reply_link{font-size:19px;}
+.reply_arrowleft, .reply_arrowdown{width:11px; height:11px;}
+}
+
+@media (max-width:479px){
+/*.port {box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);}
+ul.mb_nav li .sub_menu_blk, ul.mb_nav li:hover .sub_menu_blk{box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);}*/
+
+.list_sessn_hdng{padding-bottom:1.5%;}
+.list_ssn_hdng_rt{padding-top:7px;}
+#list_my_session .list_btn{box-shadow: 1px 1px 0 #000; border-radius:5px;}
+.main_btn{border-radius:4px;}
+}
+
+@media (max-width:420px){
+.logo img{max-width:75px;}
+.port a h2{font-size:13.5px;margin:0px 0 10px;}
+.port a .port_img, .port a:hover .port_img, .port a.active .port_img{min-height:57px;}
+.victoria_sec p, .sa_sec p, .nsw_sec p, .qld_sec p{font-size:12px;}
+.victoria_sec h1, .sa_sec h1, .nsw_sec h1, .qld_sec h1{font-size:20px;}
+.fb_login button{font-size:15px;}
+.main_form .submit_btn{font-size:15px;}
+.main_form .inp{font-size:15px; line-height:20px;}
+.or_divider{font-size:14px;}
+.main_form{font-size:11px;}
+.fb_login button{padding-top:4%; padding-bottom:4%;}
+.how_work_list ul li h2{font-size:16px; min-height:42px;}
+.how_work_list ul li p{font-size:12px;}
+.how_close img{width:50%;}
+.without_login .logo_pic img{width:60%;}
+.with_login .pro_pic img{width:40%;}
+ul.wl_mb_nav li a{font-size:12px;}
+ul.mb_nav li a h2{font-size:13px;}
+.with_login .pro_pic .pro_pic_name{font-size:14px;}
+ul.mb_nav li a .sb_nav_img, ul.mb_nav li a:hover .sb_nav_img, ul.mb_nav li a.active .sb_nav_img{min-height:55px;}
+
+.list_sessn_hdng h1, .ssn_hdng h1, .msg_hdng h1{font-size:21px;}
+.list_ssn_hdng_rt{padding-top:5px;}
+.list_ssn_hdng_rt{font-size:17px;}
+.default_inp, .default_select, .default_textarea, .edit_pro_form .inp, #list_my_session .select, #list_my_session .input, #list_my_session .textarea{font-size:14px; line-height:18px;}
+.cost_seat{font-size:14px;}
+.required_txt{font-size:12px;}
+.board_skill_txt{font-size:17px;}
+.board_rtng_head{font-size:14.5px;}
+#list_my_session .list_btn{padding:3% 15%; font-size:16px;}
+#list_my_session input[type="checkbox"] + label span, input[type="checkbox"]:checked + label span,
+#acc_notfctn_chck input[type="checkbox"] + label span, #acc_notfctn_chck input[type="checkbox"]:checked + label span{width:28px; height:28px;}
+
+.list_ssn1_img img{width:50%;}
+.list_ssn1_txt{font-size:17px; line-height:21px;}
+
+.list_ssn3_txt{font-size:17px; line-height:21px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:15px; line-height:19px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label span, 
+#list_my_session #list_ssn3_radio input[type="radio"]:checked + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"]:checked + label span{width:30px; height:30px;}
+
+.list_ssn5_hdng h2{font-size:18px;}
+.list_ssn5_detail_lt, .list_ssn5_detail_rt{font-size:14px; line-height:18px;}
+.list_ssn5_detail_btn .button{font-size:14px; min-width:80px;}
+#list_my_session .list_ssn5_btn{padding-left:6%; padding-right:6%;}
+
+.list_ssn_pop_main{font-size:16px; line-height:20px; border-radius:20px;}
+.list_ssn_pop_btn{font-size:14px; border-radius:4px; padding:2.8% 7%;}
+
+.help_pg_header ul li{font-size:17px;}
+ul.help_nav{width:92%; margin-left:4%; margin-right:4%;}
+ul.help_nav li{width:42.5%;}
+ul.help_nav li a .hdng_sec h2{font: 13px/16px AvenirLTStdRoman; height:45px; padding:0 10px 8px;}
+ul.help_nav li a .hlp_menu_img, ul.help_nav li a:hover .hlp_menu_img, ul.help_nav li a.active .hlp_menu_img{min-height:66px; margin-top:10px; background-size: 82% auto;}
+
+.share_hdng{font-size:19px;}
+.main_form .send_btn{font-size:14px;}
+.main_form .gray_btn{font-size:12px;}
+
+.acc_main_hdng_lt h1, .cm_hdng_lt h1{font-size:22px;}
+.acc_main_profile_sec h5, .cm_profile_sec h5{font-size:11px;}
+.acc_main_pro_outer, .cm_pro_outer{height:17px;}
+.acc_main_blk_txt, .cm_blk_txt{font-size:18px;}
+.acc_main_red_txt1, .cm_red_txt1{font-size:17px;}
+.acc_main_links, .acc_main_icon_link, .cm_links, .cm_icon_links{font-size:17px;}
+.acc_main_red_txt2,.cm_red_txt2{font-size:12px;line-height:12px;}
+
+.acc_notfctn_txt1, .acc_notfctn_txt3, #acc_notfctn_chck span, .acc_settng_txt{font-size:14px; line-height:22px;}
+.acc_notfctn_txt2{font-size:16px;}
+.main_btn{font-size:15px; line-height:19px;}
+
+.acc_hdng h1{font-size:22px;}
+.acc_back img, .cm_back img{width:10px; height:10px;}
+ul.acc_trans li, ul.tabs_crtl li{font-size:12px; line-height:16px;}
+.acc_trans_histry_hdr, .acc_trans_histry_cnt{font-size:14px; line-height:18px;}
+
+.acc_ssn_photo_plus, .edit_photo_plus{font-size:40px;}
+.acc_ssn_photo_txt,.edit_photo_txt{font-size:16px;}
+.acc_ssn_photo_txt2, .edit_photo_tx2{font-size:13px; line-height:19px;}
+.acc_ssn_btn .btn, .edit_photo_btn .btn{font-size:12px; line-height:18px;}
+
+.gray_txt26{font-size:14px; line-height:20px;}
+.drkgray_txt25{font-size:13px; line-height:19px;}
+.drkgray_txt26{font-size:14px; line-height:20px;}
+.drkgray_txtBlk28{font-size:15px; line-height:21px;}
+.edit_brdSkl_rate{margin-top:4%;}
+
+.edit_pro_form input#user-profile-gender-male[type="radio"] + label span, 
+.edit_pro_form input#user-profile-gender-male[type="radio"]:checked + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"] + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"]:checked + label span{background-size:100% auto; height:65px; width:32px;}
+
+.edit_pro_form .user_pro_music input[type="checkbox"] + label, 
+#pro_smoking_field input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:13px; line-height:19px;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label span, 
+.edit_pro_form .user_pro_music input[type="checkbox"]:checked + label span{width:46px; height:36px;}
+#pro_smoking_field input#smoking-yes[type="radio"] + label span, 
+#pro_smoking_field input#smoking-no[type="radio"] + label span,
+#pro_smoking_field input#smoking-yes[type="radio"]:checked + label span, 
+#pro_smoking_field input#smoking-no[type="radio"]:checked + label span{width:71px; height:67px;}
+.edit_pro_form .user_pro_wheels input[type="radio"] + label span, 
+.edit_pro_form .user_pro_wheels input[type="radio"]:checked + label span{width:84px; height:38px;}
+
+.ssn_img_sec{min-height:165px;}
+.ssn_img_icon{right:0%;}
+.ssn_img_icon img{width:60%;}
+.ssn_content_sec{margin-top:286px;}
+
+.msg_txt{font-size:15px; line-height:23px;}
+.msg_txt2{font-size:14px; line-height:22px;}
+.msg_icon img, .msg_reply_sec1_lt img, .msg_reply_sec2_lt img{width:34px; height:21px;}
+.reply_link{font-size:16px;}
+.reply_arrowleft, .reply_arrowdown{width:10px; height:10px;}
+}
+
+@media (max-width:360px){
+.logo img{max-width:64px;}
+.port a h2{font-size:12px;}
+.port a .port_img, .port a:hover .port_img, .port a.active .port_img{min-height:46px;}
+.victoria_sec p, .sa_sec p, .nsw_sec p, .qld_sec p{font-size:11px;}
+.victoria_sec h1, .sa_sec h1, .nsw_sec h1, .qld_sec h1{font-size:18px;}
+.fb_login button{font-size:13px;}
+.main_form .submit_btn{font-size:13px;}
+.main_form .inp{font-size:13px;}
+.main_form{font-size:10px;}
+.or_divider{font-size:12px;}
+.how_work_list ul li h2{font-size:14px;}
+.how_work_list ul li p{font-size:11px;}
+.how_close img{width:40%;}
+.without_login .logo_pic img{width:50%;}
+.with_login .pro_pic img{width:30%;}
+ul.wl_mb_nav li a{font-size:11px;}
+ul.mb_nav li a h2{font-size:12px;}
+.with_login .pro_pic .pro_pic_name{font-size:13px;}
+ul.mb_nav li a .sb_nav_img, ul.mb_nav li a:hover .sb_nav_img, ul.mb_nav li a.active .sb_nav_img{min-height:45px;}
+
+.list_sessn_hdng h1, .ssn_hdng h1, .msg_hdng h1{font-size:18px;}
+.list_ssn_hdng_rt{padding-top:4px;}
+.list_ssn_hdng_rt{font-size:15px;}
+.default_inp, .default_select .default_textarea, .edit_pro_form .inp, #list_my_session .select, #list_my_session .input, #list_my_session .textarea{font-size:12px; line-height:16px;}
+.cost_seat{font-size:12px;}
+.required_txt{font-size:11px;}
+.board_skill_txt{font-size:14px;}
+.board_rtng_head{font-size:12px;}
+#list_my_session .list_btn{padding:2% 15%; font-size:13px;}
+#list_my_session input[type="checkbox"] + label span, input[type="checkbox"]:checked + label span,
+#acc_notfctn_chck input[type="checkbox"] + label span, #acc_notfctn_chck input[type="checkbox"]:checked + label span{width:24px; height:24px;}
+
+.list_ssn1_img img{width:40%;}
+.list_ssn1_txt{font-size:14px; line-height:20px;}
+
+.list_ssn3_txt{font-size:15px; line-height:19px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:13px; line-height:17px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label span, 
+#list_my_session #list_ssn3_radio input[type="radio"]:checked + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"]:checked + label span{width:26px; height:26px;}
+
+.list_ssn5_hdng h2{font-size:15px;}
+.list_ssn5_detail_lt, .list_ssn5_detail_rt{font-size:12px; line-height:16px;}
+.list_ssn5_detail_btn .button{font-size:12px; min-width:70px;}
+#list_my_session .list_ssn5_btn{padding-left:6%; padding-right:6%;}
+
+.list_ssn_pop_main{font-size:14px; line-height:18px; border-radius:15px;}
+.list_ssn_pop_btn{font-size:12px; border-radius:4px; padding:2% 7%;}
+
+.help_pg_header ul li{font-size:14px;}
+ul.help_nav{width:92%; margin-left:4%; margin-right:4%;}
+ul.help_nav li{width:42.5%;}
+ul.help_nav li a .hdng_sec h2{font: 12px/15px AvenirLTStdRoman; height:42px; padding:0 10px 8px;}
+ul.help_nav li a .hlp_menu_img, ul.help_nav li a:hover .hlp_menu_img, ul.help_nav li a.active .hlp_menu_img{min-height:56px; margin-top:10px; background-size: 82% auto;}
+
+.share_hdng{font-size:16px;}
+.main_form .send_btn{font-size:12px;}
+.main_form .gray_btn{font-size:10px;}
+
+.acc_main_hdng_lt h1, .cm_hdng_lt h1{font-size:18px;}
+.acc_main_profile_sec h5, .cm_profile_sec h5{font-size:9px;}
+.acc_main_pro_outer, .cm_pro_outer{height:16px;}
+.acc_main_blk_txt, .cm_blk_txt{font-size:15px;}
+.acc_main_red_txt1, .cm_red_txt1{font-size:14px;}
+.acc_main_links, .acc_main_icon_link, .cm_links, .cm_icon_links{font-size:14px;}
+.acc_main_red_txt2, .cm_red_txt2{font-size:10px;line-height:10px;}
+
+.acc_notfctn_txt1, .acc_notfctn_txt3, #acc_notfctn_chck span, .acc_settng_txt{font-size:12px; line-height:18px;}
+.acc_notfctn_txt2{font-size:14px;}
+.main_btn{font-size:13px; line-height:17px;}
+
+.acc_hdng h1{font-size:18px;}
+.acc_back img, .cm_back img{width:10px; height:10px;}
+ul.acc_trans li, ul.tabs_crtl li{font-size:10px; line-height:14px;}
+.acc_trans_histry_hdr, .acc_trans_histry_cnt{font-size:12px; line-height:16px;}
+
+.acc_ssn_photo_plus, .edit_photo_plus{font-size:35px;}
+.acc_ssn_photo_txt, .edit_photo_txt{font-size:14px;}
+.acc_ssn_photo_txt2, .edit_photo_txt2{font-size:11px; line-height:17px;}
+.acc_ssn_btn .btn, .edit_photo_btn .btn{font-size:10px; line-height:16px;}
+
+.gray_txt26{font-size:12px; line-height:18px;}
+.drkgray_txt25{font-size:11px; line-height:17px;}
+.drkgray_txt26{font-size:12px; line-height:18px;}
+.drkgray_txtBlk28{font-size:13px; line-height:19px;}
+.edit_brdSkl_rate{margin-top:6%;}
+
+.edit_pro_form input#user-profile-gender-male[type="radio"] + label span, 
+.edit_pro_form input#user-profile-gender-male[type="radio"]:checked + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"] + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"]:checked + label span{background-size:100% auto; height:55px; width:28px;}
+
+ul.user_pro_music_list li{width:23%;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label, 
+#pro_smoking_field input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:12px; line-height:18px;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label span, 
+.edit_pro_form .user_pro_music input[type="checkbox"]:checked + label span{width:40px; height:30px;}
+#pro_smoking_field input#smoking-yes[type="radio"] + label span, 
+#pro_smoking_field input#smoking-no[type="radio"] + label span,
+#pro_smoking_field input#smoking-yes[type="radio"]:checked + label span, 
+#pro_smoking_field input#smoking-no[type="radio"]:checked + label span{width:61px; height:57px;}
+ul.user_pro_wheels_list li{width:32%;}
+.edit_pro_form .user_pro_wheels input[type="radio"] + label span, 
+.edit_pro_form .user_pro_wheels input[type="radio"]:checked + label span{width:72px; height:32px;}
+
+.ssn_img_sec{min-height:141px;}
+.ssn_img_icon img{width:50%;}
+.ssn_content_sec{margin-top:250px;}
+
+.msg_txt{font-size:13px; line-height:21px;}
+.msg_txt2{font-size:12px; line-height:20px;}
+.msg_icon img, .msg_reply_sec1_lt img, .msg_reply_sec2_lt img{width:30px; height:19px;}
+.reply_link{font-size:14px;}
+.reply_arrowleft, .reply_arrowdown{width:9px; height:9px;}
+}
+
+@media (max-width:320px){
+.logo img{max-width:56px;}
+.victoria_sec p, .sa_sec p, .nsw_sec p, .qld_sec p{font-size:10px;}
+.victoria_sec h1, .sa_sec h1, .nsw_sec h1, .qld_sec h1{font-size:16px;}
+.how_work_list ul li h2{font-size:12px;}
+.how_work_list ul li p{font-size:9px;}
+.how_close img{width:30%;}
+ul.mb_nav li a h2{font-size:11px;}
+.with_login .pro_pic .pro_pic_name{font-size:12px;}
+ul.mb_nav li a .sb_nav_img, ul.mb_nav li a:hover .sb_nav_img, ul.mb_nav li a.active .sb_nav_img{min-height:40px;}
+
+.list_sessn_hdng h1, .ssn_hdng h1, .msg_hdng h1{font-size:16px;}
+.list_ssn_hdng_rt{padding-top:2px;}
+.list_ssn_hdng_rt{font-size:13px;}
+.default_inp, .default_select, .default_textarea, .edit_pro_form .inp, #list_my_session .select, #list_my_session .input, #list_my_session .textarea{font-size:11px; line-height:15px;}
+.cost_seat{font-size:11px;}
+.required_txt{font-size:10px;}
+.board_skill_txt{font-size:13px;}
+.board_rtng_head{font-size:11px;}
+#list_my_session .list_btn{padding:1% 15%; font-size:12px;}
+#list_my_session input[type="checkbox"] + label span, input[type="checkbox"]:checked + label span,
+#acc_notfctn_chck input[type="checkbox"] + label span, #acc_notfctn_chck input[type="checkbox"]:checked + label span{width:22px; height:22px;}
+
+.list_ssn1_img img{width:30%;}
+.list_ssn1_txt{font-size:13px; line-height:17px;}
+
+.list_ssn3_txt{font-size:13px; line-height:17px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:11px; line-height:15px;}
+#list_my_session #list_ssn3_radio input[type="radio"] + label span, 
+#list_my_session #list_ssn3_radio input[type="radio"]:checked + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label span,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"]:checked + label span{width:24px; height:24px;}
+
+.list_ssn5_hdng h2{font-size:13px;}
+.list_ssn5_detail_lt, .list_ssn5_detail_rt{font-size:10px; line-height:14px;}
+.list_ssn5_detail_btn .button{font-size:12px;}
+#list_my_session .list_ssn5_btn{padding-left:6%; padding-right:6%;}
+
+.list_ssn_pop_main{font-size:12px; line-height:16px; border-radius:15px;}
+.list_ssn_pop_btn{font-size:11px; border-radius:4px; padding:2% 7%;}
+
+.help_pg_header ul li{font-size:13px;}
+ul.help_nav li a .hdng_sec h2{font: 11px/13px AvenirLTStdRoman; height:38px; padding:0 8px 8px;}
+ul.help_nav li a .hlp_menu_img, ul.help_nav li a:hover .hlp_menu_img, ul.help_nav li a.active .hlp_menu_img{min-height:50px; margin-top:10px; background-size: 82% auto;}
+
+.share_hdng{font-size:14px;}
+.main_form .send_btn{font-size:11px;}
+.main_form .gray_btn{font-size:9px;}
+
+.acc_main_hdng_lt h1, .cm_hdng_lt h1{font-size:16px;}
+.acc_main_profile_sec h5, .cm_profile_sec h5{font-size:8px;}
+.acc_main_pro_outer, .cm_pro_outer{height:16px;}
+.acc_main_blk_txt, .cm_blk_txt{font-size:13px;}
+.acc_main_red_txt1, .cm_red_txt1{font-size:12px;}
+.acc_main_links, .acc_main_icon_link, .cm_links, .cm_icon_links{font-size:13px;}
+.acc_main_red_txt2, .cm_red_txt2{font-size:9px;line-height:9px;}
+
+.acc_notfctn_txt1, .acc_notfctn_txt3, #acc_notfctn_chck span, .acc_settng_txt{font-size:11px; line-height:18px;}
+.acc_notfctn_txt2{font-size:12px;}
+.main_btn{font-size:11px; line-height:15px;}
+
+.acc_hdng h1{font-size:16px;}
+.acc_back img, .cm_back img{width:8px; height:8px;}
+ul.acc_trans li, ul.tabs_crtl li{font-size:9px; line-height:14px;}
+.acc_trans_histry_hdr, .acc_trans_histry_cnt{font-size:10px; line-height:16px;}
+
+.acc_ssn_photo_plus, .edit_photo_plus{font-size:30px;}
+.acc_ssn_photo_txt, .edit_photo_txt{font-size:12px;}
+.acc_ssn_photo_txt2, .edit_photo_txt{font-size:10px; line-height:16px;}
+.acc_ssn_btn .btn, .edit_photo_btn .btn{font-size:9px; line-height:15px;}
+
+.gray_txt26{font-size:11px; line-height:17px;}
+.drkgray_txt25{font-size:10px; line-height:16px;}
+.drkgray_txt26{font-size:11px; line-height:17px;}
+.drkgray_txtBlk28{font-size:12px; line-height:18px;}
+
+.edit_pro_form input#user-profile-gender-male[type="radio"] + label span, 
+.edit_pro_form input#user-profile-gender-male[type="radio"]:checked + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"] + label span,
+.edit_pro_form input#user-profile-gender-female[type="radio"]:checked + label span{background-size:100% auto; height:49px; width:24px;}
+
+.edit_pro_form .user_pro_music input[type="checkbox"] + label, 
+#pro_smoking_field input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels input[type="radio"] + label,
+.edit_pro_form .user_pro_wheels_radio input[type="radio"] + label{font-size:10px; line-height:16px;}
+.edit_pro_form .user_pro_music input[type="checkbox"] + label span, 
+.edit_pro_form .user_pro_music input[type="checkbox"]:checked + label span{width:36px; height:27px;}
+#pro_smoking_field input#smoking-yes[type="radio"] + label span, 
+#pro_smoking_field input#smoking-no[type="radio"] + label span,
+#pro_smoking_field input#smoking-yes[type="radio"]:checked + label span, 
+#pro_smoking_field input#smoking-no[type="radio"]:checked + label span{width:55px; height:52px;}
+.edit_pro_form .user_pro_wheels input[type="radio"] + label span, 
+.edit_pro_form .user_pro_wheels input[type="radio"]:checked + label span{width:64px; height:29px;}
+
+.ssn_img_sec{min-height:125px;}
+.ssn_img_icon img{width:40%;}
+.ssn_content_sec{margin-top:230px;}
+
+.msg_txt{font-size:12px; line-height:20px;}
+.msg_txt2{font-size:11px; line-height:19px;}
+.msg_icon img, .msg_reply_sec1_lt img, .msg_reply_sec2_lt img{width:26px; height:16px;}
+.reply_link{font-size:12px;}
+.reply_arrowleft, .reply_arrowdown{width:8px; height:8px;}
+}

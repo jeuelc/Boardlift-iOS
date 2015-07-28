@@ -1,0 +1,397 @@
+  <div data-role="page">
+
+    <div class="search_results_holder">
+        <div class="filer-sec">
+            <a class="filter-button-link" type="button" id="filter-search-btn" href="javascript:void(0)">Filter Search</a>
+        </div>
+        <h2>Boardlift rides:<br>Departs Wednesday 14/02/15</h2>
+        
+        <a href="ride-details.html">
+            <div class="srh-result" style="background-image:url('images/sessions/session-1.jpg')">
+                <div style="padding-top:70%;clear:both;">&nbsp;</div>
+                <div class="result-text">
+                    <div class="rt-block">
+                        <div class="rt-seat">
+                            <ul>
+                                <li><img src="images/result-seat.png" alt=""></li>
+                                <li><img src="images/result-seat.png" alt=""></li>
+                                <li><img src="images/result-seat.png" alt=""></li>
+                            </ul>
+                        </div>
+                        <div class="rst-text">
+                            <h2><strong>Session:</strong>Dawny at Gunnamatta</h2>
+                            <h2><strong>To:</strong>Mornington Peninsula</h2>
+                            <h2><strong>From:</strong>Wheelers Hill</h2>
+                        </div>
+                        <div class="ru-pic">
+                            <img src="images/users/user-1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        
+        <a href="ride-details.html">
+            <div class="srh-result" style="background-image:url('images/sessions/session-2.jpg')">
+                <div style="padding-top:70%;clear:both;">&nbsp;</div>
+                <div class="result-text">
+                    <div class="rt-block">
+                        <div class="rt-seat">
+                            <ul>
+                                <li><img src="images/result-seat.png" alt=""></li>
+                                <li><img src="images/result-seat.png" alt=""></li>
+                                <li><img src="images/result-seat.png" alt=""></li>
+                            </ul>
+                        </div>
+                        <div class="rst-text">
+                            <h2><strong>Session:</strong>Dawny at Gunnamatta</h2>
+                            <h2><strong>To:</strong>Mornington Peninsula</h2>
+                            <h2><strong>From:</strong>Glen Iris</h2>
+                        </div>
+                        <div class="ru-pic">
+                            <img src="images/users/user-1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        
+        <div class="v-spacer"></div>
+    </div>
+
+    <div class="clearboth"></div>
+    <div id="search-filter-options" style="top: 100%;">
+    <div class="site-main">
+        <div class="search-filter-main">
+            <div id="search-filter-close" class="pre-reg-close"><img alt="" src="images/close-pri.png"> </div>
+                <fieldset class="search-filter-fieldset" style="text-align:center;">
+                    <legend style="padding-top:20px;">Where are you leaving from?</legend>
+                    <li>
+                        <input type="text" name="search_origin" id="search_origin" class="blue_buble placeholder" value="" placeholder="From" autocomplete="off">
+                    </li>
+                </fieldset>
+                <fieldset class="search-filter-fieldset basic-filter" style="width:100%;">
+                    <legend>Where and when would you like to go?</legend>
+                    
+                    <li><input type="text" name="search_destination" id="search_destination" placeholder="Destination" class="placeholder"></li>
+                    <li>
+                    <input type="text" name="search_departureDate" id="search_departureDate" value="" placeholder="Date" readonly="readonly" class="placeholder">
+                    
+                    </li>
+                </fieldset>
+                <div class="v-spacer"></div>
+                <fieldset class="search-filter-fieldset">
+                    <legend>Select vehicle type</legend>
+                    <div class="search-options">
+                        <li style="width:100%;float:none;text-align:center;">Seats<img src="images/current-avail.png" style="margin:0 3%;width:4%;height:auto;">
+                            <select id="search_numSeat" style="background:#FFFFFF;float:none !important;">
+                            <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                        </li>
+                        <div class="v-spacer"></div>
+                        <ul class="vehicle-type-container">
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_1" class="checkbox wheels-bodytype" value="1">
+                                    <label style="width:18%;" for="vehicle_body_type_1"><span style="margin:auto;"></span><br>Sedan</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_2" class="checkbox wheels-bodytype" value="2">
+                                    <label style="width:18%;" for="vehicle_body_type_2"><span style="margin:auto;"></span><br>Station Wagon</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_3" class="checkbox wheels-bodytype" value="3">
+                                    <label style="width:18%;" for="vehicle_body_type_3"><span style="margin:auto;"></span><br>Hatch</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_4" class="checkbox wheels-bodytype" value="4">
+                                    <label style="width:18%;" for="vehicle_body_type_4"><span style="margin:auto;"></span><br>SUV</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_5" class="checkbox wheels-bodytype" value="5">
+                                    <label style="width:18%;" for="vehicle_body_type_5"><span style="margin:auto;"></span><br>SUV</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_6" class="checkbox wheels-bodytype" value="6">
+                                    <label style="width:18%;" for="vehicle_body_type_6"><span style="margin:auto;"></span><br>4WD</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_7" class="checkbox wheels-bodytype" value="7">
+                                    <label style="width:18%;" for="vehicle_body_type_7"><span style="margin:auto;"></span><br>Van</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="vehicleTypes" id="vehicle_body_type_8" class="checkbox wheels-bodytype" value="8">
+                                    <label style="width:18%;" for="vehicle_body_type_8"><span style="margin:auto;"></span><br>Other</label>
+                                </li>
+                            </ul>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="search-filter-fieldset">
+                    <legend>Select board type</legend>
+                    <div class="search-options">
+                        <ul class="board-type-container">
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-1" name="boardTypes" value="1">
+                                <label for="search-filter-boardtype-1"><span></span><br>Short Board</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-2" name="boardTypes" value="2">
+                                <label for="search-filter-boardtype-2"><span></span><br>Mini Mal</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-3" name="boardTypes" value="3">
+                                <label for="search-filter-boardtype-3"><span></span><br>Long Board</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-4" name="boardTypes" value="4">
+                                <label for="search-filter-boardtype-4"><span></span><br>SUP</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-5" name="boardTypes" value="5">
+                                <label for="search-filter-boardtype-5"><span></span><br>Skate Board</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-6" name="boardTypes" value="6">
+                                <label for="search-filter-boardtype-6"><span></span><br>Body Board</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-7" name="boardTypes" value="7">
+                                <label for="search-filter-boardtype-7"><span></span><br>Wake Board</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-8" name="boardTypes" value="8">
+                                <label for="search-filter-boardtype-8"><span></span><br>Snow Board</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-filter-boardtype-9" name="boardTypes" value="9">
+                                <label for="search-filter-boardtype-9"><span></span><br>Kite Board</label>
+                            </li>
+                            <div class="v-spacer"></div>
+                        </ul>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="search-filter-fieldset">
+                    <legend>Select music preference</legend>
+                    <div class="search-options">
+                        <ul class="user-profile-music-list">
+                                                                        <li>
+                                    <input type="checkbox" id="register-music-alternative" class="user-profile-music" name="preference_1" value="alternative">
+                                    <label for="register-music-alternative"><span></span><br><div>Alternative</div></label>
+                                </li>
+                                                                        <li>
+                                    <input type="checkbox" id="register-music-metal" class="user-profile-music" name="preference_1" value="metal">
+                                    <label for="register-music-metal"><span></span><br><div>Metal</div></label>
+                                </li>
+                                                                        <li>
+                                    <input type="checkbox" id="register-music-pop" class="user-profile-music" name="preference_1" value="pop">
+                                    <label for="register-music-pop"><span></span><br><div>Pop</div></label>
+                                </li>
+                                                                        <li>
+                                    <input type="checkbox" id="register-music-electronic" class="user-profile-music" name="preference_1" value="electronic">
+                                    <label for="register-music-electronic"><span></span><br><div>Electronic</div></label>
+                                </li>
+                                                                        <li>
+                                    <input type="checkbox" id="register-music-punk" class="user-profile-music" name="preference_1" value="punk">
+                                    <label for="register-music-punk"><span></span><br><div>Punk</div></label>
+                                </li>
+                                                                        <li>
+                                    <input type="checkbox" id="register-music-talkback" class="user-profile-music" name="preference_1" value="talkback">
+                                    <label for="register-music-talkback"><span></span><br><div>Talkback</div></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="register-music-rock" class="user-profile-music" name="preference_1" value="rock">
+                                    <label for="register-music-rock"><span></span><br><div>Rock</div></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="register-music-sport" class="user-profile-music" name="preference_1" value="sport">
+                                    <label for="register-music-sport"><span></span><br><div>Sport</div></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="register-music-classical" class="user-profile-music" name="preference_1" value="classical">
+                                    <label for="register-music-classical"><span></span><br><div>Classical</div></label>
+                                </li>
+                                                                </ul>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="search-filter-fieldset">
+                    <legend>Smoking preference</legend>
+                    <div class="search-options">
+                        <ul class="smoking-options-container">
+                            <li>
+                                <input type="checkbox" id="user-profile-smoking-yes" class="radio smoking" name="preference_2" value="smoking">
+                                <label for="user-profile-smoking-yes"><span>&nbsp;</span><br>Smoking</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="user-profile-smoking-no" class="radio smoking" name="preference_2" value="non smoking">
+                                <label for="user-profile-smoking-no"><span>&nbsp;</span><br>Non-Smoking</label>
+                            </li>
+                        </ul>
+                    </div>
+                </fieldset>
+                <div style="height:38px;clear:both;"></div>
+                <div class="submit-filter-holder">
+                    <button type="button" onclick="redirectResult2();" id="submit-filter">Search</button>
+                </div>
+        </div>
+    </div>
+</div>
+    <div id="mobile_footer"> 
+        <a href="index.html" class="footer_logo">
+        </a> <a href="" class="footer_srch"></a>
+        <div class="footer_menu"></div>
+        <div class="clearboth"></div>
+    </div>
+
+<!---------------------- Slide menu ---------------------->
+<div id="slide_menu">
+  <div class="mobile_ryt_nav without_login">
+    <div class="logo_pic"><img src="images/mobile-images/logo-mb.png" alt=""></div>
+   
+    <ul class="wl_mb_nav">
+      <li><a href="#">Log in</a></li>
+      <li><a href="#">Invite friends</a></li>
+      <li><a href="#">Legal stuff</a></li>
+    </ul>
+  </div>
+</div>
+<!---------------------- Slide menu end-------------------->
+
+	<div id="filter_search">
+        <div class="filtr_srchBtn">
+        	<button type="button">Filter Search</button>
+        </div>
+        <div class="main_row">
+        	<div class="search_sec">
+            	<div class="close_srch_popup">X</div>
+                <div class="depart_date_holder">
+                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                </div>
+                <div class="search_main_row">
+                	<div class="victoria_sec">
+                        <div class="content_sec">
+                            <h1>Victoria</h1>
+                            <p>Search sessions</p>
+                        </div>
+                    </div>
+                    <div class="sa_sec spacer">
+                        <div class="content_sec">
+                            <h1>SA</h1>
+                            <p>Search sessions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div id="login">
+        <div class="loginhead">
+            <div id="liup" class="signup_close">
+            	<div class="login_mb_close login_mb_close1">X</div>
+            </div>
+        </div>
+        <div class="main_row2">
+            <div class="fb_login">
+            	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
+            </div>
+        	<div class="or_divider">or</div>
+            <div class="main_form">
+                <form action="" method="get">
+                    <ul>
+                        <li>
+                        	<input type="text" id="email" class="inp" placeholder="Email">
+                        </li>
+                        <li>
+                        	<input type="password" id="password" class="inp" placeholder="password">
+                        </li>
+                        <li>
+                        	<input type="submit" class="submit_btn" value="Log in">
+                        </li>
+                        <li>Not a BoardLift user? <a href="#">Sign up</a></li>
+                        <li>Forgotten password? <a href="#">Help</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="signup">
+        <div class="loginhead">
+            <div id="liup2" class="signup_close">
+            	<div class="login_mb_close2 login_mb_close">X</div>
+            </div>
+        </div>
+        <div class="main_row2">
+            <div class="fb_login">
+            	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
+            </div>
+        	<div class="or_divider">or</div>
+            <div class="main_form">
+                <form action="" method="get">
+                    <ul>
+                        <li>
+                        	<input type="text" id="email2" class="inp" placeholder="Email">
+                        </li>
+                        <li>
+                        	<input type="password" id="password2" class="inp" placeholder="password">
+                        </li>
+                        <li>
+                        	<input type="password" id="confrm_password2a" class="inp" placeholder="Confirm password">
+                        </li>
+                        <li>
+                        	<input type="text" id="capthca" class="inp" placeholder="capthca">
+                        </li>
+                        <li class="checkbox_gap">
+                        	<input type="checkbox">
+                        	Give me news and updates from BoardLift</li>
+                        <li class="txt_gap">By signing up, I agree to BoardLift’s<br>
+                        	<a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                        	<input type="submit" class="submit_btn" value="Sign up">
+                        </li>
+                        <li>Already a BoardLift’s user? <a href="#">Log in</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function() {
+        $('#search_departureDate').datetimepicker({
+            format:'Y-m-d',
+            minDate:0,
+            timepicker: false,
+            closeOnDateSelect:true,
+            scrollMonth: false,
+            onChangeDateTime:function(){$("#rideBtn").removeAttr('disabled');}
+        });
+        
+    });
+    $("#filter-search-btn").on("click", function(e) {
+        $("#search-filter-options").css("position", "absolute");
+        $("#search-filter-options").animate({top:'0px'}, 300, function() {
+            $(".submit-filter-holder").show();
+        });
+    });
+    
+    $("#search-filter-close").on("click", function(e) {
+        $("#search-filter-options").animate({top:'100%'}, 300, function() {
+            $("#search-filter-options").css("position", "fixed");
+            $(".submit-filter-holder").hide();
+        });
+    })
+</script>
+</div>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BoardLift</title>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="fonts/font.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"> 
+<link rel="stylesheet" type="text/css" href="css/mobile-media.css">
+
+<script src="http://jsconsole.com/remote.js?E2103C28-098F-43FB-91A8-B38C038E451A"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/api.js"></script>
+
+</head>
+
+<body>
+  <div data-role="page">
+    <header>
+    	<div class="logo"><a href="index.html"><img src="images/mobile-images/logo.jpg" alt="BoardLift"></a></div>
+    </header>
+    
+    <div id="homepg_links">
+        <div class="col_3">
+            <div class="port" id="hows"> 
+                <a href="">
+                    <div class="port_img port_img1"></div>
+                    <h2>How it works</h2>
+                </a> 
+            </div>
+        </div>
+        <div class="col_3">
+            <div class="port" id="login-session"> 
+                <a href="">
+                    <div class="port_img port_img2"></div>
+                    <h2>List my session</h2>
+                </a> 
+            </div>
+        </div>
+        <div class="col_3">
+            <div class="port" id="sighnup-fb"> 
+                <a href="">
+                    <div class="port_img port_img4"></div>
+                    <h2>Sign up</h2>
+                </a> 
+            </div>
+        </div>
+        <div class="clearboth"></div>
+    </div>
+    
+	<div class="clearboth"></div>
+    
+    <div class="main_container">
+        <div class="home_links">
+            <div class="victoria_sec">
+                <div class="content_sec">
+                    <h1>Victoria</h1>
+                    <p>Search sessions</p>
+                </div>
+            </div>
+            <div class="sa_sec spacer">
+                <div class="content_sec">
+                    <h1>SA</h1>
+                    <p>Search sessions</p>
+                </div>
+            </div>
+            <div class="nsw_sec spacer">
+                <div class="content_sec">
+                    <h1>NSW</h1>
+                    <p>Search sessions</p>
+                </div>
+            </div>
+            <div class="qld_sec spacer">
+                <div class="content_sec">
+                    <h1>QLD</h1>
+                    <p>Search sessions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<div class="clearboth"></div>
+    
+    <div id="mobile_footer"> 
+        <a href="index.html" class="footer_logo"></a> 
+        <a href="" class="footer_srch"></a>
+        <div class="footer_menu"></div>
+        <div class="clearboth"></div>
+    </div>
+
+    <!---------------------- Slide menu ---------------------->
+    <div id="slide_menu">
+        <div class="mobile_ryt_nav without_login">
+        	<div class="logo_pic"><img src="images/mobile-images/logo-mb.png" alt=""></div>
+            <ul class="wl_mb_nav">
+                <li><a href="#" id="menu-login">Log in</a></li>
+                <li><a href="#" id="invite">Invite friends</a></li>
+                <li><a href="#">Legal stuff</a></li>
+            </ul>
+        </div>
+    </div>
+    <!---------------------- Slide menu end-------------------->
+
+    <div id="filter_search">
+        <div class="filtr_srchBtn">
+        	<button type="button">Filter Search</button>
+        </div>
+        <div class="main_row">
+        	<div class="search_sec">
+            	<div class="close_srch_popup">X</div>
+                <div class="depart_date_holder">
+                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                    <!--<i class="fa fa-calendar"></i>-->
+                </div>
+                <div class="search_main_row">
+                	<div class="victoria_sec">
+                        <div class="content_sec">
+                            <h1>Victoria</h1>
+                            <p>Search sessions</p>
+                        </div>
+                    </div>
+                    <div class="sa_sec spacer">
+                        <div class="content_sec">
+                            <h1>SA</h1>
+                            <p>Search sessions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div id="howworks">
+        <div class="main_sec">
+            <div class="how_work_list">
+                <ul>
+                    <li>
+                        <div class="step_img"> <img alt="" src="images/mobile-images/step-1.png"> </div>
+                        <div class="step_ryt_txt">
+                            <h2><img src="images/mobile-images/c1.png" alt=""> Register</h2>
+                            <p>Don’t travel to beach or snow with empty seats. In a couple of minutes you can be listing empty seats for your next session or finding a seat with a local boardrider matched to your skill level in a model of car you want to travel in, win – win</p>
+                        </div>
+                        <div class="clearboth"></div>
+                    </li>
+                    <li>
+                        <div class="step_img"> <img alt="" src="images/mobile-images/step-2.png"> </div>
+                        <div class="step_ryt_txt">
+                            <h2><img src="images/mobile-images/c2.png" alt=""> Review and accept</h2>
+                            <p>Find a seat and submit a request to a driver. The driver reviews your profile to make sure you’re matched on skill level, board type and location. If the driver approves you are ready to ride</p>
+                        </div>
+                        <div class="clearboth"></div>
+                    </li>
+                    <li>
+                        <div class="step_img"> <img alt="" src="images/mobile-images/step-3.png"> </div>
+                        <div class="step_ryt_txt">
+                            <h2><img src="images/mobile-images/c3.png" alt=""> Get $</h2>
+                            <p>We securely collect fuel money and only release it to the driver once the session is finished. This encourages everyone to show up and provide a review of the trip to help build the BoardLift community</p>
+                        </div>
+                        <div class="clearboth"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    	<div class="how_close"><img src="images/mobile-images/close-how.png" alt=""> </div>
+    </div>
+    
+    <div id="login">
+        <div class="loginhead">
+            <div id="liup" class="signup_close">
+            	<div class="login_mb_close login_mb_close1">X</div>
+            </div>
+        </div>
+        <div class="main_row2">
+            <div class="fb_login">
+            	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
+            </div>
+        	<div class="or_divider">or</div>
+            <div class="main_form">
+                <form method="get">
+                    <ul>
+                        <li>
+                        	<input type="text" id="email" class="inp" placeholder="Email">
+                        </li>
+                        <li>
+                        	<input type="password" id="password" class="inp" placeholder="password">
+                        </li>
+                        <li>
+                        	<input type="submit" class="submit_btn" value="Log in" id="tryThis">
+                        </li>
+                        <li>Not a BoardLift user? <a href="#">Sign up</a></li>
+                        <li>Forgotten password? <a href="#">Help</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="signup">
+        <div class="loginhead">
+            <div id="liup2" class="signup_close">
+            	<div class="login_mb_close2 login_mb_close">X</div>
+            </div>
+        </div>
+        <div class="main_row2">
+            <div class="fb_login">
+            	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
+            </div>
+        	<div class="or_divider">or</div>
+            <div class="main_form">
+                <form action="" method="get">
+                    <ul>
+                        <li>
+                        	<input type="text" id="email2" class="inp" placeholder="Email">
+                        </li>
+                        <li>
+                        	<input type="password" id="password2" class="inp" placeholder="password">
+                        </li>
+                        <li>
+                        	<input type="password" id="confrm_password2a" class="inp" placeholder="Confirm password">
+                        </li>
+                        <li>
+                        	<input type="text" id="capthca" class="inp" placeholder="capthca">
+                        </li>
+                        <li class="checkbox_gap">
+                        	<input type="checkbox">
+                        	Give me news and updates from BoardLift
+                        </li>
+                        <li class="txt_gap">By signing up, I agree to BoardLift’s<br>
+                        	<a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></li>
+                        <li>
+                        	<input type="submit" class="submit_btn" value="Sign up">
+                        </li>
+                        <li>Already a BoardLift’s user? <a href="#">Log in</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    console.log('index.html');
+    $(document).on('appIsReady', function(){
+        $('#tryThis').on('click', function(){
+            console.log('#tryThis');
+            boardLiftLogin($("#email").val(),$("#password").val());
+        });
+    });
+</script>
+</body>
+</html>

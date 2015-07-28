@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'AvenirLTStdBlack';
+    src: url('AvenirLTStdBlack.eot');
+    src: url('AvenirLTStdBlack.eot?#iefix') format('embedded-opentype'), url('AvenirLTStdBlack.woff2') format('woff2'), url('AvenirLTStdBlack.woff') format('woff'), url('AvenirLTStdBlack.ttf') format('truetype'), url('AvenirLTStdBlack.svg#AvenirLTStdBlack') format('svg');
+}
+@font-face {
+    font-family: 'AvenirLTStdBook';
+    src: url('AvenirLTStdBook.eot');
+    src: url('AvenirLTStdBook.eot?#iefix') format('embedded-opentype'), url('AvenirLTStdBook.woff2') format('woff2'), url('AvenirLTStdBook.woff') format('woff'), url('AvenirLTStdBook.ttf') format('truetype'), url('AvenirLTStdBook.svg#AvenirLTStdBook') format('svg');
+}
+@font-face {
+    font-family: 'AvenirLTStdHeavy';
+    src: url('AvenirLTStdHeavy.eot');
+    src: url('AvenirLTStdHeavy.eot?#iefix') format('embedded-opentype'), url('AvenirLTStdHeavy.woff2') format('woff2'), url('AvenirLTStdHeavy.woff') format('woff'), url('AvenirLTStdHeavy.ttf') format('truetype'), url('AvenirLTStdHeavy.svg#AvenirLTStdHeavy') format('svg');
+}
+@font-face {
+    font-family: 'AvenirLTStdLight';
+    src: url('AvenirLTStdLight.eot');
+    src: url('AvenirLTStdLight.eot?#iefix') format('embedded-opentype'), url('AvenirLTStdLight.woff2') format('woff2'), url('AvenirLTStdLight.woff') format('woff'), url('AvenirLTStdLight.ttf') format('truetype'), url('AvenirLTStdLight.svg#AvenirLTStdLight') format('svg');
+}
+@font-face {
+    font-family: 'AvenirLTStdMedium';
+    src: url('AvenirLTStdMedium.eot');
+    src: url('AvenirLTStdMedium.eot?#iefix') format('embedded-opentype'), url('AvenirLTStdMedium.woff2') format('woff2'), url('AvenirLTStdMedium.woff') format('woff'), url('AvenirLTStdMedium.ttf') format('truetype'), url('AvenirLTStdMedium.svg#AvenirLTStdMedium') format('svg');
+}
+@font-face {
+    font-family: 'AvenirLTStdRoman';
+    src: url('AvenirLTStdRoman.eot');
+    src: url('AvenirLTStdRoman.eot?#iefix') format('embedded-opentype'), url('AvenirLTStdRoman.woff2') format('woff2'), url('AvenirLTStdRoman.woff') format('woff'), url('AvenirLTStdRoman.ttf') format('truetype'), url('AvenirLTStdRoman.svg#AvenirLTStdRoman') format('svg');
+}
+@font-face {
+    font-family: 'couturebld';
+    src: url('couturebld.eot');
+    src: url('couturebld.eot?#iefix') format('embedded-opentype'), url('couturebld.woff2') format('woff2'), url('couturebld.woff') format('woff'), url('couturebld.ttf') format('truetype'), url('couturebld.svg#couturebld') format('svg');
+}
+@font-face {
+    font-family: 'couturebldit';
+    src: url('couturebldit.eot');
+    src: url('couturebldit.eot?#iefix') format('embedded-opentype'), url('couturebldit.woff2') format('woff2'), url('couturebldit.woff') format('woff'), url('couturebldit.ttf') format('truetype'), url('couturebldit.svg#couturebldit') format('svg');
+}

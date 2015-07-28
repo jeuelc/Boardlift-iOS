@@ -1,0 +1,428 @@
+  <div data-role="page">
+    <div class="main_container">
+		<div id="list_my_session">
+        	
+            <div class="list_ssn_wrap">
+                <div class="list_ssn_content first">
+                
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">1/4</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    
+                    <div class="list_ssn1_img">
+                        <img src="images/mobile-images/list-sessn-img.jpg" alt="">
+                    </div>
+                    
+                    <div class="list_ssn1_txt">
+                        What would you like to<br>call your session?
+                    </div>
+                    
+                    <div class="list_ssn1_row txt_center">
+                        <input type="text" class="input" placeholder="">
+                    </div>
+                
+                </div>
+                
+                <div class="list_ssn_content">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">2/4</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn1_txt" style="margin:7% 5% 0% !important">Date of depart</div>
+                    <li class="create-session-date">
+                        
+                        <input type="text" name="startDate" id="startDate">
+                    </li>
+                    <li class="create-session-depart-time">
+                        <input type="text" placeholder="Time of depart" class="input" name="travelStartTime" id="travelStartTime" readonly>
+                    </li>
+                    <li class="create-session-return-time">
+                        <input type="text" placeholder="Return by" class="input" name="travelEndTime" id="travelEndTime" readonly>
+                    </li>
+                </div>
+                
+                <div class="list_ssn_content">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">3/4</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn3_row txt_center">
+                        <input type="text" name="origin_address" class="input marginBtm8" placeholder="Type your origin address">
+                        <select class="select">
+                            <option>To</option>
+                            <option>Address 1</option>
+                            <option>Address 2</option>
+                            <option>Address 3</option>
+                        </select>
+                    </div>
+                    <div class="list_ssn3_txt txt_center">
+                        Pick up information for passenger
+                    </div>
+                    <div class="list_ssn3_inputs">
+                        <div id="list_ssn3_radio">
+                            <input id="radio01" type="radio" name="radio">
+                            <label for="radio01">
+                                <span></span> I will come to your location (reasonable distance)
+                            </label>
+                        </div>
+                        <div id="list_ssn3_radio">
+                            <input id="radio02" type="radio" name="radio">
+                            <label for="radio02">
+                                <span></span> I will pick from my origin address
+                            </label>
+                        </div>
+                        <div class="list_ssn3_txtarea">
+                            <textarea class="textarea" rows="5" placeholder="Pick notes optional"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="list_ssn_content">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">4/4</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                        <select class="select">
+                            <option>1 available seat</option>
+                            <option>2 available seat</option>
+                            <option>3 available seat</option>
+                            <option>4 available seat</option>
+                        </select>
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                        <p class="cost_seat">Cost per seat $</p>
+                        <input type="text" name="seat_cost" class="input marginBtm5" placeholder="0">
+                        <div class="range_slider">
+                            <div id="slider"></div>
+                        </div>
+                        <p class="required_txt txt_center">* Seats need to be costed at a $5 dollar minimum</p>
+                    </div>
+                    <div class="board_skill_sec">
+                        <p class="board_skill_txt">Your board skill level</p>
+                        <div class="board_rtng_box">
+                            <div class="board_rtng_head">
+                                <div class="board_rtng_col1">Board</div>
+                                <div class="board_rtng_col2">Rating</div>
+                                <div class="board_rtng_col3">Select to hide from this session</div>
+                                <div class="clearboth"></div>
+                            </div>
+                            <div class="board_rtng_row">
+                                <div class="board_rtng_col1">
+                                    <div class="board_img1"><img src="images/mobile-images/skil_img1.png" alt=""></div>
+                                </div>
+                                <div class="board_rtng_col2">
+                                    <div class="rating_star">
+                                        <img src="images/mobile-images/active-rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/active-rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/rating-star.png" class="list_star_gap" alt="">
+                                    </div>
+                                </div>
+                                <div class="board_rtng_col3">
+                                    <div class="radio txt_center">
+                                        <input id="skill1" type="checkbox" name="skill-level1" value="">
+                                        <label for="skill1"><span></span></label>
+                                    </div>
+                                </div>
+                                <div class="clearboth"></div>
+                            </div>
+                            <div class="board_rtng_row">
+                                <div class="board_rtng_col1">
+                                    <div class="board_img2"><img src="images/mobile-images/skil_img2.png" alt=""></div>
+                                </div>
+                                <div class="board_rtng_col2">
+                                    <div class="rating_star">
+                                        <img src="images/mobile-images/active-rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/active-rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/rating-star.png" class="list_star_gap" alt=""><img src="images/mobile-images/rating-star.png" class="list_star_gap" alt="">
+                                    </div>
+                                </div>
+                                <div class="board_rtng_col3 txt_center">
+                                    <input id="skill2" type="checkbox" name="skill-level2">
+                                    <label for="skill2"><span></span></label>
+                                </div>
+                                <div class="clearboth"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="list_ssn_content">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt"></div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn5_hdng">
+                        <h2>Session summary</h2>
+                    </div>
+                    <div class="list_ssn5_detail">
+                        <div class="list_ssn5_detail_btn">
+                            <button type="button" class="button"><i class="fa fa-sun-o"></i> forecast</button>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Session:</div>
+                            <div class="list_ssn5_detail_rt">Dawny at Gunnamatta</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">To:</div>
+                            <div class="list_ssn5_detail_rt">Mornington Peninsula</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Date:</div>
+                            <div class="list_ssn5_detail_rt">13.04.15</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Time:</div>
+                            <div class="list_ssn5_detail_rt">6am &frasl; 12-2pm</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Wheels:</div>
+                            <div class="list_ssn5_detail_rt">Tom P &frasl; 2012 Sedan</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Cost &frasl; seats:</div>
+                            <div class="list_ssn5_detail_rt">$15&frasl;3</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Pick up info:</div>
+                            <div class="list_ssn5_detail_rt">I will come to your location</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Pickup notes:</div>
+                            <div class="list_ssn5_detail_rt">Pick me up on the forner of sddfsdf asfasdfadfaf</div>
+                            <div class="clearboth"></div>
+                        </div>
+                    </div>
+                    <div class="list_ssn5_map">
+                        <img src="images/mobile-images/map-img.jpg" alt="">
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="list_ssn_btn_sec">
+            	<div class="list_ssn_btn_lt">
+                	<button name="prev" id="prev" style="visibility:hidden" class="list_btn">Back</button>
+                </div>
+                <div class="list_ssn_btn_rt">
+                	<button name="next" id="next" class="list_btn mn_ryt">Next</a>
+                </div>
+                <div class="list_ssn_btn_rt">
+                	<button name="next" id="list_ssn" style="display:none" class="list_btn list_ssn5_btn mn_ryt">List Session</a>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="clearboth"></div>
+    
+    <div id="mobile_footer"> 
+    	<a href="index.html" class="footer_logo"></a> 
+        <a href="" class="footer_srch"></a>
+    	<div class="footer_menu footer_menu_loggedin"></div>
+    	<div class="clearboth"></div>
+    </div>
+
+<!---------------------- Slide menu ---------------------->
+    <div id="slide_menu">
+        <div class="mobile_ryt_nav with_login">
+        	<div class="pro_pic"> 
+            	<img src="images/mobile-images/no_photo.jpg" alt=""> 
+                <span class="pro_pic_name">Kane Marevich</span> 
+            </div>
+            <ul class="mb_nav">
+                <li>
+                    <div class="sub_menu_blk"> 
+                        <a href="">
+                            <div class="sb_nav_img sb_nav_img1"></div>
+                            <h2>Dashboard</h2>
+                        </a> 
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu_blk"> 
+                        <a href="message.html">
+                            <div class="sb_nav_img sb_nav_img2"></div>
+                            <h2>Messages<span>(1)</span></h2>
+                        </a> 
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu_blk"> 
+                        <a href="session-current-listings.html">
+                            <div class="sb_nav_img sb_nav_img3"></div>
+                            <h2>sessions</h2>
+                        </a> 
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu_blk"> 
+                        <a href="bookings.html">
+                            <div class="sb_nav_img sb_nav_img4"></div>
+                            <h2>Bookings</h2>
+                        </a> 
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu_blk"> 
+                        <a href="help-page.html">
+                            <div class="sb_nav_img sb_nav_img5"></div>
+                            <h2>Help</h2>
+                        </a> 
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu_blk"> 
+                        <a href="account-main.html">
+                            <div class="sb_nav_img sb_nav_img6"></div>
+                            <h2>Account</h2>
+                        </a> 
+                    </div>
+                </li>
+            </ul>
+            <ul class="wl_mb_nav nav_gap">
+                <li><a href="#">Invite friends</a></li>
+                <li><a href="#">Legal stuff</a></li>
+                <li><a href="#">Improve us</a></li>
+                <li><a href="#">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+<!---------------------- Slide menu end-------------------->
+
+    <div id="filter_search">
+        <div class="filtr_srchBtn">
+        	<button type="button">Filter Search</button>
+        </div>
+        <div class="main_row">
+        	<div class="search_sec">
+            	<div class="close_srch_popup">X</div>
+                <div class="depart_date_holder">
+                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                    <!--<i class="fa fa-calendar"></i>-->
+                </div>
+                <div class="search_main_row">
+                	<div class="victoria_sec">
+                        <div class="content_sec">
+                            <h1>Victoria</h1>
+                            <p>Search sessions</p>
+                        </div>
+                    </div>
+                    <div class="sa_sec spacer">
+                        <div class="content_sec">
+                            <h1>SA</h1>
+                            <p>Search sessions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+            
+        </div>
+    </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+    
+        $('#startDate').datetimepicker({
+            timepicker:false,
+            format:'Y-m-d',
+            minDate:0,
+            closeOnDateSelect:true,
+            scrollMonth: false,
+            inline:true
+        });
+
+        if($("#travelEndTime").val() != 'Return by') {
+            var maxTimeDepart = $("#travelEndTime").val();
+        } else {
+            var maxTimeDepart = false;
+        }
+        $('#travelStartTime').datetimepicker({
+            datepicker:false,
+            format:'g:i A',
+            minDate:0,
+            onShow:function( ct ){
+                this.setOptions({
+                    //maxTime: maxTimeDepart
+                    maxTime:jQuery('#travelEndTime').val() != 'Return by' ?jQuery('#travelEndTime').val():false
+                })
+            }
+        });
+
+        $('#travelEndTime').datetimepicker({
+            datepicker:false,
+            format:'g:i A',
+            onShow:function( ct ){
+                this.setOptions({
+                    minTime:jQuery('#travelStartTime').val() != 'Time of depart' ? ( jQuery('#travelStartTime').val().split(' ')[1] == 'PM' ? parseInt(jQuery('#travelStartTime').val().split(':')[0])+13 : parseInt(jQuery('#travelStartTime').val().split(':')[0])+1).toString()+":00":false
+                })
+            }
+        });
+
+        $("#startDate").keydown(function (e) {
+            e.preventDefault();
+        });
+
+        $("#travelStartTime").keydown(function (e) {
+            e.preventDefault();
+        });
+
+        $("#travelEndTime").keydown(function (e) {
+            e.preventDefault();
+        });
+    
+    });
+</script>
+<script type="text/javascript">
+$(function() {
+    $("#slider").slider({
+      range: 'min',
+      value: 1,
+      min: 1,
+      max: 150,
+      slide: function(event, ui) {
+        $('input[name=seat_cost]').val(ui.value);
+      }
+    });
+    
+    $('input[name=seat_cost]').keyup(function() {
+        $("#slider").slider('option', 'value', $('input[name=seat_cost]').val());
+    });
+  });
+</script>
+</div>
