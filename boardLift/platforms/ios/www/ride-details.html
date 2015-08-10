@@ -1,337 +1,849 @@
-  <div data-role="page">
+ <script type="text/javascript">
+    $(function() {
+        $('input[name=accept-button]').click(function () {
+            $('input[name=booking_id]').val($(this).attr('id'));
+            $('#status-form').attr('action', 'http://web.boardlift.com/account/bookings/accept');
+            $('span[class=ui-dialog-title]').html('Accept Booking');
+            $('#confirm-text').html('Are you sure you want to accept this booking request?');
+            $('#dialog-status').dialog('open');
+        });
 
+        $('input[name=decline-button]').click(function () {
+            $('input[name=booking_id]').val($(this).attr('id'));
+            $('#status-form').attr('action', 'http://web.boardlift.com/account/bookings/decline');
+            $('span[class=ui-dialog-title]').html('Decline Booking');
+            $('#confirm-text').html('Are you sure you want to decline this booking request?');
+            $('#dialog-status').dialog('open');
+        });
+
+        $('input[name=cancel-button]').click(function () {
+            $('input[name=booking_id]').val($(this).attr('id'));
+            $('input[name=booking_status]').val($(this).attr('status'));
+            $('#status-form').attr('action', 'http://web.boardlift.com/account/bookings/cancel_host');
+            $('span[class=ui-dialog-title]').html('Cancel Booking');
+            $('#confirm-text').html('Are you sure you want to cancel this booking request?');
+            $('#dialog-status').dialog('open');
+        });
+
+        $('input[name=dispute-button]').click(function () {
+            $("#dispute-booking-id").val($(this).attr('id'));
+            $("#dispute-session-id").val($(this).attr('session_id'));
+            $('#dispute-session-name').html($(this).attr('session_name'));
+            $('#dispute-session-date').html($(this).attr('session_date'));
+            $(".dispute-your-driver-holder").animate({"top":0}, 500, function() {$(".main_container").hide();});
+        });
+
+        $("#cancel-dispute-btn").on("click", function(e) {
+            $(".dispute-your-driver-holder").animate({"top":"100%"}, 500);
+            $('#session-dispute').val('');
+            $(".main_container").show();
+        });
+
+        $("#submit-dispute-btn").on("click", function(e) {
+             if($('#session-dispute').val().trim() == "")
+             {
+               $('#dialog-dispute').dialog('open');
+             }
+             else
+             {
+                 var form = $('form[class=dispute-form]');
+                 form.submit();
+             }
+        });
+
+        $('input[name=complete-button]').click(function () {
+            //$('span[class=ui-dialog-title]').html('Add Feedback');
+            $("#booking_id").val($(this).attr('id'));
+            $('#dialog-feedback').animate({'top':'0'}, 300, function() { $(".main_container").hide(); });
+            $('body').css("overflow", "hidden");
+        });
+        
+        $('input[name=write-feedback-button]').click(function () {
+            $("#booking_id2").val($(this).attr('id'));
+            $('#dialog-feedback2').animate({'top':'0'}, 300, function() { $(".main_container").hide(); });
+            $('body').css("overflow", "hidden");
+        });
+        
+        $('#dialog-status').dialog({
+            autoOpen: false,
+            resizable: false,
+            minHeight:200,
+            width:"100%",
+            modal: true,
+            buttons: {
+              'No, thanks': function() {
+                $( this ).dialog('close');
+              },
+              'Yes': function() {
+                  var form = $('#status-form');
+                  form.submit();
+                  $(this).dialog('close');
+                }
+            }
+          });    
+          
+          $('#dialog-feedback-empty').dialog({
+            autoOpen: false,
+            resizable: false,
+            minHeight:150,
+            width: '80%',
+            minWidth:200,
+            modal: true,
+            buttons: {
+              'OK': function() {
+                  $(this).dialog('close');
+                }
+            }
+          });
+
+          $('#dialog-dispute').dialog({
+              autoOpen: false,
+              resizable: false,
+              minHeight:150,
+              width: '100%',
+              minWidth:200,
+              modal: true,
+              buttons: {
+                'OK': function() {
+                    $(this).dialog('close');
+                  }
+              }
+          });
+          
+          //initialize();
+    })();
+    
+    
+    </script>
+    <style type="text/css">
+        .fb-share-button
+        {
+            transform: scale(1.5);
+            -ms-transform: scale(1.5);
+            -webkit-transform: scale(1.5);
+            -o-transform: scale(1.5);
+            -moz-transform: scale(1.5);
+            width: 70px;
+            padding-top: 8px;
+            height: 30px;
+        }
+        
+        .fb_iframe_widget_fluid {
+            display: inline-block !important;
+        }
+    </style>
+
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=857928180967139";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div data-role="page" id="ride-details">
     <div class="main_container">
         <div class="ride-details-header">
             <a href="javascript:void(0)" id="ride-session-details" class="active-link change-view">Ride details</a>
-            <a href="javascript:void(0)" id="ride-driver-details" class="inactive-link change-view">Driver Profile</a>
+            <a href="javascript:void(0)" id="ride-driver-details" class="inactive-link change-view" style="display:none;" data-driver-id="">Driver profile</a>
         </div>
-        <div class="ride-form-holder">
-            <select>
+        <div class="ride-form-holder" style="display:none;">
+            <select name="seat-request" id="seats-request">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
             </select>
-            <a id="submit-request-btn" href="javascript:void(0)">Request seat/s</a>
+            <a id="submit-request-btn" href="#">Request seat/s</a>
         </div>
-        <div id="ride-session-details-container" style="display:block">
-            <div class="session-image-holder" style="background:url('images/sessions/session-1.jpg') no-repeat center center;"></div>
-            <div class="list-session-blox">
+        <div class="ride-details-requests-holder">
+                            
+        </div>
+        <div id="ride-session-details-container" style="display:block;position:static;padding-bottom:10px;">
+                        <div class="driver-session-image-holder" style="background:url('https://boardlift-staging.s3-ap-southeast-2.amazonaws.com/destinations/29/2301075_m.jpg') no-repeat center center;"></div>
+            <div class="list-session-blox" style="width:96%; float:none;margin:auto;">
                 <div class="session-row">
                     <div class="sesn-list-row">
                         <div class="sl-row">
                             <div class="sl-col-box">
                                 <h3>Session name</h3>
-                                <p>Dawny at Gunnamatta</p>
+                                <p id="session-name">my new sesion</p>
                             </div>
                             <div class="sl-col-box">
                                 <h3>From</h3>
-                                <p>Surrey Hills</p>
+                                <p id="session-from">
+                                    Las Vegas, NV, United States                                </p>
                             </div>
                             <div class="sl-col-box">
                                 <h3>To</h3>
-                                <p>Mornington Peninsula</p>
+                                <p id="session-to">
+                                    Yamba, New South Wales, Australia                                </p>
                             </div>
                             <div class="sl-col-box">
-                                <h3>Departs</h3>
-                                <p>6am, Wednesday 03/0215</p>
+                                <h3>Departure time</h3>
+                                <p id="session-start-time">11 AM, Wednesday 29/07/2015</p>
                             </div>
                             <div class="sl-col-box">
-                                <h3>Return</h3>
-                                <p>12-2pm</p>
+                                <h3>Return time</h3>
+                                <p id="session-return-time">3 PM</p>
                             </div>
                             <div class="sl-col-box">
-                                <h3>Pick up</h3>
-                                <p>I will come to your location (reasonable distance)</p>
-                            </div>
-                            <div class="sl-col-box">
-                                <h3>Pick up notes</h3>
-                                <p>Please meet me out front</p>
-                            </div>
+                                <h3>Pick up location</h3>
+                                <p id="session-pickup-loc">Passenger's can specify location(reasonable distance)</p>
+                                                         
                             <div class="sl-col-box">
                                 <div class="ride-details-wheel-img-holder">
-                                    <img src="images/wheels-sedan.png" width="50%"><br><br>
+                                                                        <img src="" width="50%" id="wheels-image"><br><br>
                                     </div>
-                                    <p class="wheel-detail">2012 VW Sedan</p>
-                                    <p class="wheel-detail">Roof racks</p>
+                                    <p class="wheel-detail">
+                                        Jaguar                                        SUV                                         without roof rack                                    </p>
                                 </div>
                             <div class="v-spacer"></div>
                             <div class="sl-col-box seat-ava">
                                 <h3>Available seats</h3>
-                                <ul>
-                                    <li><img src="images/current-avail.png"></li>
-                                    <li><img src="images/current-avail.png"></li>
-                                    <li><img src="images/current-avail.png"></li>
-                                    <p style="margin-left:4%;margin-top:12%;float:left;">$15</p>
+                                <ul id="avail-seats">
+                                                                        
                                 </ul>
                             </div>
                             <div class="sl-col-box">
+                                <h3>Cost per seat</h3>
+                                <p id="seats-cost">$<span></span></p>
+                            </div>
+                            <div class="sl-col-box">
                                 <div class="special-buttons-holder">
-                                    <button class="fb-ride-share" type="button"><i class="fa fa-facebook"></i> &nbsp;Share</button>
-                                    <button class="ride-forecast">Forecast <i class="fa fa-sun-o"></i></button>
+                                    <div class="fb-share-button" data-href="http://web.boardlift.com/sessions/view/191" data-layout="button"></div>
+                                    <a href="http://www.swellnet.com/reports/australia/new-south-wales/yamba/forecast" target="_blank"><button class="ride-forecast">Forecast <i class="fa fa-sun-o"></i></button></a>
                                 </div>
                             </div>
                             <div class="sl-col-box">
                                 <div class="session-map-holder">
-                                    <img src="images/session-map.png">
+                                    <div id="map-session" class="map-session" style="width:100%;height:200px;"></div>
                                 </div>
+                            </div>
+                            <div class="sl-col-box">
+                                <div class="special-buttons-holder">
+                                    <a href="#" id="ride-details-back-btn"><button class="ride-forecast">Back</button></a>
+                                                                            <a href="http://web.boardlift.com/account/sessions/edit/191"><button class="ride-forecast">Edit</button></a>
+                                                                    </div>
+                                <div class="v-spacer"></div>
                             </div>
                         </div>
                     </div>
                     <div class="v-spacer"></div>
                 </div>
             </div>
-        </div> <!--end of ride-session-details-container-->
-        <div id="ride-session-driver-container" style="display:none;">
-            <div class="driver-photo-holder">
-                <img src="images/users/user-1.jpg">
-            </div>
+        </div> 
+    </div> <!--end of ride-session-details-container-->
+
+        <div id="ride-session-driver-container" style="width: 98%; margin: auto; left: 0px; right: 0px;display:none;">
+                        <a href="http://web.boardlift.com/users/profile/2">
+                <div class="driver-photo-holder" style="background:url('https://graph.facebook.com/10153157075722356/picture?width=350') center center no-repeat">
+                
+                </div>
+            </a>
             <div class="user-main-info">
-                Kane M (5 reviews)<br>
-                Member since: Sept 2014 - 55 sessions<br>
-                <div class="user-rating"><img src="images/thumbs_3.png"></div>
-                <a id="driver-contact-btn" href="javascript:void(0)">Contact</a>
+                <p><a id="driver-name" href="http://web.boardlift.com/users/profile/2" style="color:#000000;">Kris L</a> </p>
+                <br>
+                <p><a id="driver-contact-btn" href="javascript:void(0)">Contact</a></p>
+            </div>
+            <div class="user-main-info" style="width:100% !important;">
+                <div class="user-rating-container">
+                    <div class="overall-rating">
+                                            <div class="user-rating"><img src="http://web.boardlift.com/assets/images/thumbs_5.png"></div>
+                        <p>0 Reviews</p>
+                    </div>
+                    <div class="category-rating left">
+                        <div class="category-label">Punctuality</div>
+                        <div><img src="http://web.boardlift.com/assets/images/thumbs_5.png"></div>
+                    </div>
+                    <div class="category-rating right">
+                        <div class="category-label">Communication</div>
+                        <div><img src="http://web.boardlift.com/assets/images/thumbs_5.png"></div>
+                    </div>
+                    <div class="category-rating left">
+                        <div class="category-label">Driving/vehicle</div>
+                        <div><img src="http://web.boardlift.com/assets/images/thumbs_5.png"></div>
+                    </div>
+                    <div class="category-rating right">
+                        <div class="category-label">Skills matched profile?</div>
+                        <div><img src="http://web.boardlift.com/assets/images/thumbs_5.png"></div>
+                    </div>
+                                        
+                </div>
             </div>
             <div class="v-spacer"></div>
+            <div class="driver-information">
+                <span>Gender</span>
+                <p id="driver-gender">                                        
+                <img src="http://web.boardlift.com/assets/images/mobile-images/gender-male.png" width="40px">
+                                                    </p>
+            </div>
+            <div class="driver-information">
+                <span>Favorite spot</span>
+                <p id="driver-favorite-spot"></p>
+            </div>
             <div class="driver-information">
                 <span>Bio</span>
-                <p>I enjoy most types of board riding. Mainly head to the Peninsula or Torquay. Surfed in US & Bali.<br>Snowboard in Europe.</p>
+                <p id="driver-bio"></p>
             </div>
             <div class="driver-information">
-                <span>Location</span>
-                <p>Surrey Hills, Victoria, Australia</p>
+                <span>Music preference</span>
+                <p id="driver-music-preference"></p>
             </div>
             <div class="driver-information">
-                <span>Favorite spot (local)</span>
-                <p>Gunnamatta, 13th Beach, Mt Hotham</p>
-            </div>
-            <div class="driver-information">
-                <span>Music</span>
-                <div class="v-spacer"></div>
-                <li><img src="images/music-grey.png"><br>Electronic</li>
-                <li><img src="images/music-grey.png"><br>Pucnk</li>
-                <li><img src="images/music-grey.png"><br>Talkback</li>
-                <div class="smoking-preference-holder">
-                    <img src="images/smoking-no.png">
-                </div>
+                <span>Smoking preference</span>
+                <p><img id="driver-somke-preference" src="http://web.boardlift.com/assets/images/smoking-dontmind.png" width="80">
+                    </p>
             </div>
             <div class="v-spacer"></div>
             <div class="driver-information">
-                <div class="boardskills-holder">
-                    <div class="sesn-board-rating">
+                <div class="boardskills-holder" style="margin-bottom: 10px;">
+                    <div class="sesn-board-rating" style="margin-bottom:22px !important;">
                         <ul class="board-matrix-head">
-                            <li class="boardtype">Board<br>Type</li>
-                            <li class="boardrate">Skill<br>Level</li>
+                            <li class="boardtype">Board type</li>
+                            <li class="boardrate">Skill level</li>
                             <div class="v-spacer"></div>
                         </ul>
-                        <ul class="board-matrix-head">
-                            <li class="boardtype"><img src="images/boards/Body Board.jpg"></li>
-                            <li class="boardrate"><img src="images/skill_rate_2.png"></li>
-                            <div class="v-spacer"></div>
-                        </ul>
-                        <ul class="board-matrix-head">
-                            <li class="boardtype"><img src="images/boards/Snow Board.jpg"></li>
-                            <li class="boardrate"><img src="images/skill_rate_2.png"></li>
-                            <div class="v-spacer"></div>
-                        </ul>
-                        <ul class="board-matrix-head">
-                            <li class="boardtype"><img src="images/boards/Short Board.jpg"></li>
-                            <li class="boardrate"><img src="images/skill_rate_3.png"></li>
-                            <div class="v-spacer"></div>
-                        </ul>
-                    </div>
+                        
+                                <!--     <ul class="board-matrix-head" id="board-skill-ratings">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/Snow Board.jpg"><br>Snow Board</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_2.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul> -->
+                                    <!-- <ul class="board-matrix-head">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/SUP.jpg"><br>SUP</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_3.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul>
+                                    <ul class="board-matrix-head">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/Wake Board.jpg"><br>Wake Board</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_3.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul>
+                                    <ul class="board-matrix-head">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/Mini Mal.jpg"><br>Mini Mal</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_5.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul>
+                                                            <ul class="board-matrix-head">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/Short Board.jpg"><br>Short Board</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_3.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul>
+                                                            <ul class="board-matrix-head">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/Long Board.jpg"><br>Long Board</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_3.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul>
+                                                            <ul class="board-matrix-head">
+                                        <li class="boardtype lightfont"><img src="http://web.boardlift.com/assets/images/boards/Skate Board.jpg"><br>Skate Board</li>
+                                        <li class="boardrate"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_2.png"></li>
+                                        <div class="v-spacer"></div>
+                                    </ul> -->
+                                            </div>
                 </div>
             </div>
+            <div class="driver-information" style="margin-bottom: 60px;">
+                <span>User feedback</span>
+                <div class="ride-details-requests-holder" style="margin-top:0px !important;">
+                                                <div class="ride-details-request">
+                                <div class="requesters-photo">
+                                    <a href="http://web.boardlift.com/users/profile/12">
+                                        <div class="feedback-sender-phorot" style="margin:auto;border-radius:50%;width:50%;padding-top:50%;background-size:cover !important; background:url('https://boardlift-staging.s3-ap-southeast-2.amazonaws.com/users/12.jpg') center center no-repeat;">
+                                        </div>
+                                        <br>Hairy P                                    </a>
+                                </div>
+                                <div class="ride-details-request-info" style="width:65%;">
+                                    <li style="width:100%;padding-bottom:5px; text-align:left;">19/06/2015</li>
+                                    <li style="width:100%;padding-bottom:5px; text-align:left;">Bang bang into your room!</li>
+                                </div>
+                                <div class="v-spacer"></div>
+                            </div>
+                                            </div>
+            </div>
         </div>
-    </div>
-    <div class="clearboth"></div>
-    
-    <div id="mobile_footer"> 
-        <a href="index.html" class="footer_logo"></a> 
-        <a href="" class="footer_srch"></a>
-        <div class="footer_menu footer_menu_loggedin"></div>
-        <div class="clearboth"></div>
+
     </div>
 
-<!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
-        <div class="mobile_ryt_nav with_login">
-            <div class="pro_pic"> 
-                <img src="images/mobile-images/no_photo.jpg" alt=""> 
-                <span class="pro_pic_name">Kane Marevich</span> 
-            </div>
-            <ul class="mb_nav">
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="">
-                            <div class="sb_nav_img sb_nav_img1"></div>
-                            <h2>Dashboard</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="message.html">
-                            <div class="sb_nav_img sb_nav_img2"></div>
-                            <h2>Messages<span>(1)</span></h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="session-current-listings.html">
-                            <div class="sb_nav_img sb_nav_img3"></div>
-                            <h2>sessions</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="bookings.html">
-                            <div class="sb_nav_img sb_nav_img4"></div>
-                            <h2>Bookings</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="help-page.html">
-                            <div class="sb_nav_img sb_nav_img5"></div>
-                            <h2>Help</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="account-main.html">
-                            <div class="sb_nav_img sb_nav_img6"></div>
-                            <h2>Account</h2>
-                        </a> 
-                    </div>
-                </li>
-            </ul>
-            <ul class="wl_mb_nav nav_gap">
-                <li><a href="#">Invite friends</a></li>
-                <li><a href="#">Legal stuff</a></li>
-                <li><a href="#">Improve us</a></li>
-                <li><a href="#">Log out</a></li>
-            </ul>
-        </div>
+
+
+    <div class="clearboth"></div>    
+    <div id="dialog-status" title="Change status">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+            <span id="confirm-text"></span>
+        </p>
     </div>
-<!---------------------- Slide menu end-------------------->
-    <div id="booking-slideup">
-        <div class="booking-slideup-content">
-            <div class="list_sessn_hdng">
-                <div class="list_ssn_hdng_lt">
-                    <h1>Session booking</h1>
+    <div id="dialog-feedback-empty" title="Add feedback">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+            <span id="confirm-text">You are required to add a feedback.</span>
+        </p>
+    </div>
+    <div id="dialog-feedback">
+        <form action="http://web.boardlift.com/account/bookings/host_complete" accept-charset="utf-8" method="post" class="feedback-form" id="feedback-form" style="text-align: left;"><div style="display:none">
+<input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
+</div>        <div class="feedback-as-host-holder">
+            <div class="ssn_hdng">
+                <div class="ssn_hdng_lt">
+                    <h1>Add feedback</h1>
                 </div>
                 <div class="clearboth"></div>
             </div>
-            <div class="booking-slideup-info">
-                <li><div>Session:</div>Dawny at Gunnamatta</li>
-                <li><div>To:</div>Mornington Peninsula</li>
-                <li><div>No of seats:</div>4</li>
-                <li><div>Cost per seat:</div>$20</li>
-                <li><div>Fee:</div>$9.60</li>
-                <li><div>Total:</div>$89.60</li>
-            </div>
-            <div class="booking-slideup-pickup-location-choice">
-                <p style="margin:auto;text-align:center;margin-top:6%;">Your picup location is</p><br>
-                <ul style="text-align:center;padding-top:0px;">
-                    <input type="text" name="pickup-address" id="pickup-address" placeholder="Optional pickup location">
-                </ul>
-            </div>
-            <div class="booking-slideup-optional-message-holder">
-                <textarea class="textarea" rows="10" placeholder="Include optional message" id="booking-optional-message"></textarea>
-            </div>
-            
-            <div class="booking-slideup-disclaimer">
-                <p>
-                    By clicking "submit" you will request a seat(s) from a driver. The driver will either accept or reject your request based on your board type skill, review ratings, location etc. Drivers will usually respond within a few hours.
-                </p>
-                <p>
-                    A payment authorisation for your seat will be taken now on the next screen however, a driver will not be paid until 24 hours after the session (to make sure everyone turns up!)
-                </p>
-                <p>
-                    If your seat requested is rejected or the trip is cancelled your payment authorisation will be immediately cancelled.
-                </p>
-            </div>
-            
-            <div class="booking-details-holder">
-                <div class="booking-slideup-buttons-holder">
-                    <a id="booking-slideup-cancel" class="booking-slideup-button" href="javascript:void(0)" >Cancel</a>
-                    <a id="booking-slideup-submit" class="booking-slideup-button" href="javascript:void(0)" >Submit</a>
-                    <div class="v-spacer"></div>
+            <div class="clearboth"></div>
+            <div class="feedback-as-host-main-row">
+                <div class="v-spacer"></div>
+                    <textarea id="feedback-area" name="feedback" rows=10 style="width:100%;" placeholder="Say something about your guest."></textarea>
+                    <input  data-role="none" type='hidden' name="sessionId" id="sessionId" value="191">
+                    <input  data-role="none" type='hidden' name="booking_id" id="booking_id">
+                    <input  data-role="none" type="hidden" name="referrer" value="account/sessions/view/191">
+                <div class="v-spacer"></div>
+                <div class="rate_your_driver" style="padding-top: 10px; text-align: center;">
+                    <a id="not-now-rating-btn" href="javascript:void(0)">Skip feedback</a> 
+                    <a id="submit-rating-btn" href="javascript:void(0)">Submit</a>
                 </div>
             </div>
         </div>
+        </form>    </div>
+    <div id="dialog-feedback2">
+        <form action="http://web.boardlift.com/account/bookings/write_feedback" accept-charset="utf-8" method="post" class="feedback-form2" id="feedback-form2" style="text-align: left;"><div style="display:none">
+<input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
+</div>        <div class="feedback-as-host-holder">
+            <div class="ssn_hdng">
+                <div class="ssn_hdng_lt">
+                    <h1>Add feedback</h1>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+            <div class="clearboth"></div>
+            <div class="feedback-as-host-main-row">
+                <div class="v-spacer"></div>
+                    <textarea id="feedback-area2" name="feedback" rows=10 style="width:100%;" placeholder="Say something about your guest."></textarea>
+                    <input  data-role="none" type='hidden' name="sessionId" id="sessionId2" value="191">
+                    <input  data-role="none" type='hidden' name="type" value="host">
+                    <input  data-role="none" type='hidden' name="sessionBookingId" id="booking_id2">
+                    <input  data-role="none" type="hidden" name="referrer" value="account/sessions/view/191">
+                <div class="v-spacer"></div>
+                <div class="rate_your_driver" style="padding-top: 10px; text-align: center;">
+                    <a id="cancel-feedback-btn" href="javascript:void(0)">No, thanks</a> 
+                    <a id="submit-rating-btn2" href="javascript:void(0)">Submit</a>
+                </div>
+            </div>
+        </div>
+        </form>    </div>
+    <div id="dialog-feedback3">
+        <form action="http://web.boardlift.com/account/sessions/view/191" method="post" accept-charset="utf-8"><div style="display:none">
+<input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
+</div>        <div class="v-spacer"></div>
+        <div class="rate_your_driver" style="padding-top:40%;">
+            <div class="rate_your_driver_row" style="text-align:center;">
+                Are you sure you want to complete this booking without submitting a feedback?
+            </div>
+        </div>
+        <div class="v-spacer"></div>
+        <div class="rate_your_driver">
+            <div class="rate_your_driver_row" style="text-align:center;">
+                Please note that you will still be able to send a feedback  within the next two weeks.
+            </div>
+        </div>
+        <div class="v-spacer"></div>
+        <div class="rate_your_driver" style="padding-top: 40px; text-align: center;">
+            <a id="cancel-rating-btn" href="javascript:void(0)">No, thanks</a> 
+            <a id="submit-without-rating-btn" href="javascript:void(0)">Yes</a>
+        </div>
+        </form>        <div class="v-spacer" style="padding-bottom: 55px;"></div>
     </div>
-    <div id="filter_search">
+    <div id="dialog-dispute" title="Dispute Booking">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+            <span id="confirm-text">You are required to add the details for disputing this booking.</span>
+        </p>
+    </div>
+    <div class="dispute-your-driver-holder">
+    <div id="dispute-your-driver-page">
+        <div class="list_sessn_hdng">
+            <div class="list_ssn_hdng_lt">
+                <h1>Dispute</h1>
+            </div>
+            <div class="clearboth"></div>
+        </div>
+        <div class="rate_your_driver">
+            <div class="rate_your_driver_row">
+                <div class="rate_your_driver_lt">Session:</div>
+                <div class="rate_your_driver_rt" id="dispute-session-name"></div>
+                <div class="clearboth"></div>
+            </div>
+            <div class="rate_your_driver_row">
+                <div class="rate_your_driver_lt">Date:</div>
+                <div class="rate_your_driver_rt" id="dispute-session-date"></div>
+                <div class="clearboth"></div>
+            </div>
+        </div>
+        <div class="v-spacer"></div>
+        <div class="rate_your_driver">
+            <div class="rate_your_driver_row">
+                Please detail your dispute below and we will do our very best to sort it out for you.
+            </div>
+        </div>
+        <div class="v-spacer"></div>
+        <form action="http://web.boardlift.com/account/bookings/dispute" accept-charset="utf-8" method="post" class="dispute-form" id="dispute-form" style="text-align: left;"><div style="display:none">
+<input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
+</div>        <input  data-role="none" type='hidden' name="session_id" id="dispute-session-id">
+        <input  data-role="none" type='hidden' name="booking_id" id="dispute-booking-id">
+        <input  data-role="none" type="hidden" name="referrer" value="account/sessions/view/191">
+        <div class="session-feedback-holder">
+            <textarea id="session-dispute" name="dispute_message" rows="15"></textarea>
+        </div>
+        <div class="v-spacer"></div>
+        <div class="rate_your_driver" style="padding-top:10px;text-align:center;">
+            <a id="cancel-dispute-btn" href="javascript:void(0)">Cancel</a>
+            <a id="submit-dispute-btn" href="javascript:void(0)">Submit</a>
+        </div>
+        </form>    </div>
+</div>    <div id="slide_menu">
+    <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
+        <div class="pro_pic"> 
+            <a href="http://web.boardlift.com/account/users/profile" style="color:#999;">
+                                <div class="actual-profile-image" style="background:url('https://boardlift-staging.s3-ap-southeast-2.amazonaws.com/users/84.jpg') center center no-repeat;">
+                </div>
+                <span class="pro_pic_name">Karan Sharma</span>            </a>
+        </div>
+        <ul class="mb_nav">
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/users/dashboard">
+                        <div class="sb_nav_img sb_nav_img1"></div>
+                        <h2>Dashboard</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/messages">
+                        <div id="message-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img2"></div>
+                        <h2>Messages<span></span></h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/sessions">
+                        <div id="session-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img3"></div>
+                        <h2>Sessions<br>(As driver)</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/bookings">
+                        <div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img4"></div>
+                        <h2>Bookings<br>(As passenger)</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/help">
+                        <div class="sb_nav_img sb_nav_img5"></div>
+                        <h2>Help</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://web.boardlift.com/account/settings">
+                        <div class="sb_nav_img sb_nav_img6"></div>
+                        <h2>Account</h2>
+                    </a> 
+                </div>
+            </li>
+        </ul>
+        <ul class="wl_mb_nav nav_gap">
+            <li><a href="http://web.boardlift.com/account/users/invite" id="share-friends">Invite friends</a></li>
+            <li><a href="http://web.boardlift.com/help/legal_stuff">Legal stuff</a></li>
+            <li><a href="http://web.boardlift.com/help/contact_us">Contact us</a></li>
+            <li><a href="http://web.boardlift.com/account/users/logout">Log out</a></li>
+        </ul>
+    </div>
+</div>
+    <div class="clearboth"></div>
+<div id="mobile_footer"> 
+        <a href="http://web.boardlift.com/" class="footer_logo"></a> 
+    <a href="#" class="footer_srch"></a>
+        
+            <div class="footer_menu_loggedin"></div>
+        
+    <div class="clearboth"></div>
+</div>
+<div id="filter_search">
         <div class="filtr_srchBtn">
-            <button type="button">Filter Search</button>
+            <a href="javascript:void(0)" id="filter-search-anchor">
+                <button id="filter-search-btn" type="button">Filter Search</button>
+            </a>
         </div>
         <div class="main_row">
             <div class="search_sec">
                 <div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                    <input id="search_departureDate" type="text" readonly placeholder="Date" value="">
-                    <!--<i class="fa fa-calendar"></i>-->
+                                        <input  data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value="">
+                    <span id="clear_slideup_date" style="visibility: hidden;">X</span>
                 </div>
                 <div class="search_main_row">
-                    <div class="victoria_sec">
-                        <div class="content_sec">
-                            <h1>Victoria</h1>
-                            <p>Search sessions</p>
+                    <a href="javascript:void(0);" id="search-in-victoria">
+                        <div class="victoria_sec">
+                            <div class="content_sec">
+                                <h1>Victoria</h1>
+                                <p>Search sessions</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sa_sec spacer">
-                        <div class="content_sec">
-                            <h1>SA</h1>
-                            <p>Search sessions</p>
+                    </a>
+                    <a href="javascript:void(0);" id="search-in-sa">
+                        <div class="sa_sec spacer">
+                            <div class="content_sec">
+                                <h1>SA</h1>
+                                <p>Search sessions</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    <a href="javascript:void(0);" id="search-in-nsw">
+                        <div class="nsw_sec spacer">
+                            <div class="content_sec">
+                                <h1>NSW</h1>
+                                <p>Search sessions</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="clearboth"></div>
             </div>
-            
+                
         </div>
-    </div>
-<script>
-        $(function() {
-            $('.change-view').on("click", function() {
-                var link_id = $(this).attr("id");
-                $(this).attr("class", "active-link change-view");
-                switch(link_id) {
-                    case "ride-session-details":
-                        $("#ride-driver-details").attr("class", "inactive-link change-view");
-                        $("#ride-session-details-container").show();
-                        $("#ride-session-driver-container").hide();
-                        break;
-                        
-                    case "ride-driver-details":
-                        $("#ride-session-details").attr("class", "inactive-link change-view");
-                        $("#ride-session-driver-container").show();
-                        $("#ride-session-details-container").hide();
-                        break;
-                }
-            });
-            
-            $('#radio01').click(function(){
-                $("#pickup-address").attr("disabled", "disabled");
-            });
-            $('#radio02').click(function(){
-                $("#pickup-address").removeAttr("disabled"); 
-            });
-            
-            $("#booking-slideup-cancel").on("click", function(e) {
-                $("#booking-slideup").animate({"top":"100%"}, 500);
-            });
-            
-            $("#submit-request-btn").on("click", function(e){
-                $("#booking-slideup").animate({"top":0}, 500);
-            });
-        })
-</script>
+        <div class="v-spacer"></div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#filterBtn").click(function () {
+        $("#dialog-filter").slideToggle("slow");
+    });
+    
+    $('#search_departureDate_regional').datetimepicker({
+      format:'d/m/Y',
+      minDate:0,
+      timepicker: false,
+      closeOnDateSelect:true,
+      scrollMonth: false,
+      onChangeDateTime:function(){$("#clear_slideup_date").css("visibility", "visible");}
+    });
+    
+    $("#search_departureDate_regional").keydown(function (e) {
+        e.preventDefault();
+    });
+    
+    $("#search-in-victoria").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=Victoria%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=Victoria%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#search-in-sa").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=South+Australia%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=South+Australia%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#search-in-nsw").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=New+South+Wales%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?origin=&destination=New+South+Wales%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#filter-search-anchor").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var today = new Date();
+            var dd = ("0" + (today.getDate())).slice(-2);
+            var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+            var yyyy = today.getFullYear();
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?departureDate="+yyyy+"-"+mm+"-"+dd);
+        } else {
+        	var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://web.boardlift.com/sessions/search?departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+});
+</script><script>
+
+function getNotifications()
+{
+    $.ajax({
+        method: "GET",
+        url: "http://web.boardlift.com/account/users/get_user_notifications"
+    }).done(function( msg ) {
+        data = jQuery.parseJSON(msg);
+        
+        if(data.count.Message > 0)
+        {
+            $('#message-side-notification').text(data.count.Message);
+            $('#message-side-notification').show();
+        }
+        else
+        {
+            $('#message-side-notification').hide();
+        }
+        
+        if(data.count.Session > 0)
+        {
+            $('#session-side-notification').text(data.count.Session);
+            $('#session-side-notification').show();
+        }
+        else
+        {
+            $('#session-side-notification').hide();
+        }
+        
+        if(data.count.Booking > 0)
+        {
+            $('#booking-side-notification').text(data.count.Booking);
+            $('#booking-side-notification').show();
+        }
+        else
+        {
+            $('#booking-side-notification').hide();
+        }
+        
+        /*
+        $( ".sessions-notification" ).text();
+        
+        jQuery.each( data.Booking, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#booking_"+i ).length ) { $( "#booking_"+i ).text(val);
+        });
+        
+        jQuery.each( data.Session, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#session_"+i ).length ) { $( "#session_"+i ).text(val);
+        });
+        
+        jQuery.each( data.Message, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#message_"+i ).length ) { $( "#message_"+i ).text(val);
+        });
+        
+        
+        */
+        //console.log(data);                    
+    });
+}
+</script>    <script>
+        $("#submit-rating-btn").on("click", function(e) {
+            $(".main_container").show();
+             if($('#feedback-area').val().trim() == "")
+             {
+                $('#feedback-area').css("border-color", "#FF0000");
+                $('#dialog-feedback-empty').dialog('open');
+             }
+             else
+             {
+                 var form = $('form#feedback-form');
+                 form.submit();
+             }
+        });
+        $("#submit-rating-btn2").on("click", function(e) {
+            $(".main_container").show();
+             if($('#feedback-area2').val().trim() == "")
+             {
+                $('#feedback-area2').css("border-color", "#FF0000");
+                $('#dialog-feedback-empty').dialog('open');
+             }
+             else
+             {
+                 var form = $('form#feedback-form2');
+                 form.submit();
+             }
+        });
+        
+        $("#not-now-rating-btn").on("click", function(e) {
+            $("#dialog-feedback3").animate({"top":0}, 500);
+            $("#dialog-feedback").animate({"top":"100%"}, 500);
+            $('#feedback-area').css("border-color", "rgb(169,169,169)");
+        });
+        $("#cancel-rating-btn").on("click", function(e) {
+            $("#dialog-feedback3").animate({"top":"100%"}, 500);
+            $(".main_container").show();
+            $('body').css("overflow", "auto");
+        });
+        $("#cancel-feedback-btn").on("click", function(e) {
+            $("#dialog-feedback2").animate({"top":"100%"}, 500);
+            $('#feedback-area2').css("border-color", "rgb(169,169,169)");
+            $(".main_container").show();
+            $('body').css("overflow", "auto");
+        });
+        $("#submit-without-rating-btn").on("click", function(e) {
+            $(".main_container").show();
+             var form = $('form#feedback-form');
+             $('#feedback-area').val('');
+             form.submit();
+             
+        });
+
+        $('#ride-details').on('pageshow', function(){
+            updateRideDetailsPage();
+
+        });
+               $('.change-view').on("click", function() {
+            var link_id = $(this).attr("id");
+            $(this).attr("class", "active-link change-view");
+            switch(link_id) {
+                case "ride-session-details":
+                    $("#ride-driver-details").attr("class", "inactive-link change-view");
+                    $("#ride-session-details-container").show();
+                    $("#ride-session-driver-container").hide();
+                    break;
+                    
+                case "ride-driver-details":
+                    $("#ride-session-details").attr("class", "inactive-link change-view");
+                    $("#ride-session-driver-container").show();
+                    $("#ride-session-details-container").hide();
+                    break;
+            }
+        });
+
+               $('#ride-details-back-btn').on("click", function(e){
+                e.preventDefault();
+                $.mobile.changePage('session-current-listings.html');
+               });
+        
+    </script>

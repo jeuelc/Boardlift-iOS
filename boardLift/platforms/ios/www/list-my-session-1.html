@@ -10,7 +10,7 @@
                             <h1>List my session</h1>
                         </div>
                         <div class="list_ssn_hdng_rt">
-                            <div class="mn_ryt">1/4</div>
+                            <div class="mn_ryt">1/5</div>
                             <div class="clearboth"></div>
                         </div>
                         <div class="clearboth"></div>
@@ -25,7 +25,7 @@
                     </div>
                     
                     <div class="list_ssn1_row txt_center">
-                        <input type="text" class="input" placeholder="">
+                        <input  data-role="none" type="text" class="input" placeholder="">
                     </div>
                 
                 </div>
@@ -44,13 +44,13 @@
                     <div class="list_ssn1_txt" style="margin:7% 5% 0% !important">Date of depart</div>
                     <li class="create-session-date">
                         
-                        <input type="text" name="startDate" id="startDate">
+                        <input  data-role="none" type="text" name="startDate" id="startDate">
                     </li>
                     <li class="create-session-depart-time">
-                        <input type="text" placeholder="Time of depart" class="input" name="travelStartTime" id="travelStartTime" readonly>
+                        <input  data-role="none" type="text" placeholder="Time of depart" class="input" name="travelStartTime" id="travelStartTime" readonly>
                     </li>
                     <li class="create-session-return-time">
-                        <input type="text" placeholder="Return by" class="input" name="travelEndTime" id="travelEndTime" readonly>
+                        <input  data-role="none" type="text" placeholder="Return by" class="input" name="travelEndTime" id="travelEndTime" readonly>
                     </li>
                 </div>
                 
@@ -66,7 +66,7 @@
                         <div class="clearboth"></div>
                     </div>
                     <div class="list_ssn3_row txt_center">
-                        <input type="text" name="origin_address" class="input marginBtm8" placeholder="Type your origin address">
+                        <input  data-role="none" type="text" name="origin_address" class="input marginBtm8" placeholder="Type your origin address">
                         <select class="select">
                             <option>To</option>
                             <option>Address 1</option>
@@ -79,13 +79,13 @@
                     </div>
                     <div class="list_ssn3_inputs">
                         <div id="list_ssn3_radio">
-                            <input id="radio01" type="radio" name="radio">
+                            <input  data-role="none" id="radio01" type="radio" name="radio">
                             <label for="radio01">
                                 <span></span> I will come to your location (reasonable distance)
                             </label>
                         </div>
                         <div id="list_ssn3_radio">
-                            <input id="radio02" type="radio" name="radio">
+                            <input  data-role="none" id="radio02" type="radio" name="radio">
                             <label for="radio02">
                                 <span></span> I will pick from my origin address
                             </label>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="list_ssn_row txt_center">
                         <p class="cost_seat">Cost per seat $</p>
-                        <input type="text" name="seat_cost" class="input marginBtm5" placeholder="0">
+                        <input  data-role="none" type="text" name="seat_cost" class="input marginBtm5" placeholder="0">
                         <div class="range_slider">
                             <div id="slider"></div>
                         </div>
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="board_rtng_col3">
                                     <div class="radio txt_center">
-                                        <input id="skill1" type="checkbox" name="skill-level1" value="">
+                                        <input  data-role="none" id="skill1" type="checkbox" name="skill-level1" value="">
                                         <label for="skill1"><span></span></label>
                                     </div>
                                 </div>
@@ -159,7 +159,7 @@
                                     </div>
                                 </div>
                                 <div class="board_rtng_col3 txt_center">
-                                    <input id="skill2" type="checkbox" name="skill-level2">
+                                    <input  data-role="none" id="skill2" type="checkbox" name="skill-level2">
                                     <label for="skill2"><span></span></label>
                                 </div>
                                 <div class="clearboth"></div>
@@ -239,10 +239,10 @@
                 	<button name="prev" id="prev" style="visibility:hidden" class="list_btn">Back</button>
                 </div>
                 <div class="list_ssn_btn_rt">
-                	<button name="next" id="next" class="list_btn mn_ryt">Next</a>
+                	<button name="next" id="next" class="list_btn mn_ryt">Next</button>
                 </div>
                 <div class="list_ssn_btn_rt">
-                	<button name="next" id="list_ssn" style="display:none" class="list_btn list_ssn5_btn mn_ryt">List Session</a>
+                	<button name="next" id="list_ssn" style="display:none" class="list_btn list_ssn5_btn mn_ryt">List Session</button>
                 </div>
                 <div class="clearboth"></div>
             </div>
@@ -333,7 +333,7 @@
         	<div class="search_sec">
             	<div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
                     <!--<i class="fa fa-calendar"></i>-->
                 </div>
                 <div class="search_main_row">
@@ -422,6 +422,10 @@ $(function() {
     
     $('input[name=seat_cost]').keyup(function() {
         $("#slider").slider('option', 'value', $('input[name=seat_cost]').val());
+    });
+    //to go back to previous page
+    $("#prev").on("click", function(){
+        history.go(-1);
     });
   });
 </script>

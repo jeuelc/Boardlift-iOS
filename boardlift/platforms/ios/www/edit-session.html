@@ -1,0 +1,1022 @@
+  <div data-role="page" id="edit-session-page">
+    <div class="main_container">
+		<div id="list_my_session">
+        	
+            <div class="list_ssn_wrap">
+   				
+   				<div class="list_ssn_content first">
+                
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">1/5</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    
+                    <div class="list_ssn1_img">
+                        <img src="images/mobile-images/list-sessn-img.jpg" alt="">
+                    </div>
+                    
+                    <div class="list_ssn1_txt">
+                        What would you like to<br>call your session?
+                    </div>
+                    
+                    <div class="list_ssn1_row txt_center">
+                        <input data-role="none" type="text" id="name" class="input" placeholder="">
+                    </div>
+                
+                </div> <!--End of first page-->
+
+                <div class="list_ssn_content second">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">2/5</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn1_txt" style="margin:7% 5% 0% !important">Date of depart</div>
+                    <li class="create-session-date">
+                        
+                        <input data-role="none" type="text" name="startDate" id="startDate">
+                    </li>
+                    <li class="create-session-depart-time">
+                        <input data-role="none" type="text" placeholder="Time of depart" class="input" name="travelStartTime" id="travelStartTime" readonly>
+                    </li>
+                    <li class="create-session-return-time">
+                        <input data-role="none" type="text" placeholder="Return by" class="input" name="travelEndTime" id="travelEndTime" readonly>
+                    </li>
+                </div><!--End of second page-->
+
+
+                <div class="list_ssn_content third">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">3/5</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn3_row txt_center">
+                        <label for="origin" class="label-dest-origin">From</label>
+                        <input type="text" name="origin" id="origin" class="input marginBtm8" placeholder="Enter Suburb" autocomplete="off" data-role="none">                        
+                        <input type="hidden" name="originLatitude" id="originLatitude" value>
+                        <input type="hidden" name="originLongitude" id="originLongitude" value>
+                        <br>
+                        <label for="region" class="label-dest-orig">Region</label>
+                        <select class="select" name="region" id="region" style="margin-bottom:8%;" data-role="none">
+                            <option>Select Region</option>
+                            <option value="New South Wales">New South Wales</option>
+                            <option value="South AUstralia">South Australia</option>
+                            <option value="Victoria">Victoria</option>
+                        </select>
+                        <br>
+                        <label for="destination" class="label-dest-orig">To</label>
+                        <select class="select" name="destination" id="destination" data-role="none">
+                         
+                        </select>
+                        <input type="hidden" name="destinationLatitude" id="destinationLatitude" value>
+                        <input type="hidden" name="destinationLongitude" id="destinationLongitude" value>
+                    </div>
+                    <div class="list_ssn3_txt txt_center">
+                        Pick up information for passenger
+                    </div>
+                    <div class="list_ssn3_inputs">
+                        <div id="list_ssn3_radio">
+                            <input data-role="none" id="radio_1" type="radio" name="pickupTypeId" class="radio pick-up" value="1" checked>
+                            <label for="radio_1">
+                                <span></span>
+                            </label>
+                            <span class="pick-up-detail">Pasenger/s can specify location(reasonable distance)</span>
+                        </div>
+                        <div id="list_ssn3_radio">
+                            <input data-role="none" id="radio_2" type="radio" name="pickupTypeId" class="radio pick-up" value="2">
+                            <label for="radio_2">
+                                <span></span>
+                            </label>
+                            <span class="pick-up-detail">Meet and leave from following pick up location:</span>
+                        </div>
+                        <div class="list_ssn3_txtarea">
+                            <textarea class="textarea" placeholder="Enter pickup location (please be as specific as possible)" name="pickupLocation" id="pickupLocation" disabled="" value="" autocomplete="off"></textarea>
+                            <input type="hidden" id="validPickup">
+                        </div>
+                    </div>
+                </div><!--End of third page-->
+
+
+                <div class="list_ssn_content fourth">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt">4/5</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                        <select data-role="none" class="select" id="numSeats" name="numSeats">
+                            <option value="1">1 available seat</option>
+                            <option value="2">2 available seat</option>
+                            <option value="3">3 available seat</option>
+                            <option value="4">4 available seat</option>
+                            <option value="5">5 available seat</option>
+                            <option value="6">6 available seat</option>
+                        </select>
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                        <p class="cost_seat">Your estimated extra costs <br> e.g. tolls, parking, entry fees etc.</p>
+                        <input type="hidden" id="distance" value=0>
+                        <input data-role="none" type="text" name="extraCost", id="extraCost" class="input" placeholder="Type amount" style="border-color:rgb(169,169,169)">
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                      <p class="cost_seat"> Example cost per seat<sup>*</sup></p>
+                      <p id="suggestedPrice">$0.00</p>
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                        <p class="cost_seat">How much do you want <br>to charge per seat?</p>
+                        <input data-role="none" type="text" name="seatCost" id="seatCost" class="input marginBtm5" placeholder="0.0" style="border-color:rgb(169,169,169)" value="7">
+                        <div class="range_slider">
+                            <div id="slider"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="list_ssn_row txt_center">
+                        <p class="cost_seat">Total you will receive after fees<sup>**</sup></p>
+                        <p id="expectedPrice">$0.00</p>
+                    </div>
+                    <p class="cost_seat_legend"><sup>*</sup>Based on RACV's car owning and operating cost guide for 2014 Subaru liberty 2.5i</p>
+                    <p class="cost_seat_legend"><sup>**A</sup>ssuming all seats are filled</p>
+                </div><!--end of fourth page-->
+
+
+
+                    <div class="list_ssn_content fifth">
+	                   	 <div class="list_sessn_hdng">
+	                        <div class="list_ssn_hdng_lt">
+	                            <h1>List my session</h1>
+	                        </div>
+	                        <div class="list_ssn_hdng_rt">
+	                            <div class="mn_ryt">5/5</div>
+	                            <div class="clearboth"></div>
+	                        </div>
+	                        <div class="clearboth"></div>
+	                    </div>
+
+	                    <div class="board_skill_sec">
+                        <p class="board_skill_txt">Your board skill level</p>
+                        <div class="board_rtng_box">
+                            <div class="board_rtng_head">
+                                <div class="board_rtng_col1">Board</div>
+                                <div class="board_rtng_col2">Rating</div>
+                                <div class="board_rtng_col3">Select to hide from this session</div>
+                                <div class="clearboth"></div>
+                            </div>
+                                            
+                        </div>
+                    </div>
+                 </div><!--end of fifth page-->
+
+
+                 <div class="summary_container" style="display:none;">
+                    <div class="list_sessn_hdng">
+                        <div class="list_ssn_hdng_lt">
+                            <h1>List my session</h1>
+                        </div>
+                        <div class="list_ssn_hdng_rt">
+                            <div class="mn_ryt"></div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="list_ssn5_hdng">
+                        <h2>Session summary</h2>
+                    </div>
+                    <div class="list_ssn5_detail">
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Session:</div>
+                            <div class="list_ssn5_detail_rt" id="display_session_name">Dawny at Gunnamatta</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">From:</div>
+                            <div class="list_ssn5_detail_rt" id="display_session_origin">Mornington Peninsula</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">To:</div>
+                            <div class="list_ssn5_detail_rt" id="display_session_destination">Mornington Peninsula</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Date:</div>
+                            <div class="list_ssn5_detail_rt" id="display_session_date">13.04.15</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Time:</div>
+                            <div class="list_ssn5_detail_rt" id="display_session_time_depart">6am &frasl; 12-2pm</div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Cost per seats:</div>
+                            <div class="list_ssn5_detail_rt" id="display_cost_per_seat">$<span></span></div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <div class="list_ssn5_row">
+                            <div class="list_ssn5_detail_lt">Pick up info:</div>
+                            <div class="list_ssn5_detail_rt" id="display_pickup_info">I will come to your location</div>
+                            <div class="clearboth"></div>
+                        </div>
+                    </div>
+                    <div class="list_ssn5_map">
+                        <div id="map-session-list-page"></div>
+                    </div>
+                </div>
+
+
+                <div class="list_ssn_btn_sec">
+	            	<div class="list_ssn_btn_lt">
+	                	<button name="prev" id="prev" class="list_btn">Back</button>
+	                </div>
+                    <div class="list_ssn_btn_rt">
+                        <button name="next" id="next" class="list_btn mn_ryt">Next</button>
+                    </div>
+                    <div class="list_ssn_btn_rt">
+	                	<button style="display:none;" name="next" id="save-session" class="list_btn mn_ryt save-final-session">Save</button>
+	                </div>
+	                <div class="clearboth"></div>
+            	</div>
+        	</div>
+    	</div>
+	</div>
+
+	<script type="text/javascript">
+    var allData={};
+	$('#next').on("click", function(){
+
+		if($('.list_ssn_content.first').is(':visible')){
+			$('#name').css('border-color', '#a9a9a9');
+			var n = $('#name').val();
+
+            $('#prev').show();
+
+			if(n.trim() != ""){
+				// show second
+				$('.list_ssn_content.first').hide();
+                allData['name'] = n;
+				$('.list_ssn_content.second').show();
+			}else{
+				$('#name').css('border-color', 'red');
+			}
+
+		}else if($('.list_ssn_content.second').is(':visible')){
+            $('#prev').show();
+
+			$('#travelStartTime').css('border-color', '#a9a9a9');
+            $('#travelEndTime').css('border-color', '#a9a9a9');
+            $('#startDate').css('border-color', '#a9a9a9');
+            
+            if(($('#travelStartTime').val().trim() != '') && ($('#travelEndTime').val().trim() != '') && ($('#startDate').val().trim() != '')){
+                $('.list_ssn_content.second').hide();
+                allData['startDate']=$('#startDate').val();
+                allData['travelStartTime'] = $('#travelStartTime').val();
+                allData['travelEndTime'] = $('#travelEndTime').val();
+
+                $('.list_ssn_content.third').show();
+            }
+            else{
+                if($('#travelStartTime').val().trim() == '')
+                {
+                    $('#travelStartTime').css('border-color', 'red');
+                }
+                
+                if($('#travelEndTime').val().trim() == '')
+                {
+                    $('#travelEndTime').css('border-color', 'red');
+                }
+                
+                // if($('#startDate').val().trim() == '')
+                // {
+                //     $('#startDate').css('border-color', 'red');
+                // }
+            }
+
+		}else if($('.list_ssn_content.third').is(':visible')) {
+            $('#prev').show();
+            $('#origin').css('border-color', '#a9a9a9');
+            $('#region').css('border-color', '#a9a9a9');
+            $('#destination').css('border-color', '#a9a9a9');
+            $('#pickupLocation').css('border-color', '#a9a9a9');
+            
+            if(($('#origin').val().trim() != '') 
+                && ($('#destination').val().trim() != '')
+                && ($('#originLatitude').val().trim() != '')
+                && ($('#originLongitude').val().trim() != '')
+                && (($('#radio_2').is(':checked') && ($('#pickupLocation').val().trim() != '') && ($('#validPickup').val().trim() != '')) || $('#radio_1').is(':checked'))
+            )
+            {
+                $('.list_ssn_content.third').hide();
+                allData['origin'] = $('#origin').val();
+                allData['region'] = $('#region').val();
+                allData['destination'] = $('#destination').val();
+                allData['pickupLocation'] = $('#pickupLocation').val();
+                $('.list_ssn_content.fourth').show();
+            }
+            else 
+            {
+                if(($('#origin').val().trim() == '') || ($('#originLatitude').val().trim() == '') || ($('#originLongitude').val().trim() == ''))
+                {
+                    $('#origin').css('border-color', 'red');
+                }
+                
+                if($('#region').val().trim() == '')
+                {
+                    $('#region').css('border-color', 'red');
+                }
+                
+                if($('#destination').val().trim() == '')
+                {
+                    $('#destination').css('border-color', 'red');
+                }
+                
+                if($('#radio_2').is(':checked') && ($('#pickupLocation').val().trim() == '') && ($('#validPickup').val().trim() == ''))
+                {
+                    $('#pickupLocation').css('border-color', 'red');
+                }
+            }
+            
+        }else if($('.list_ssn_content.fourth').is(':visible')) {
+            $('#prev').show();
+            var seatValue = $("#seatCost").val();
+            if(seatValue < 7) {
+                $("#seatCost").css("border-color", "#FF0000");
+                setTimeout(function(){ $("#seatCost").css("border-color", "#a9a9a9"); }, 2000);
+            } else {
+                $('.list_ssn_content.fourth').hide();
+
+                allData['numSeats'] = $('#numSeats').val();
+                allData['extraCost'] = $('#extraCost').val();
+                allData['seatCost'] = $('#seatCost').val();
+                getUserBoardSkills(app.curUserId);
+                $('.list_ssn_content.fifth').show();
+            }
+        }else if($('.list_ssn_content.fifth').is(':visible')) {
+            $('#prev').show();
+            $('.list_ssn_content.fifth').hide();
+            $(this).hide();
+            $('#save-session').show();
+            $('.summary_container').show();
+
+            var skills=[];
+            $('.checkbox').each(function(){
+                if($(this).is(':checked')){
+                    if(skills.indexOf($(this).val()) == -1){
+                        skills.push($(this).val());
+                    }
+                }
+            });
+            allData['boardSkills'] = skills;
+            // initializeMapListSession($('#originLatitude').val(), $('#originLongitude').val(), $('#destinationLatitude').val(), $('#destinationLongitude').val());
+            $('#list_ssn').show();
+            console.log(allData);
+            populateSummary();
+        }
+
+	 }); //end of next
+
+
+    $('#prev').on('click', function(){
+                window.scrollTo(0,0);
+                if($('.list_ssn_content.first').is(':visible')) {
+                    $.mobile.changePage("session-current-listings.html");
+                } else if($('.list_ssn_content.fifth').is(':visible')) {
+                    $('.list_ssn_content.fifth').hide();
+                    $('.list_ssn_content.fourth').show();
+                } else if($('.list_ssn_content.fourth').is(':visible')) {
+                    $('.list_ssn_content.fourth').hide();
+                    $('.list_ssn_content.third').show();
+                } else if($('.list_ssn_content.third').is(':visible')) {
+                    $('.list_ssn_content.third').hide();
+                    $('.list_ssn_content.second').show();
+                } else if($('.list_ssn_content.second').is(':visible')) {
+                    $('.list_ssn_content.second').hide();
+                    $('.list_ssn_content.first').show();
+                    $('#prev').html("Back");
+                    //$(this).css('visibility', 'hidden');
+                } else {
+                    $('.summary_container').css("position", "fixed");
+                    $('#list_ssn').hide();
+                    $('#next').show();
+                    $('.list_ssn_content.fifth').show();
+                }
+            });//end of previous
+
+
+         
+        
+//All functions starts here
+function changeSearchLocation(input)
+        {
+            $("#originLatitude").val(input.getPlace().geometry.location.lat());
+            $("#originLongitude").val(input.getPlace().geometry.location.lng());
+            
+            var myLatlng = new google.maps.LatLng(input.getPlace().geometry.location.lat(), input.getPlace().geometry.location.lng());
+            
+            // create marker image
+            var originImage = {
+                url: 'http://jeuel.dev.boardlift.com/assets/images/map_icons/origin-icon2.png',
+                // This marker is 32 pixels wide by 32 pixels tall.
+                size: new google.maps.Size(20, 20),
+                // The origin for this image is 0,0.
+                origin: new google.maps.Point(0,0),
+                // The anchor for this image is at 16,32.
+                anchor: new google.maps.Point(10, 10)
+            };
+            
+            if(originMarker != "")
+                originMarker.setMap(null);
+            
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                icon: originImage,
+                title: "Origin"
+            });
+            originMarker = marker;
+            
+            // redrawPoints();
+            
+            if(($("#originLatitude").val() != '') && ($("#destinationLatitude").val() != '') && ($("#originLongitude").val() != '') && ($("#destinationLongitude").val() != ''))
+            {
+                if((roundNumber($("#originLatitude").val(),4) == roundNumber($("#destinationLatitude").val(),4)) && (roundNumber($("#originLongitude").val(),4) == roundNumber($("#destinationLongitude").val(),4)))
+                {
+                    $("#originLatitude").val('');
+                    $("#originLongitude").val('');
+                }
+            }
+        }
+
+function populateSummary() {
+    var sessionName = $("#name").val();
+    var session_date = $("#startDate").val();
+    var departure = $("#travelStartTime").val();
+    var returnTime = $("#travelEndTime").val();
+    var destination = $("#destination").val();
+    var origin = $("#origin").val();
+    var pickupType = $('input[name=pickupTypeId]:checked').val();
+    var pickupNote = $("#pickupLocation").val();
+    var costPerSeat = $("#seatCost").val();
+    var availableSeats = $("#numSeats").val();
+    var displaySeats = "";
+    
+    switch(pickupType) {
+        case "1":
+            pickupInfo = "I will come to your location (reasonable distance)";
+            break;
+        case "2":
+            pickupInfo = "At a specific location";
+            break;
+        default:break;
+    }
+    
+    $("#display_session_name").html(sessionName);
+    $("#display_session_destination").html(destination);
+    $("#display_session_origin").html(origin);
+    $("#display_session_date").html(session_date);
+    $("#display_session_time_depart").html(departure.replace(/^(0+)/g, '')+" - "+returnTime.replace(/^(0+)/g, ''));
+    $("#display_cost_per_seat").html("$"+costPerSeat);
+    if(pickupNote != '')
+    {
+        $("#display_pickup_info").html(pickupNote);
+    }
+    else
+    {
+        $("#display_pickup_info").html(pickupInfo);
+    }
+    //$("#display_pickup_note").html(pickupNote);
+    
+    $(".summary_container").css("position", "static");
+}
+
+
+        function getMinTime(){
+            var min = "";
+            var val;
+            
+            if($('#travelStartTime').val() != ''){
+                val = parseInt($('#travelStartTime').val().split(' ')[0]);
+                if(val == 12) {
+                    val = 0;
+                }
+                
+                
+                if( $('#travelStartTime').val().split(' ')[1] == 'PM'){
+                    min = (val+13).toString();
+                }else{
+                    min = (val+1).toString();
+                }
+                
+                if(parseInt(min) > 11){
+                    min += " PM";
+                }else{
+                    min += " AM";
+                }
+            }
+            return min;
+        }
+
+   
+        function roundNumber(number,decimal_points) {
+            if(!decimal_points) return Math.round(number);
+            if(number == 0) {
+                var decimals = "";
+                for(var i=0;i<decimal_points;i++) decimals += "0";
+                return "0."+decimals;
+            }
+
+            var exponent = Math.pow(10,decimal_points);
+            var num = Math.round((number * exponent)).toString();
+            return num.slice(0,-1*decimal_points) + "." + num.slice(-1*decimal_points)
+        }
+        
+        
+        
+        
+        function initializeMapListSession(latOrigin, lonOrigin, latDest, lonDest){   
+            console.log('called the map fn');
+            console.log(latOrigin);
+            var latlng = new google.maps.LatLng(latDest, lonDest);
+            var myOptions = {
+                zoom: 15,
+                center: latlng,
+                draggable: false,
+                mapTypeControl: false,
+                keyboardShortcuts: false,
+                panControl: false,
+                rotateControl: false,
+                scaleControl: false,
+                scrollwheel: false,
+                streetViewControl: false,
+                zoomControl: false,
+                disableDefaultUI: true,
+                disableDoubleClickZoom: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map($("#map-session-list-page")[0], myOptions);
+            
+            var lat_lng = new Array();
+            var latlngbounds = new google.maps.LatLngBounds();
+            var myLatlng = new google.maps.LatLng(latOrigin, lonOrigin);
+            lat_lng.push(myLatlng);
+            
+            // create marker image
+            var originImage = {
+                url: 'http://web.boardlift.com/assets/images/map_icons/origin-icon2.png',
+                // This marker is 32 pixels wide by 32 pixels tall.
+                size: new google.maps.Size(20, 20),
+                // The origin for this image is 0,0.
+                origin: new google.maps.Point(0,0),
+                // The anchor for this image is at 16,32.
+                anchor: new google.maps.Point(10, 10)
+            };
+            
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                icon: originImage,
+                title: "Origin"
+            });
+            latlngbounds.extend(marker.position);
+            
+            var myLatlng = new google.maps.LatLng(latDest, lonDest);
+            lat_lng.push(myLatlng);
+            
+            // create marker image
+            var destinationImage = {
+                url: 'http://web.boardlift.com/assets/images/map_icons/destination-icon2.png',
+                // This marker is 32 pixels wide by 32 pixels tall.
+                size: new google.maps.Size(22, 37),
+                // The origin for this image is 0,0.
+                origin: new google.maps.Point(0,0),
+                // The anchor for this image is at 16,32.
+                anchor: new google.maps.Point(11, 27)
+            };
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                icon: destinationImage,
+                title: "Destination"
+            });
+            latlngbounds.extend(marker.position);
+            
+            map.setCenter(latlngbounds.getCenter());
+            map.fitBounds(latlngbounds);
+            
+            // ROUTING 
+
+            //Initialize the Path Array
+            var path = new google.maps.MVCArray();
+
+            //Initialize the Direction Service
+            var service = new google.maps.DirectionsService({durationInTraffic: true});
+
+            //Set the Path Stroke Color
+            var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7', strokeWeight: 5, strokeOpacity: 0.8 });
+            
+            var src = lat_lng[0];
+            var des = lat_lng[1];
+            
+            path.push(src);
+            poly.setPath(path);
+            service.route({
+                origin: src,
+                destination: des,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING//,
+                //optimizeWaypoints: true
+            }, function (result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    /*
+                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                        //path.push(result.routes[0].overview_path[i]);
+                    }
+                    */
+                    var myRoute = result.routes[0].legs[0];
+                    
+                    for (var i = 0; i < myRoute.steps.length; i++) {
+                        for (var j = 0; j < myRoute.steps[i].path.length; j++) {
+                            path.push(myRoute.steps[i].path[j]);
+                        }
+                        
+                        if(i == parseInt(myRoute.steps.length/2))
+                        {
+                            var infowindow = new google.maps.InfoWindow({
+                                content: "<img src='http://web.boardlift.com/assets/images/car-map.jpg' style='width:20px;height:20px;border:0px !important;'><font size='3px' style='font-weight: bold;'> " + myRoute.duration.text + "</font><br>" + myRoute.distance.text,
+                                position: myRoute.steps[i].start_point
+                            });
+                            infowindow.open(map);
+                            google.maps.event.addListener(infowindow, 'domready', function(){
+                                $(".gm-style-iw").next("div").hide();
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        
+        function changeRegion()
+        {
+            console.log("inside change region");
+            $("#destinationLatitude").val("");
+            $("#destinationLongitude").val("");
+            reloadDestinations(false); 
+        }
+        
+        function reloadDestinations(fromLoad)
+        {
+            console.log('inside reload destinations');
+            if(!fromLoad)
+            {
+                if(destinationMarker != "")
+                {
+                    destinationMarker.setMap(null);
+                    destinationMarker = '';
+                }
+                if(infowindow != '')
+                {
+                    infowindow.close();
+                }
+                             
+            }
+            var destQuery = '{"where":{"country":"australia","region":"'+$('#region').val()+'"}}';
+            var destinations = $('#destination');
+            destinations.empty();  
+            destinations.append('<option value="">Loading...</option>');
+            $.ajax({
+                url: secureHost + "SurfSpots?filter=" + destQuery + "&access_token=" + app.curAccessToken,
+                type: 'get', 
+                //async:false,
+                success: function(resp){
+                    console.log("resp: "+resp);
+                    destinations.empty();  
+                    // destinationData = jQuery.parseJSON(resp);
+                    destinationData = resp;
+                    destinations.append('<option value="">Select Destination</option>');
+                    destinationList = [];
+                    for(var i in destinationData)
+                    {
+                        destinationList.push(destinationData[i]);
+                            if(destinationData[i].fullDestination == '')
+                            {
+                                destinations.append(
+                                    $('<option>', {
+                                        value: destinationData[i].fullDestination,
+                                        text: destinationData[i].destination,
+                                        selected: true
+                                    }, '<option/>')
+                                );
+                                
+                            }
+                            else
+                            {
+                                destinations.append(
+                                    $('<option>', {
+                                        value: destinationData[i].fullDestination,
+                                        text: destinationData[i].destination
+                                    }, '<option/>')
+                                );
+
+                            }
+                    }
+                }
+            });
+        }
+        
+        function getLatLng(destination)
+        {
+            for(var i in destinationList)
+            {
+                if(destinationData[i].fullDestination == destination)
+                {
+                    $('#destinationLatitude').val(destinationData[i].latitude);
+                    $('#destinationLongitude').val(destinationData[i].longitude);
+                }
+            }
+        }
+        
+        function calculate_distance(distance)
+        {
+            setDistance(Math.floor(distance/1000))
+        }
+        
+        function setDistance(val)
+        {
+            $('#distance').val(val);
+            calculateSuggestedPrice();
+        }
+        
+        function calculateSuggestedPrice()
+        {
+            var extraCost = 0;
+            
+            if($('#extraCost').val() != '')
+            {
+                extraCost = parseFloat($('#extraCost').val());
+            }
+            
+            var suggested_price = (parseFloat($('#distance').val()) * 2 * .23) + extraCost;
+                
+            if(suggested_price > 0)
+            {
+                suggested_price = suggested_price / 2;
+            }
+            console.log(suggested_price);
+            console.log(typeof(suggested_price));
+            $('#suggestedPrice').text('$' + suggested_price.toFixed(2));
+        }
+        
+        function calculateExpectedPrice(val)
+        {
+            // Number of seats x Cost per seat - (((Cost per seat x B) OR F) x Number of seats)
+            
+            var fee = Math.max((parseFloat(val) * 0.03)  * 100, 1 * 100) / 100;
+            var expectedPrice = (parseFloat($('#numSeats').val()) * parseFloat(val)) - (fee * parseFloat($('#numSeats').val()));
+            console.log(expectedPrice);
+            console.log(typeof(expectedPrice));
+            $('#expectedPrice').text('$' + expectedPrice.toFixed(2));
+        }
+
+        function makeTimeFormat(t, d){
+           var  finalReturn = "";
+
+           // check for PM in t
+           var tsplit = t.split(" "),
+            tnewTime = "";
+
+           if(tsplit[1] == "PM"){
+            tnewTime = parseInt(tsplit[0]) + 12;
+           }else{
+            tnewTime = tsplit[0];
+           }
+
+           // change d to reverse and replace / with -
+           d = d.split("/");
+           d = d[2] + "-" + d[1] + "-" + d[0]
+           
+           finalReturn += d;
+           finalReturn += " ";
+           finalReturn += tnewTime;
+           finalReturn += ":00";
+
+           return finalReturn;
+
+          }
+
+          function js_yyyy_mm_dd_hh_mm_ss () {
+            now = new Date();
+            year = "" + now.getFullYear();
+            month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+            day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+            hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+            minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+            second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+            return year + "-" + month + "-" + day + " " + hour + ":" + minute;
+        }
+
+        function saveEditedSession(){
+            console.log('inside saveEditedSession');
+            var tsd = makeTimeFormat(allData['travelStartTime'], allData['startDate']);
+            console.log('tsd: ' + tsd);
+            var ted = makeTimeFormat(allData['travelEndTime'], allData['startDate']);
+            console.log('ted: ' + ted);
+            var crd = js_yyyy_mm_dd_hh_mm_ss();
+            console.log(crd);
+console.log('just do it');
+// return false;
+            $.ajax({
+                url: secureHost+"Sessions",
+                beforeSend: function (request)
+                    {
+                        request.setRequestHeader("access_token", app.curAccessToken);
+                    },
+                type: 'PUT',
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                data: '{"name": "'+allData['name']+'", "origin": "'+allData['origin']+'",  "originLatitude": '+$('#originLatitude').val()+',  "originLongitude": '+$('#originLongitude').val()+',  "destination": "'+allData['destination']+'",  "destinationLatitude": '+$('#destinationLatitude').val()+',  "destinationLongitude": '+$('#destinationLongitude').val()+',  "numSeats": '+allData['numSeats']+',  "seatsReserved": 0,  "seatCost": '+allData['seatCost']+',  "travelStartDate": "'+tsd+'",  "travelEndDate": "'+ted+'",  "driverId": '+app.curUserId+',  "sessionStatusId": 6, "boardSkillMask": "'+allData["boardSkills"]+'", "creationTime":"'+crd+'"}',
+                success: function (d) {
+                    console.log(JSON.stringify(d));
+                    var msg={"success":"We have saved your session,you need to tap publish below to make it public"};
+                    $.mobile.changePage('session-current-listings.html', {data:msg});
+                  
+                },
+                error: function(error){
+                  console.log(error);
+                }
+            });
+
+        }
+
+
+//all functions ends here
+
+
+        var map;
+        var latlngbounds = new google.maps.LatLngBounds();
+        var originMarker = '';
+        var destinationMarker = '';
+        var infowindow = '';
+        var poly = '';
+        var destinationList = [];
+
+
+
+  	$(document).ready(function(){
+
+        var autocomplete = new google.maps.places.Autocomplete((document.getElementById('origin')),{ types: ['geocode'] });
+            google.maps.event.addListener(autocomplete, 'place_changed', function(){changeSearchLocation(autocomplete);});
+            var autocomplete2 = new google.maps.places.Autocomplete((document.getElementById('pickupLocation')),{ types: ['geocode'] });
+            google.maps.event.addListener(autocomplete2, 'place_changed', function(){changeSearchLocation3(autocomplete2);});
+            
+            $('#list-new-session').on("change", "#region", function(){
+                changeRegion();
+            });
+            $('#list-new-session').on('change','#destination',function(){
+                getLatLng($(this).val());
+            });
+
+
+            $("#origin").keydown(function (e) {
+                if (e.keyCode == 13) { 
+                    e.preventDefault(); 
+                }
+                else
+                {
+                    $("#originLatitude").val("");
+                    $("#originLongitude").val("");
+                }
+            });
+            
+            $("#pickupLocation").keydown(function (e) {
+                if (e.keyCode == 13) { 
+                    e.preventDefault(); 
+                }
+                else
+                {
+                    $("#validPickup").val("");
+                }
+            });
+
+  		$('#startDate').datetimepicker({
+                timepicker:false,
+                format:'d/m/Y',
+                minDate:0,
+                closeOnDateSelect:true,
+                scrollMonth: false,
+                inline:true
+              });
+              
+              if($("#travelEndTime").val() != 'Return by') {
+                var maxTimeDepart = $("#travelEndTime").val();
+              } else {
+                var maxTimeDepart = false;
+              }
+
+              $('#travelStartTime').datetimepicker({
+                datepicker:false,
+                format:'h A',
+                formatTime:'h A',
+                //minDate:0,
+                onShow:function( ct ){
+                   this.setOptions({
+                    //maxTime: maxTimeDepart
+                    maxTime:jQuery('#travelEndTime').val() != '' ? jQuery('#travelEndTime').val():false
+                   })
+                  }
+            });
+            
+            $('#travelEndTime').datetimepicker({
+              datepicker:false,
+              format:'h A',
+              formatTime:'h A',
+              onShow:function( ct ){
+               this.setOptions({
+                minTime:getMinTime()
+               })
+              }
+            });
+            
+            $("#startDate").keydown(function (e) {
+                e.preventDefault();
+            });
+            
+            $("#travelStartTime").keydown(function (e) {
+                e.preventDefault();
+            });
+            
+            $("#travelEndTime").keydown(function (e) {
+                e.preventDefault();
+            });
+
+
+               $("#slider").slider({
+              range: 'min',
+              value: 7,
+              min: 7,
+              max: 150,
+              slide: function(event, ui) {
+                $('input[name=seatCost]').val(ui.value);
+                
+                calculateExpectedPrice(ui.value);             
+              }
+            });
+            
+
+            $('input[name=seatCost]').keyup(function() {
+                $("#slider").slider('option', 'value', $('input[name=seatCost]').val());
+                calculateExpectedPrice($('input[name=seatCost]').val());
+            });
+            $("#extraCost").keyup(function (e) {
+                calculateSuggestedPrice();
+            });
+            
+            $('#numSeats').change(function() {
+                calculateExpectedPrice($('input[name=seatCost]').val());
+            });
+            
+            $('#seatCost').blur(function() {
+              if(($(this).val() == "") || (parseFloat($(this).val()) < 7))
+              {
+                  $(this).val(7);
+                  calculateExpectedPrice(7);
+              }
+            });
+
+            // save complete session
+            $('.save-final-session').on("click", function(){
+                console.log('clicked on save btn');
+                saveEditedSession();
+            });
+
+  	});
+
+    $('#edit-session-page').on('pageshow', function(){
+        getDataForSingleSession(getUrlParams("id"), "edit");
+    });
+
+	</script>
+
+</div>
+
+                    

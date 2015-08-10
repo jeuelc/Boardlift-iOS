@@ -1,5 +1,41 @@
   <div data-role="page">
-
+  <script type="text/javascript">
+    $(function() {
+    	$('#date_of_birth').datetimepicker({
+            timepicker:false,
+            format:'d/m/Y',
+            closeOnDateSelect:true,
+            scrollMonth: false,
+            yearStart: (new Date()).getFullYear() - 200,
+            yearEnd: (new Date()).getFullYear(),
+            formatDate:'d/m/Y'
+        });
+    });
+    </script>
+    <style type="text/css">
+        .edit_pro_form .info {
+            margin: 0px auto;
+            float: none;
+            text-align: center;
+        }
+        
+        .edit_pro_form .cm_label.gender {
+            margin: 0px auto;
+            width: 72%;
+            float: none;
+            text-align: center;
+        }
+        
+        .edit_pro_form input[type="radio"] + label {
+            margin-left: 6%;
+        }
+        
+        .edit_save_btn a {
+            margin-right: 5%;
+        }
+    </style>
+</head>
+<body>
 	<div class="main_container">
 		<div id="edit_profile">
         	<div class="cm_hdng">
@@ -27,86 +63,94 @@
             	<div class="edit_gray_txt2">
                 	<span class="gray_txt26">This is only seen by us</span>
                 </div>
-                <form class="edit_pro_form" action="">
-					<div class="edit_pro_form_innr">
-                		<ul class="pro_form">
-                        	<li>
-                            	<input type="text" class="default_inp inp" placeholder="*First name:">
+                <form class="edit_pro_form">
+<input  data-role="none" type="hidden" name="user_id" value="44">
+    <div class="edit_pro_form_innr">
+        <ul class="pro_form">
+            <li>
+                <div class="depart_date_holder" style="width:100%; padding-left: 0xp; padding-right: 0px;">
+                    <input  data-role="none" id="date_of_birth" type="text" class="default_inp inp" readonly placeholder="*Date of birth" name="date_of_birth">
+                    </div>
+                </li>
+                <li>
+                    <input  data-role="none" type="hidden" value="jeuelc+driver@gmail.com" name="email">
+                        <input  data-role="none" type="hidden" value="jeuelc+driver@gmail.com" name="email">
+                            <label class="gray_txt26" id="user_email"></label>
+                        </li>
+                        <li>
+                            <input  data-role="none" type="password" class="default_inp inp" name="password" placeholder="Password">
                             </li>
                             <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Last name:">
-                            </li>
-                            <li>
-                            	<div class="depart_date_holder" style="width:100%;">
-                                    <input id="search_departureDate2" type="text" class="default_inp inp" readonly placeholder="Date" value="">
-                                    <!--<i class="fa fa-calendar"></i>-->
-                                </div>
-                            	<!--<input type="date" class="default_inp inp" placeholder="*date of birth">-->
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Email:">
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Facebook:">
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Phone:">
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Street:">
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Suburb:">
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*State:">
-                            </li>
-                            <li>
-                            	<input type="text" class="default_inp inp" placeholder="*Post code:">
-                            </li>
-                        </ul>
-                	</div>
-                    <div class="edit_pro_form_innr2">
-                    	<div class="edit_gray_txt2">
-                            <span class="gray_txt26">Be honest as this is what everyone sees.</span>
-                        </div>
-						<div class="edit_pro_row">
-                        	<div class="cm_label gender"><span class="drkgray_txt25">Gender</span></div>
-                            <div class="info">
-                            	<input id="user-profile-gender-male" class="radio gender" type="radio" checked="" value="male" name="user-profile-gender">
-                                <label for="user-profile-gender-male">
-                                	<span id="user-profile-gender-male-icon"></span>
-                                </label>
-                                <input id="user-profile-gender-female" class="radio gender" type="radio" value="female" name="user-profile-gender">
-                                <label for="user-profile-gender-female">
-                                	<span id="user-profile-gender-female-icon"></span>
-                                </label>
-                            </div>
-                            <div class="clearboth"></div>
-                        </div>
-                        <div class="edit_pro_row">
-                        	<div class="cm_label"><span class="drkgray_txt25">Favorite Spot</span></div>
-                            <div class="info">
-                            	<select class="default_select pr_select">
-                                	<option>Select</option>
-                                </select>
-                            </div>
-                            <div class="clearboth"></div>
-                        </div>
-                        <div class="edit_pro_row">
-                        	<div class="cm_label bio"><span class="drkgray_txt25">Bio</span></div>
-                            <div class="info bio">
-                            	<textarea class="default_textarea txtarea" rows="4"></textarea>
-                            </div>
-                            <div class="clearboth"></div>
-                        </div>
-                    </div>                
-                </form>                
-                <div class="edit_save_btn">
-                	<button class="btn main_btn">Save</button>
-                    <div class="clearboth"></div>
-                </div>
-            </div>
+                                <input  data-role="none" type="password" class="default_inp inp" name="confirm_password" placeholder="Confirm password">
+                                </li>
+                                <li>
+                                    <input  data-role="none" type="text" class="default_inp inp" name="phone" placeholder="Phone number">
+                                    </li>
+                                    <li>
+                                        <input  data-role="none" type="text" class="default_inp inp" name="street" placeholder="*Street">
+                                        </li>
+                                        <li>
+                                            <input  data-role="none" type="text" class="default_inp inp" name="suburb" placeholder="*Suburb">
+                                            </li>
+                                            <li>
+                                                <input  data-role="none" type="text" class="default_inp inp" name="state" placeholder="*State">
+                                                </li>
+                                                <li>
+                                                    <input  data-role="none" type="text" class="default_inp inp" name="postcode" placeholder="*Postal code">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="edit_pro_form_innr2">
+                                                <div class="edit_gray_txt2">
+                                                    <span class="gray_txt26">Be honest as this is what everyone sees.</span>
+                                                </div>
+                                                <div class="edit_pro_row">
+                                                    <div class="edit_pro_form_innr">
+                                                        <ul class="pro_form" style="margin-bottom: 0px;">
+                                                            <li>
+                                                                <input  data-role="none" type="text" class="default_inp inp" name="first_name" placeholder="*First name">
+                                                                </li>
+                                                                <li>
+                                                                    <input  data-role="none" type="text" class="default_inp inp" name="last_name" placeholder="*Last name">
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="info">
+														<input  data-role="none" id="user-profile-gender-male" class="radio gender" type="radio"  value="male" name="gender">
+														<label for="user-profile-gender-male">
+															<span id="user-profile-gender-male-icon"></span>
+														</label>
+														<input  data-role="none" id="user-profile-gender-female" class="radio gender" type="radio" value="female" name="gender">
+														<label for="user-profile-gender-female">
+															<span id="user-profile-gender-female-icon"></span>
+														</label>
+													</div>
+                                                                <div class="cm_label gender">
+                                                                    <span class="drkgray_txt25">Gender</span>
+                                                                </div>
+                                                                <div class="clearboth"></div>
+                                                            </div>
+                                                            <div class="edit_pro_row">
+                                                                <div class="info bio">
+                                                                    <textarea class="default_textarea txtarea" rows="5" name="favorite_spot" placeholder="Favorite spot"></textarea>
+                                                                </div>
+                                                                <div class="clearboth"></div>
+                                                            </div>
+                                                            <div class="edit_pro_row">
+                                                                <div class="info bio">
+                                                                    <textarea class="default_textarea txtarea" rows="5" name="bio" placeholder="Bio"></textarea>
+                                                                </div>
+                                                                <div class="clearboth"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="edit_save_btn">
+                                                            <a href="#">
+                                                                <input  data-role="none" type="button" class="btn main_btn" value="Back">
+                                                                </a>
+                                                                <input  data-role="none" type="submit" class="btn main_btn" value="Save">
+                                                                    <div class="clearboth"></div>
+                                                                </div>
+                </form>            
             
         </div>
     </div>
@@ -182,6 +226,7 @@
             </ul>
         </div>
     </div>
+
 <!---------------------- Slide menu end-------------------->
 
 	<div id="filter_search">
@@ -192,7 +237,7 @@
         	<div class="search_sec">
             	<div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
                     <!--<i class="fa fa-calendar"></i>-->
                 </div>
                 <div class="search_main_row">
@@ -227,19 +272,19 @@
                 <form action="" method="get">
                     <ul>
                         <li>
-                        	<input type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
+                        	<input  data-role="none" type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
                         </li>
                         <li>
-                        	<input type="button" id="send" class="send_btn" value="Send">
+                        	<input  data-role="none" type="button" id="send" class="send_btn" value="Send">
                         </li>
                         <li>
-                        	<input type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
+                        	<input  data-role="none" type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
                         </li>
                         <li class="fb_login">
                         	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
                         </li>
                         <li class="txt_center">
-                        	<input type="button" class="gray_btn" value="No Thanks">
+                        	<input  data-role="none" type="button" class="gray_btn" value="No Thanks">
                         </li>
                     </ul>
                 </form>
@@ -249,4 +294,86 @@
             </div>
         </div>
     </div>
+</div>
+<script type="text/javascript">
+console.log('edit-profile.html');
+var editForm = $('.edit_pro_form');
+
+function fillData(){
+
+editForm.find("input[name=user_id]").val(app.userData.userId);
+if(app.userData.birthdate!==null)
+    editForm.find("#date_of_birth").val(app.userData.birthdate);
+
+
+if(app.userData.contactDetails!=null)
+    for(i in app.userData.contactDetails){
+        if(app.userData.contactDetails[i].contactTypeId==1){
+            editForm.find("input[name=user_id]").val(app.userData.contactDetails[i].contactDetail);
+            if(app.userData.contactDetails[i].contactDetail!=null){
+                editForm.find("input[name=email]").val(app.userData.contactDetails[i].contactDetail);
+                editForm.find("#user_email").text(app.userData.contactDetails[i].contactDetail);
+            }
+        }
+        else if(app.userData.contactDetails[i].contactTypeId==2)
+            editForm.find("input[name=phone]").val(app.userData.contactDetails[i].contactDetail);
+    }
+
+if(app.userData.addresses[0].street!==null)
+    editForm.find("input[name=street]").val(app.userData.addresses[0].street);
+
+if(app.userData.addresses[0].suburb!==null)
+    editForm.find("input[name=suburb]").val(app.userData.addresses[0].suburb);
+
+if(app.userData.addresses[0].state!==null)
+    editForm.find("input[name=state]").val(app.userData.addresses[0].state);
+
+if(app.userData.addresses[0].postcode!==null)
+    editForm.find("input[name=postcode]").val(app.userData.addresses[0].postcode);
+
+
+if(app.userData.fname!==null)
+    editForm.find("input[name=first_name]").val(app.userData.fname);
+
+if(app.userData.lname!==null)
+    editForm.find("input[name=last_name]").val(app.userData.lname);
+
+if(app.userData.gender!==null)
+if(app.userData.gender=='male'){
+    editForm.find("#user-profile-gender-male").attr("checked","true");
+    editForm.find("#user-profile-gender-male-icon").css('background', 'url(images/mobile-images/gender-male-radio2.png');
+    editForm.find("#user-profile-gender-female-icon").css('background', 'url(images/mobile-images/gender-female-radio1.png');
+    }
+    else
+    {
+        console.log('else');
+        console.log(editForm.find("#user-profile-gender-male-icon").length);
+    editForm.find("#user-profile-gender-female").attr("checked","true");
+    editForm.find("#user-profile-gender-female-icon").css('background', 'url(images/mobile-images/gender-female-radio2.png');
+    editForm.find("#user-profile-gender-male-icon").css('background', 'url(images/mobile-images/gender-male-radio1.png');
+        console.log('else done');
+        console.log(editForm.find("#user-profile-gender-male-icon").css('background'));
+    }
+    
+if(app.userData.bio!=null)
+    editForm.find("textarea[name=bio]").val(app.userData.bio);
+
+if(app.userData.favorite!=null){
+    console.log('favorite if');
+    editForm.find("textarea[name=favorite_spot]").val(app.userData.favorite.favoriteDetail);
+}
+else{
+    console.log('favorite else');
+    getUserFavoritesSport(function(){
+    if(app.userData.favorite!=null)
+        editForm.find("textarea[name=favorite_spot]").val(app.userData.favorite.favoriteDetail);
+    });
+    }
+}
+if(app.userData != null)
+    fillData();
+else
+    getUserProfileCompleteness(fillData);
+
+</script>
 </div>

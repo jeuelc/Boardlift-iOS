@@ -1,113 +1,195 @@
-  <div data-role="page">
-	<div class="main_container">
-		<div id="edit_profile">
-        	<div class="cm_hdng">
-            	<div class="cm_hdng_lt"><h1>Edit wheels</h1></div>
+  <div data-role="page" id="edit-profile-main">
+  <script type="text/javascript">
+    $(function() {
+
+        if($('input[name=no_wheels]:checked').val() == 'yes')
+        {
+            $('input[name=body_type_id]').prop('disabled', true);
+            $('select[name=make_model_id]').prop('disabled', true);
+            $('input[name=roof_rack]').prop('disabled', true);
+            $('fieldset[class=wheel-specs]').css('display', 'none');
+        }
+
+        $('input[name=no_wheels]').click(function() {
+            if($('input[name=no_wheels]:checked').val() == 'yes')
+            {
+                $('input[name=body_type_id]').prop('disabled', true);
+                $('select[name=make_model_id]').prop('disabled', true);
+                $('input[name=roof_rack]').prop('disabled', true);
+                $('fieldset[class=wheel-specs]').css('display', 'none');
+            }
+            else
+            {
+                $('input[name=body_type_id]').prop('disabled', false);
+                $('select[name=make_model_id]').prop('disabled', false);
+                $('input[name=roof_rack]').prop('disabled', false);
+                $('fieldset[class=wheel-specs]').css('display', 'block');
+            }
+        });
+    });
+    </script>
+    <style type="text/css">
+        .user_pro_wheels {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main_container">
+        <div id="edit_profile">
+            <div class="cm_hdng">
+                <div class="cm_hdng_lt"><h1>Edit Wheels</h1></div>
                 <div class="cm_hdng_rt">
-                	<div class="cm_profile_sec">
-                    	<h5>Your profile is 75% complete</h5>
-                        <div class="cm_pro_wrap">
-                        	<div class="cm_pro_outer">
-                            	<div class="cm_pro_bar"></div>
-                            	<div class="clearboth"></div>
-                            </div>
-                            <div class="clearboth"></div>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="clearboth"></div>
+                    <script type="text/javascript">
+$(function() {
+  $('#progress-bar').progressbar({
+      value: 90  });
+});
+</script>
+<style type="text/css">
+    #progress-bar {
+        height: 100%;
+        border-radius : 0px;
+        border : none;
+    }
+    
+    #progress-bar .ui-progressbar-value {
+        background-color: #e56a73 !important;
+        border-radius: 0px;
+        margin: 0px;
+    }
+    
+    #progress-bar .ui-widget-header {
+        background: none;
+    }
+</style>
+<div class="cm_profile_sec">
+    <h5>Your profile is 90% complete</h5>
+    <div class="cm_pro_wrap">
+        <div class="cm_pro_outer">
+            <div id="progress-bar"></div>
+            <div class="clearboth"></div>
+        </div>
+        <div class="clearboth"></div>
+    </div>
+    <div class="clearboth"></div>
+</div>
+<div class="clearboth"></div>
                 </div>
                 <div class="clearboth"></div>
             </div>
-            <div class="cm_back edit_back">
-            	<a href="edit-profile-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a>
-            </div>
             <div class="edit_cm_sec">
-                <form class="edit_pro_form" action="">
-					 <div class="user_pro_wheels">
-                     	<ul class="user_pro_wheels_list">
-                        	<li>
-                            	<input id="r1" type="radio" name="user-wheels">
-                                <label for="r1">
-                                    <span class="r1"></span>
-                                    <div>Other</div>
+                <div class="general_message">
+                    <span>*</span> A car is required to publish sessions and submit booking requests.
+                </div>
+                                <form action="http://jeuel.dev.boardlift.com/index.php/account/users/update_wheels" accept-charset="utf-8" method="post" class="edit_pro_form" data-role="none"><div style="display:none">
+<input  data-role="none" type="hidden" name="csrf_token_name" value="789309b486afdeffce4321f19e90a1c9" / >
+</div>                    <input  data-role="none" type="hidden" name="user_id" value="44" data-role="none">
+                     <div class="user_pro_wheels_row marginBtm8">
+                         <div class="user_pro_wheels_radioLt">
+                            <span class="drkgray_txt25">Do you have a car?</span>
+                        </div>
+                        <div class="user_pro_wheels_radioRt" id="have_car">
+                            <div class="user_pro_wheels_radio">
+                                                                <input  data-role="none" id="radio01a" type="radio" name="no_wheels" value="no" >
+                                <label for="radio01a">
+                                    <span></span> Yes
                                 </label>
-                            </li>
-                            <li>
-                            	<input id="r2" type="radio" name="user-wheels">
-                                <label for="r2">
-                                    <span class="r1"></span>
+                            </div>
+                            <div class="user_pro_wheels_radio">
+                                <input  data-role="none" id="radio02a" type="radio" name="no_wheels" value="yes"  >
+                                <label for="radio02a">
+                                    <span></span> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearboth"></div>
+                     </div>
+                     <fieldset class="wheel-specs">
+                     <div class="user_pro_wheels">
+                         <ul class="user_pro_wheels_list">
+                                                        <li>
+                                                                <input  data-role="none" id="sedan" type="radio" name="body_type_id" data-bodytype="1" value="1"  >
+                                <label for="sedan">
+                                    <span class="sedan"></span>
                                     <div>Sedan</div>
                                 </label>
                             </li>
-                            <li>
-                            	<input id="r3" type="radio" name="user-wheels">
-                                <label for="r3">
-                                    <span class="r1"></span>
+                                                        <li>
+                                                                <input  data-role="none" id="station-wagon" type="radio" name="body_type_id" data-bodytype="2" value="2"  >
+                                <label for="station-wagon">
+                                    <span class="station-wagon"></span>
                                     <div>Station wagon</div>
                                 </label>
                             </li>
-                            <li>
-                            	<input id="r4" type="radio" name="user-wheels">
-                                <label for="r4">
-                                    <span class="r1"></span>
+                                                        <li>
+                                                                <input  data-role="none" id="hatch" type="radio" name="body_type_id" data-bodytype="3" value="3"  >
+                                <label for="hatch">
+                                    <span class="hatch"></span>
                                     <div>Hatch</div>
                                 </label>
                             </li>
-                            <li>
-                            	<input id="r5" type="radio" name="user-wheels">
-                                <label for="r5">
-                                    <span class="r1"></span>
+                                                        <li>
+                                                                <input  data-role="none" id="suv" type="radio" name="body_type_id" data-bodytype="4" value="4"  >
+                                <label for="suv">
+                                    <span class="suv"></span>
                                     <div>SUV</div>
                                 </label>
                             </li>
-                            <li>
-                            	<input id="r6" type="radio" name="user-wheels">
-                                <label for="r6">
-                                    <span class="r1"></span>
+                                                        <li>
+                                                                <input  data-role="none" id="ute" type="radio" name="body_type_id" data-bodytype="5" value="5"  >
+                                <label for="ute">
+                                    <span class="ute"></span>
                                     <div>Ute</div>
                                 </label>
                             </li>
-                            <li>
-                            	<input id="r7" type="radio" name="user-wheels">
-                                <label for="r7">
-                                    <span class="r1"></span>
+                                                        <li> 
+                                                                <input  data-role="none" id="wd" type="radio" name="body_type_id" data-bodytype="6" value="6" >
+                                <label for="wd">
+                                    <span class="wd"></span>
                                     <div>4WD</div>
                                 </label>
                             </li>
-                            <li>
-                            	<input id="r8" type="radio" name="user-wheels">
-                                <label for="r8">
-                                    <span class="r1"></span>
+                                                        <li>
+                                                                <input  data-role="none" id="van" type="radio" name="body_type_id" data-bodytype="7" value="7" >
+                                <label for="van">
+                                    <span class="van"></span>
                                     <div>Van</div>
                                 </label>
                             </li>
-                        </ul>
+                                                        <li>
+                                                                <input  data-role="none" id="other" type="radio" name="body_type_id" data-bodytype="8" value="8"  >
+                                <label for="other">
+                                    <span class="other"></span>
+                                    <div>Other</div>
+                                </label>
+                            </li>
+                                                    </ul>
                      </div>
                      <div class="user_pro_wheels_row">
-                     	<div class="user_pro_wheels_label">
-                        	<span class="drkgray_txt25">Make</span>
+                         <div class="user_pro_wheels_label">
+                            <span class="drkgray_txt25">Make</span>
                         </div>
                         <div class="user_pro_wheels_info">
-                        	<select class="default_select user_wheel_select">
-                            	<option></option>
-                            </select>
+                            <select name="make_model_id"  class="default_select user_wheel_select" data-role="none">
+                                <option value="">Select make</option>
+                                <option value="1" >Abarth</option><option value="2" >AC</option><option value="3" >Alfa Romeo</option><option value="4" >Audi</option><option value="5" >BMW</option><option value="6" >Chevrolet</option><option value="7" >Chrysler</option><option value="8" >Citroen</option><option value="9" >Daewoo</option><option value="10" >Daihatsu</option><option value="11" >Dodge</option><option value="12" >Fiat</option><option value="13" >Ford</option><option value="14" >Holden</option><option value="15" >Hyundai</option><option value="16" >Isuzu</option><option value="17" selected>Jaguar</option><option value="18" >Jeep</option><option value="19" >Kia</option><option value="20" >Land Rover</option><option value="21" >Lexus</option><option value="22" >Mazda</option><option value="23" >Mercedes-Benz</option><option value="24" >MINI</option><option value="25" >Mitsubishi</option><option value="26" >Nissan</option><option value="27" >Peugeot</option><option value="28" >Porsche</option><option value="29" >Renault</option><option value="30" >Skoda</option><option value="31" >Subaru</option><option value="32" >Suzuki</option><option value="33" >Toyota</option><option value="34" >Volkswagen</option><option value="35" >Volvo</option><option value="36" >Other</option>                            </select>
                         </div>
                         <div class="clearboth"></div>
                      </div>
                      <div class="user_pro_wheels_row">
-                     	<div class="user_pro_wheels_radioLt">
-                        	<span class="drkgray_txt25">Roof racks</span>
+                         <div class="user_pro_wheels_radioLt">
+                            <span class="drkgray_txt25">Roof racks</span>
                         </div>
-                        <div class="user_pro_wheels_radioRt">
-                        	<div class="user_pro_wheels_radio">
-                                <input id="radio01" type="radio" name="radio" checked>
+                        <div class="user_pro_wheels_radioRt" id="have_roof_racks">
+                            <div class="user_pro_wheels_radio">
+                                <input  data-role="none" id="radio01" type="radio" name="roof_rack" value="yes" >
                                 <label for="radio01">
                                     <span></span> Yes
                                 </label>
                             </div>
                             <div class="user_pro_wheels_radio">
-                                <input id="radio02" type="radio" name="radio">
+                                <input  data-role="none" id="radio02" type="radio" name="roof_rack" value="no" data-role="none">
                                 <label for="radio02">
                                     <span></span> No
                                 </label>
@@ -115,172 +197,171 @@
                         </div>
                         <div class="clearboth"></div>
                      </div>
-                     <div class="user_pro_wheels_row marginBtm8">
-                     	<div class="user_pro_wheels_radioLt">
-                        	<span class="drkgray_txt25">Do have a car?</span>
-                        </div>
-                        <div class="user_pro_wheels_radioRt">
-                        	<div class="user_pro_wheels_radio">
-                                <input id="radio01a" type="radio" name="radio2" checked>
-                                <label for="radio01a">
-                                    <span></span> Yes
-                                </label>
-                            </div>
-                            <div class="user_pro_wheels_radio">
-                                <input id="radio02a" type="radio" name="radio2">
-                                <label for="radio02a">
-                                    <span></span> No
-                                </label>
-                            </div>
-                        </div>
-                        <div class="clearboth"></div>
-                     </div>                                            
-                </form>                
+                     </fieldset>
                 <div class="edit_save_btn">
-                	<button class="btn main_btn">Save</button>
+                    <a href="http://jeuel.dev.boardlift.com/index.php/account/users/edit"><input  data-role="none" type="button" class="btn main_btn" value="Back" ></a>
+                    <input  data-role="none" type="submit" class="btn main_btn" value="Save" >
                     <div class="clearboth"></div>
                 </div>
-            </div>
+                </form>            </div>
             
         </div>
     </div>
-    
-    <div id="mobile_footer"> 
-        <a href="index.html" class="footer_logo"></a> 
-        <a href="" class="footer_srch"></a>
-        <div class="footer_menu footer_menu_loggedin"></div>
-        <div class="clearboth"></div>
-    </div>
-
-<!---------------------- Slide menu ---------------------->
     <div id="slide_menu">
-        <div class="mobile_ryt_nav with_login">
-        	<div class="pro_pic"> 
-            	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
-            </div>
-            <ul class="mb_nav">
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="">
-                            <div class="sb_nav_img sb_nav_img1"></div>
-                            <h2>Dashboard</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="message.html">
-                            <div class="sb_nav_img sb_nav_img2"></div>
-                            <h2>Messages<span>(1)</span></h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="session-current-listings.html">
-                            <div class="sb_nav_img sb_nav_img3"></div>
-                            <h2>sessions</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="bookings.html">
-                            <div class="sb_nav_img sb_nav_img4"></div>
-                            <h2>Bookings</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="help-page.html">
-                            <div class="sb_nav_img sb_nav_img5"></div>
-                            <h2>Help</h2>
-                        </a> 
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_menu_blk"> 
-                        <a href="account-main.html">
-                            <div class="sb_nav_img sb_nav_img6"></div>
-                            <h2>Account</h2>
-                        </a> 
-                    </div>
-                </li>
-            </ul>
-            <ul class="wl_mb_nav nav_gap">
-                <li><a href="#" id="share-friends">Invite friends</a></li>
-                <li><a href="#">Legal stuff</a></li>
-                <li><a href="#">Improve us</a></li>
-                <li><a href="#">Log out</a></li>
-            </ul>
+    <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
+        <div class="pro_pic"> 
+            <a href="http://jeuel.dev.boardlift.com/index.php/account/users/profile" style="color:#999;">
+                                <div class="actual-profile-image" style="background:url('https://boardlift-development.s3-ap-southeast-2.amazonaws.com/users/44.jpg') center center no-repeat;">
+                </div>
+                <span class="pro_pic_name">Jeuel Condahan</span>            </a>
         </div>
+        <ul class="mb_nav">
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://jeuel.dev.boardlift.com/index.php/account/users/dashboard">
+                        <div class="sb_nav_img sb_nav_img1"></div>
+                        <h2>Dashboard</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://jeuel.dev.boardlift.com/index.php/account/messages">
+                        <div id="message-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img2"></div>
+                        <h2>Messages<span></span></h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://jeuel.dev.boardlift.com/index.php/account/sessions">
+                        <div id="session-side-notification" class="side-menu-notification" >2</div>
+                        <div class="sb_nav_img sb_nav_img3"></div>
+                        <h2>Sessions<br>(As driver)</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://jeuel.dev.boardlift.com/index.php/account/bookings">
+                        <div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div>
+                        <div class="sb_nav_img sb_nav_img4"></div>
+                        <h2>Bookings<br>(As passenger)</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://jeuel.dev.boardlift.com/index.php/help">
+                        <div class="sb_nav_img sb_nav_img5"></div>
+                        <h2>Help</h2>
+                    </a> 
+                </div>
+            </li>
+            <li>
+                <div class="sub_menu_blk"> 
+                    <a href="http://jeuel.dev.boardlift.com/index.php/account/settings">
+                        <div class="sb_nav_img sb_nav_img6"></div>
+                        <h2>Account</h2>
+                    </a> 
+                </div>
+            </li>
+        </ul>
+        <ul class="wl_mb_nav nav_gap">
+            <li><a href="http://jeuel.dev.boardlift.com/index.php/account/users/invite" id="share-friends">Invite friends</a></li>
+            <li><a href="http://jeuel.dev.boardlift.com/index.php/help/legal_stuff">Legal stuff</a></li>
+            <li><a href="http://jeuel.dev.boardlift.com/index.php/help/contact_us">Contact us</a></li>
+            <li><a href="http://jeuel.dev.boardlift.com/index.php/account/users/logout">Log out</a></li>
+        </ul>
     </div>
-<!---------------------- Slide menu end-------------------->
-
-	<div id="filter_search">
+</div>
+    <div class="clearboth"></div>
+<div id="mobile_footer"> 
+        <a href="http://jeuel.dev.boardlift.com/" class="footer_logo"></a> 
+    <a href="#" class="footer_srch"></a>
+        
+            <div class="footer_menu_loggedin"></div>
+        
+    <div class="clearboth"></div>
+</div>
+<div id="filter_search">
         <div class="filtr_srchBtn">
-        	<button type="button">Filter Search</button>
+            <a href="javascript:void(0)" id="filter-search-anchor">
+                <button id="filter-search-btn" type="button">Filter Search</button>
+            </a>
         </div>
         <div class="main_row">
-        	<div class="search_sec">
-            	<div class="close_srch_popup">X</div>
+            <div class="search_sec">
+                <div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
-                    <!--<i class="fa fa-calendar"></i>-->
+                                        <input  data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value="" >
+                    <span id="clear_slideup_date" style="visibility: hidden;">X</span>
                 </div>
                 <div class="search_main_row">
-                	<div class="victoria_sec">
-                        <div class="content_sec">
-                            <h1>Victoria</h1>
-                            <p>Search sessions</p>
+                    <a href="javascript:void(0);" id="search-in-victoria">
+                        <div class="victoria_sec">
+                            <div class="content_sec">
+                                <h1>Victoria</h1>
+                                <p>Search sessions</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sa_sec spacer">
-                        <div class="content_sec">
-                            <h1>SA</h1>
-                            <p>Search sessions</p>
+                    </a>
+                    <a href="javascript:void(0);" id="search-in-sa">
+                        <div class="sa_sec spacer">
+                            <div class="content_sec">
+                                <h1>SA</h1>
+                                <p>Search sessions</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    <a href="javascript:void(0);" id="search-in-nsw">
+                        <div class="nsw_sec spacer">
+                            <div class="content_sec">
+                                <h1>NSW</h1>
+                                <p>Search sessions</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="clearboth"></div>
             </div>
-            
+                
         </div>
-    </div>
-    
-    <div id="share">
-        <div class="loginhead">
-            <div id="liup2" class="signup_close">
-            	<div class="share_close login_mb_close">X</div>
-            </div>
-        </div>
-        <div class="share_hdng">Share BoardLift with your friends</div>
-        <div class="main_row2">            
-            <div class="main_form">
-                <form action="" method="get">
-                    <ul>
-                        <li>
-                        	<input type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
-                        </li>
-                        <li>
-                        	<input type="button" id="send" class="send_btn" value="Send">
-                        </li>
-                        <li>
-                        	<input type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
-                        </li>
-                        <li class="fb_login">
-                        	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
-                        </li>
-                        <li class="txt_center">
-                        	<input type="button" class="gray_btn" value="No Thanks">
-                        </li>
-                    </ul>
-                </form>
-            </div>
-            <div >
-            	
-            </div>
-        </div>
-    </div>
+        <div class="v-spacer"></div>
+</div>
+<script type="text/javascript">
+    console.log('edit_wheels.html');
+getUserWheels(function(data, carCompanies){
+    var carListingContainer = $('#car_list');
+    var car_data = '';
+
+    if (data[0]['bodyType'] != 0) {
+        $('#have_car').find("input[id=radio01a]").attr("checked", "true");
+    } else {
+        $('#have_car').find("input[id=radio02a]").attr("checked", "true");
+    }
+
+    for (i in data) {
+        console.log(data[i]);
+        $('.user_pro_wheels_list').find('[data-bodytype=' + data[i]['bodyType'] + ']').attr("checked", "true");
+    }
+
+
+    car_data += '<option value="">Select make</option>';
+    for (var j in carCompanies) {
+
+        selected = (data[0]['vehicleMakeModelId'] == j) ? "selected" : "";
+
+        car_data += '<option value="' + j + '" ' + selected + '>' + carCompanies[j] + '</option>';
+    }
+
+    if (data[0]['hasRoofRack'] == 'yes') {
+        $('#have_roof_racks').find("input[id=radio01]").attr("checked", "true");
+    } else {
+        $('#have_roof_racks').find("input[id=radio02]").attr("checked", "true");
+    }
+    carListingContainer.html(car_data);
+});
+</script>
 </div>

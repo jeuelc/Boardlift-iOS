@@ -1,53 +1,9 @@
-  <div data-role="page">
+  <div data-role="page" id = "messagePage">
 	<div class="main_container">
 		<div id="message">
         	<div class="msg_hdng"><h1>Inbox</h1></div>
-            <div class="msg_inbox_row">
-            	<div class="msg_col1">
-                	<div class="msg_icon"><a href="#"><img src="images/mobile-images/icon-msg-act.png" alt=""></a></div>
-                </div>
-                <div class="msg_col2">
-                	<span class="msg_txt">Jess C</span>
-                </div>
-                <div class="msg_col3">
-                	<span class="msg_txt">Dawny at Gunnamatta</span>
-                </div>
-                <div class="msg_col4">
-                	<span class="msg_txt2">01:36:55 AM</span>
-                </div>
-                <div class="clearboth"></div>
+            <div class="msg_inbox_row_container">
             </div>
-            <div class="msg_inbox_row">
-            	<div class="msg_col1">
-                	<div class="msg_icon"><a href="#"><img src="images/mobile-images/icon-msg.png" alt=""></a></div>
-                </div>
-                <div class="msg_col2">
-                	<span class="msg_txt">Matt T</span>
-                </div>
-                <div class="msg_col3">
-                	<span class="msg_txt">Beaching it</span>
-                </div>
-                <div class="msg_col4">
-                	<span class="msg_txt2">03-31-2015</span>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-            <div class="msg_inbox_row">
-            	<div class="msg_col1">
-                	<div class="msg_icon"><a href="#"><img src="images/mobile-images/icon-msg.png" alt=""></a></div>
-                </div>
-                <div class="msg_col2">
-                	<span class="msg_txt">Rick H</span>
-                </div>
-                <div class="msg_col3">
-                	<span class="msg_txt">Surfing trip</span>
-                </div>
-                <div class="msg_col4">
-                	<span class="msg_txt2">03-31-2015</span>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-            
             
         </div>
     </div>
@@ -133,7 +89,7 @@
         	<div class="search_sec">
             	<div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
                     <!--<i class="fa fa-calendar"></i>-->
                 </div>
                 <div class="search_main_row">
@@ -168,19 +124,19 @@
                 <form action="" method="get">
                     <ul>
                         <li>
-                        	<input type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
+                        	<input  data-role="none" type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
                         </li>
                         <li>
-                        	<input type="button" id="send" class="send_btn" value="Send">
+                        	<input  data-role="none" type="button" id="send" class="send_btn" value="Send">
                         </li>
                         <li>
-                        	<input type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
+                        	<input  data-role="none" type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
                         </li>
                         <li class="fb_login">
                         	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
                         </li>
                         <li class="txt_center">
-                        	<input type="button" class="gray_btn" value="No Thanks">
+                        	<input  data-role="none" type="button" class="gray_btn" value="No Thanks">
                         </li>
                     </ul>
                 </form>
@@ -190,4 +146,31 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    (function() {
+        getAllMessage(function(data){
+            var a = '';
+            for (var i = 0; i < data.length; i++) {
+            a += '<div class="msg_inbox_row" data-session-id="'+data[i].session_id+'"><div class="msg_col1"><div class="msg_icon"><a href="#">';
+                if(data[i].unread == 1)
+                    a += '<img src="images/mobile-images/icon-msg-act.png" alt=""></a>'
+                else
+                    a += '<img src="images/mobile-images/icon-msg.png" alt=""></a>'
+                a += '</div></div><div class="msg_col2"><span class="msg_txt">'
+
+                a += data[i].profile_fname +' '+data[i].profile_lname;
+                a += '</span></div><div class="msg_col3"><span class="msg_txt">';
+                a += data[i].message;
+                a += '</span></div><div class="msg_col4"><span class="msg_txt2">';
+                a += data[i].message_date;
+                a +='</span></div><div class="clearboth"></div></div>';
+            };
+            console.log(a);
+            $('.msg_inbox_row_container').html(a);
+        });
+        $('.msg_inbox_row_container').on('click', '.msg_inbox_row', function(){
+            getMessageConversation($(this).attr('data-session-id'));
+        });
+    })();
+    </script>
 </div>

@@ -1,177 +1,49 @@
-  <div data-role="page">
+  <div data-role="page" id="all-sessions-page">
 
     <div class="main_container">
 		<div id="Sessions">
         	<div class="ssn_uppr_sec">
             	<div class="ssn_hdng">
                     <div class="ssn_hdng_lt">
-                        <h1>Sessions</h1>
+                        <h1>Sessions (As driver)</h1>
                     </div>
                     <div class="ssn_hdng_rt">
-                        <select class="default_select ssn_hdr_select">
-                        	<option>Filter/sory by</option>
+                        <select  data-role="none" class="default_select ssn_hdr_select">
+                        	<option>Filter/sort by</option>
+                            <option>Current</option>
+                            <option>All</option>
+                            <option>Active</option>
+                            <option>Cancelled</option>
+                            <option>Complete</option>
                         </select>
                         <div class="clearboth"></div>
                     </div>
                     <div class="clearboth"></div>
                 </div>
-                <div class="ssn_tab_links">
+             <!--    <div class="ssn_tab_links">
                 	<ul class="tabs_crtl">
                     	<li><a href="#" class="active">Current listings</a></li>
                         <li class="last"><a href="#">Previous listings</a></li>
                     </ul>
+                </div> -->
+                <div class="ssn_row">
+                    <div class="success_message error-message"></div>
                 </div>
                 <div class="ssn_img_sec">
-                	<div class="ssn_img_btn"><button class="main_btn btn">List session</button></div>
+                	<div class="ssn_img_btn"><button id="goto-new-session" class="main_btn btn">List session</button></div>
                     <div class="ssn_img_icon">
                     	<a href="account-session-photo.html"><img src="images/mobile-images/session-img-icon.png" alt=""></a>
                     </div>
                 </div>
-            </div>
             
-            <div class="ssn_content_sec">
-            	<div class="ssn_row">
-                	<div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Session:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">Dawny at Gunnamatta</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">To:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">Mornington Peninsula</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Date:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">13.04.15</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Time:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">6am/12-2pm</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Wheels:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">Tom P/2012 Sedan</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Cost/seats:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">$15</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Status:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2 ssn_list_blue_txt">Verifying</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_btn">
-                    	<button class="main_btn btn btn_gap">Cancel</button><button class="main_btn btn btn_gap">Dispute</button><button class="main_btn btn">Complete</button>
-                    </div>
-                </div>
-                
-                <div class="ssn_row">
-                	<div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Session:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">Dawny at Gunnamatta</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">To:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">Mornington Peninsula</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Date:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">13.04.15</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Time:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">6am/12-2pm</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Wheels:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">Tom P/2012 Sedan</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Cost/seats:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2">$15</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_row">
-                    	<div class="ssn_list_lt">
-                        	<span class="drkgray_txt26 ssn_list_font1">Status:</span>
-                        </div>
-                        <div class="ssn_list_rt">
-                        	<span class="gray_txt26 ssn_list_font2 ssn_list_green_txt">Active</span>
-                        </div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="ssn_list_btn">
-                    	<button class="main_btn btn btn_gap">Cancel</button><button class="main_btn btn btn_gap">Dispute</button><button class="main_btn btn">Complete</button>
-                    </div>
-                </div>
+            
+            <div class="ssn_content_sec" id="session-page-all-listing" style="height: calc(100% - 98.59375px);">
+            	
             </div>
         	
             
             
-            
+            </div>
         </div>
     </div>
     <div class="clearboth"></div>
@@ -258,7 +130,7 @@
         	<div class="search_sec">
             	<div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
                     <!--<i class="fa fa-calendar"></i>-->
                 </div>
                 <div class="search_main_row">
@@ -295,6 +167,53 @@ $(function() {
     $('input[name=seat_cost]').keyup(function() {
         $("#slider").slider('option', 'value', $('input[name=seat_cost]').val());
     });
+
+    $('#all-sessions-page').on('pageshow', function(){
+        if(getUrlParams('success') != false)
+            $('.success_message').text(getUrlParams("success"));
+        getAllSessionsForUser();
+    });
+
+    $('.ssn_content_sec').on("click", "#single-session-view", function(){
+        console.log('click just occur');
+        showSingleSessionDriver($(this).attr('data-session-id'), 'session');
+    });
+    $("#goto-new-session").on("click", function(){
+        $.mobile.changePage("list-session.html");
+    });
+
+    // show popups on cancel, publish buttons and take to edit session page on edit button click
+    
+    $('.ssn_content_sec').on("click", "#session-cancel-btn", function(){
+        console.log('cancel click occur');
+        var cancelMessage = "Are you sure you want to cancel this session?",
+            cancelTitle = "Cancel Session",
+            cancelButtons = "No thanks,Yes";
+
+        app.currentCancelSessionId = $(this).attr("data-session-id");
+
+        showConfirm(cancelMessage, cancelUserSingleSession, cancelButtons, cancelTitle);
+    });
+
+    $('.ssn-content-sec').on("click", "#session-publish-btn", function(){
+        console.log('publish click occur');
+        var publishMessage = "Are you sure you want to publish this session?",
+            publishTitle = "Publish Session",
+            publishButtons = "No thanks,Yes";
+
+        app.currentPublishSessionId = $(this).attr('data-session-id');
+
+        showConfirm(publishMessage, publishUserSingleSession, publishButtons, publishTitle);
+    });
+
+    $('.ssn_content_sec').on("click", '#session-edit-btn', function(){
+        console.log('edit btn clicked');
+        var curSessionId = $(this).attr('data-session-id');
+        var d = {};
+        d['id'] = curSessionId;
+        $.mobile.changePage('edit-session.html', {data:d})
+    });
+
   });
 </script>
 </div>

@@ -17,6 +17,7 @@
  * under the License.
  */
 var app = {
+    userData : {},
     // Application Constructor
     initialize: function() {
         this.bindEvents();

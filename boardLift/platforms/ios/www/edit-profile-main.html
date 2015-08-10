@@ -1,4 +1,4 @@
-  <div data-role="page">
+  <div data-role="page" id="edit-profile-main">
 	<div class="main_container">
 		<div id="edit_profile">
         	<div class="cm_hdng">
@@ -24,47 +24,47 @@
                 	<div class="cm_blk_txt">Required</div>
                 </div>
                 <div class="cm_col2">
-                	<div class="cm_red_txt1">2 &frasl; 3</div>
+                	<div class="cm_red_txt1"><span>0</span> &frasl; 3</div>
                 </div>
                 <div class="cm_col3">&nbsp;</div>
                 <div class="clearboth"></div>
             </div>
-            <div class="cm_row">
-            	<div class="cm_col1">
-                	<div class="cm_links"><a href="#">Edit profile</a></div>
+                <div class="cm_row">
+                    <a href="edit-profile.html">
+                        <div class="cm_col1">
+                            <div class="cm_links">Edit profile</div>
+                        </div>
+                        <div class="cm_col2" data-row-name="edit-profile"></div>
+                        <div class="cm_col3">
+                            <div class="cm_icon_links">&gt;</div>
+                        </div>
+                    </a>
+                    <div class="clearboth"></div>
                 </div>
-                <div class="cm_col2">
-                	<div class="cm_check"><img src="images/mobile-images/icon-green-check.png" alt=""></div>
+                <div class="cm_row">
+                    <a href="edit-board-skills.html">
+                        <div class="cm_col1">
+                            <div class="cm_links">Edit board skills</div>
+                        </div>
+                        <div class="cm_col2" data-row-name="edit-board-skills"></div>
+                        <div class="cm_col3">
+                            <div class="cm_icon_links">&gt;</div>
+                        </div>
+                    </a>
+                    <div class="clearboth"></div>
                 </div>
-                <div class="cm_col3">
-                	<div class="cm_icon_links"><a href="#">&gt;</a></div>
+                <div class="cm_row">
+                    <a href="edit-wheels.html">
+                        <div class="cm_col1">
+                            <div class="cm_links">Edit preferences</div>
+                        </div>
+                        <div class="cm_col2" data-row-name="edit-wheels"></div>
+                        <div class="cm_col3">
+                            <div class="cm_icon_links">&gt;</div>
+                        </div>
+                    </a>
+                    <div class="clearboth"></div>
                 </div>
-                <div class="clearboth"></div>
-            </div>
-            <div class="cm_row">
-            	<div class="cm_col1">
-                	<div class="cm_links"><a href="edit-board-skills.html">Edit boardskills</a></div>
-                </div>
-                <div class="cm_col2">
-                	<div class="cm_red_txt2">not<br>completed</div>
-                </div>
-                <div class="cm_col3">
-                	<div class="cm_icon_links"><a href="edit-board-skills.html">&gt;</a></div>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-            <div class="cm_row">
-            	<div class="cm_col1">
-                	<div class="cm_links"><a href="edit-wheels.html">Edit Wheels</a></div>
-                </div>
-                <div class="cm_col2">
-                	<div class="cm_check"><img src="images/mobile-images/icon-green-check.png" alt=""></div>
-                </div>
-                <div class="cm_col3">
-                	<div class="cm_icon_links"><a href="edit-wheels.html">&gt;</a></div>
-                </div>
-                <div class="clearboth"></div>
-            </div>
             <div class="cm_row">
             	<div class="cm_col1">
                 	<div class="cm_blk_txt">Optional</div>
@@ -73,25 +73,30 @@
                 <div class="cm_col3">&nbsp;</div>
                 <div class="clearboth"></div>
             </div>
-            <div class="cm_row">
-            	<div class="cm_col1a">
-                	<div class="cm_links"><a href="edit-preference.html">Edit preferences</a></div>
+                <div class="cm_row">
+                    <a href="edit-profile.html">
+                        <div class="cm_col1">
+                            <div class="cm_links">Edit profile picture</div>
+                        </div>
+                        <div class="cm_col2" data-row-name="edit-profile"></div>
+                        <div class="cm_col3">
+                            <div class="cm_icon_links">&gt;</div>
+                        </div>
+                    </a>
+                    <div class="clearboth"></div>
                 </div>
-                <div class="cm_col3a">
-                	<div class="cm_icon_links"><a href="edit-preference.html">&gt;</a></div>
+                <div class="cm_row">
+                    <a href="edit-profile.html">
+                        <div class="cm_col1a">
+                            <div class="cm_links">Edit preferences</div>
+                        </div>
+                        <div class="cm_col3a">
+                            <div class="cm_icon_links">&gt;</div>
+                        </div>
+                    </a>
+                    <div class="clearboth"></div>
                 </div>
-                <div class="clearboth"></div>
-            </div>
-            <div class="cm_row">
-            	<div class="cm_col1a">
-                	<div class="cm_links"><a href="edit-photos.html">Edit photos</a></div>
-                </div>
-                <div class="cm_col3a">
-                	<div class="cm_icon_links"><a href="edit-photos.html">&gt;</a></div>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-            
+
         </div>
     </div>
     
@@ -112,7 +117,7 @@
         	<div class="search_sec">
             	<div class="close_srch_popup">X</div>
                 <div class="depart_date_holder">
-                	<input id="search_departureDate" type="text" readonly placeholder="Date" value="">
+                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
                     <!--<i class="fa fa-calendar"></i>-->
                 </div>
                 <div class="search_main_row">
@@ -212,19 +217,19 @@
                 <form action="" method="get">
                     <ul>
                         <li>
-                        	<input type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
+                        	<input  data-role="none" type="text" id="frnd" class="inp txt_center" placeholder="Add friend's email address">
                         </li>
                         <li>
-                        	<input type="button" id="send" class="send_btn" value="Send">
+                        	<input  data-role="none" type="button" id="send" class="send_btn" value="Send">
                         </li>
                         <li>
-                        	<input type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
+                        	<input  data-role="none" type="text" id="website" class="inp" placeholder="www.boardlift.com/kmarevich">
                         </li>
                         <li class="fb_login">
                         	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
                         </li>
                         <li class="txt_center">
-                        	<input type="button" class="gray_btn" value="No Thanks">
+                        	<input  data-role="none" type="button" class="gray_btn" value="No Thanks">
                         </li>
                     </ul>
                 </form>
@@ -234,4 +239,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function(){
+            console.log('edit-profile-main.html');
+            getAllComponents();
+            function addRequired(element, data){
+                if(data.length == 0)
+                    element.html('<div class="cm_red_txt2">not<br>completed</div>');
+                else{
+                    element.html('<div class="cm_check"><img src="images/mobile-images/icon-green-check.png" alt=""></div>');
+                    $('.cm_red_txt1 span').text(+parseInt($('.cm_red_txt1 span').text())+1);
+                }
+            }
+            getComponent(2, $('[data-row-name="edit-profile"]'), addRequired);
+            getComponent(4, $('[data-row-name="edit-skills"]'), addRequired);
+            getComponent(5, $('[data-row-name="edit-wheels"]'), addRequired);
+            getComponent(3, $('[data-row-name="edit-board-skills"]'), function(element, data){
+                if(data.length == 0)
+                    element.html('<div class="cm_red_txt2">not<br>completed</div>');
+                else
+                    element.html('<div class="cm_check"><img src="images/mobile-images/icon-green-check.png" alt=""></div>');
+            });
+        })();
+    </script>
 </div>
