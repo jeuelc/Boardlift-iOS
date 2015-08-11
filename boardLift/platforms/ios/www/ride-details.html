@@ -150,7 +150,7 @@
             <a href="javascript:void(0)" id="ride-driver-details" class="inactive-link change-view" style="display:none;" data-driver-id="">Driver profile</a>
         </div>
         <div class="ride-form-holder" style="display:none;">
-            <select name="seat-request" id="seats-request">
+            <select name="seat-request" id="seats-request" data-role="none">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -211,12 +211,12 @@
                                 <h3>Cost per seat</h3>
                                 <p id="seats-cost">$<span></span></p>
                             </div>
-                            <div class="sl-col-box">
+                            <!-- <div class="sl-col-box">
                                 <div class="special-buttons-holder">
                                     <div class="fb-share-button" data-href="http://web.boardlift.com/sessions/view/191" data-layout="button"></div>
                                     <a href="http://www.swellnet.com/reports/australia/new-south-wales/yamba/forecast" target="_blank"><button class="ride-forecast">Forecast <i class="fa fa-sun-o"></i></button></a>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="sl-col-box">
                                 <div class="session-map-holder">
                                     <div id="map-session" class="map-session" style="width:100%;height:200px;"></div>
@@ -225,7 +225,7 @@
                             <div class="sl-col-box">
                                 <div class="special-buttons-holder">
                                     <a href="#" id="ride-details-back-btn"><button class="ride-forecast">Back</button></a>
-                                                                            <a href="http://web.boardlift.com/account/sessions/edit/191"><button class="ride-forecast">Edit</button></a>
+                                                                            <a href="#" id="ride-details-edit-btn"><button class="ride-forecast">Edit</button></a>
                                                                     </div>
                                 <div class="v-spacer"></div>
                             </div>
@@ -376,13 +376,13 @@
             <span id="confirm-text"></span>
         </p>
     </div>
-    <div id="dialog-feedback-empty" title="Add feedback">
+    <!-- <div id="dialog-feedback-empty" title="Add feedback">
         <p>
             <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
             <span id="confirm-text">You are required to add a feedback.</span>
         </p>
-    </div>
-    <div id="dialog-feedback">
+    </div> -->
+    <!-- <div id="dialog-feedback">
         <form action="http://web.boardlift.com/account/bookings/host_complete" accept-charset="utf-8" method="post" class="feedback-form" id="feedback-form" style="text-align: left;"><div style="display:none">
 <input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
 </div>        <div class="feedback-as-host-holder">
@@ -406,8 +406,8 @@
                 </div>
             </div>
         </div>
-        </form>    </div>
-    <div id="dialog-feedback2">
+        </form>    </div> -->
+  <!--   <div id="dialog-feedback2">
         <form action="http://web.boardlift.com/account/bookings/write_feedback" accept-charset="utf-8" method="post" class="feedback-form2" id="feedback-form2" style="text-align: left;"><div style="display:none">
 <input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
 </div>        <div class="feedback-as-host-holder">
@@ -432,8 +432,8 @@
                 </div>
             </div>
         </div>
-        </form>    </div>
-    <div id="dialog-feedback3">
+        </form>    </div> -->
+   <!--  <div id="dialog-feedback3">
         <form action="http://web.boardlift.com/account/sessions/view/191" method="post" accept-charset="utf-8"><div style="display:none">
 <input  data-role="none" type="hidden" name="csrf_token_name" value="7671b677e09e4a37f1475213833edd0e" />
 </div>        <div class="v-spacer"></div>
@@ -454,13 +454,13 @@
             <a id="submit-without-rating-btn" href="javascript:void(0)">Yes</a>
         </div>
         </form>        <div class="v-spacer" style="padding-bottom: 55px;"></div>
-    </div>
-    <div id="dialog-dispute" title="Dispute Booking">
+    </div> -->
+    <!-- <div id="dialog-dispute" title="Dispute Booking">
         <p>
             <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
             <span id="confirm-text">You are required to add the details for disputing this booking.</span>
         </p>
-    </div>
+    </div> -->
     <div class="dispute-your-driver-holder">
     <div id="dispute-your-driver-page">
         <div class="list_sessn_hdng">
@@ -502,7 +502,7 @@
             <a id="submit-dispute-btn" href="javascript:void(0)">Submit</a>
         </div>
         </form>    </div>
-</div>    <div id="slide_menu">
+</div>    <!-- <div id="slide_menu">
     <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
         <div class="pro_pic"> 
             <a href="http://web.boardlift.com/account/users/profile" style="color:#999;">
@@ -570,7 +570,7 @@
             <li><a href="http://web.boardlift.com/account/users/logout">Log out</a></li>
         </ul>
     </div>
-</div>
+</div> -->
     <div class="clearboth"></div>
 <div id="mobile_footer"> 
         <a href="http://web.boardlift.com/" class="footer_logo"></a> 
@@ -840,10 +840,32 @@ function getNotifications()
                     break;
             }
         });
-
+               // back button click
                $('#ride-details-back-btn').on("click", function(e){
                 e.preventDefault();
-                $.mobile.changePage('session-current-listings.html');
+                if($("#ride-driver-details").css("display") == "none"){
+                    $.mobile.changePage('session-current-listings.html');    
+                }else{
+                    $.mobile.changePage('bookings.html');
+                }
+                
+                // history.go(-1);
                });
+
+               $('#ride-details-edit-btn').on('click', function(){
+                    var curSessionId = $(this).attr('data-session-id');
+                    var d = {};
+                    d['id'] = curSessionId;
+                    $.mobile.changePage('edit-session.html', {data:d});
+               });
+
+               $('.footer_menu_loggedin').on('click', function(e){
+                    console.log('clicked on it: ' + showingSideMenu);
+                    if(showingSideMenu){
+                        hideSideMenuLoggedIn();
+                    }else{
+                        makeSideMenuLoggedIn();
+                    }
+                });
         
     </script>

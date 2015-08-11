@@ -6,14 +6,14 @@
                     <h1>Bookings</h1>
                 </div>
                 <div class="filter-sort-holder">
-                    <select class="field-entry select" name="status-filter">
-                        <option value="">All</option>
-                        <option value="New">New</option>
-                        <option value="Accepted">Accepted</option>
-                        <option value="Declined">Declined</option>
-                        <option value="Cancelled">Cancelled</option>
-                        <option value="Disputed">Disputed</option>
-                        <option value="Completed">Completed</option>
+                    <select id="filter-all-bookings" class="field-entry select" name="status-filter" data-role="none">
+                        <option value="all">All</option>
+                        <option value="1">New</option>
+                        <option value="2">Accepted</option>
+                        <option value="3">Declined</option>
+                        <option value="4">Cancelled</option>
+                        <option value="6">Disputed</option>
+                        <option value="9">Completed</option>
                     </select>
                 </div>
                 <div class="clearboth"></div>
@@ -39,7 +39,7 @@
     </div>
 
 <!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
+    <!-- <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
             <div class="pro_pic"> 
                 <img src="images/mobile-images/no_photo.jpg" alt=""> 
@@ -102,7 +102,7 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
 
     <div class="rate-your-driver-holder">
@@ -405,7 +405,7 @@
         });
 
         $('#bookings-page').on('pageshow', function(){
-            getAllUserBookings();
+            getAllUserBookings("all");
         });
 
         // go to ride details page
@@ -413,6 +413,20 @@
             console.log('booking clicked');
             showSingleSessionDriver($(this).attr('data-booking-id'), 'booking');
         });
+
+        $('#filter-all-bookings').change(function(){
+            getAllUserBookings($(this).val());
+        });
+
+        $('.footer_menu_loggedin').on('click', function(e){
+            console.log('clicked on it: ' + showingSideMenu);
+            if(showingSideMenu){
+                hideSideMenuLoggedIn();
+            }else{
+                makeSideMenuLoggedIn();
+            }
+        });
+
     })();
 </script>
 </div>

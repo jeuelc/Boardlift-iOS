@@ -8,13 +8,13 @@
                         <h1>Sessions (As driver)</h1>
                     </div>
                     <div class="ssn_hdng_rt">
-                        <select  data-role="none" class="default_select ssn_hdr_select">
+                        <select id="filter-session-listings" data-role="none" class="default_select ssn_hdr_select">
                         	<option>Filter/sort by</option>
-                            <option>Current</option>
-                            <option>All</option>
-                            <option>Active</option>
-                            <option>Cancelled</option>
-                            <option>Complete</option>
+                            <option value="current">Current</option>
+                            <option value="all">All</option>
+                            <option value="4">Active</option>
+                            <option value="7">Cancelled</option>
+                            <option value="5">Complete</option>
                         </select>
                         <div class="clearboth"></div>
                     </div>
@@ -56,7 +56,7 @@
     </div>
 
 <!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
+    <!-- <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> 
@@ -119,7 +119,7 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
 
     <div id="filter_search">
@@ -171,7 +171,7 @@ $(function() {
     $('#all-sessions-page').on('pageshow', function(){
         if(getUrlParams('success') != false)
             $('.success_message').text(getUrlParams("success"));
-        getAllSessionsForUser();
+        getAllSessionsForUser("all");
     });
 
     $('.ssn_content_sec').on("click", "#single-session-view", function(){
@@ -195,7 +195,7 @@ $(function() {
         showConfirm(cancelMessage, cancelUserSingleSession, cancelButtons, cancelTitle);
     });
 
-    $('.ssn-content-sec').on("click", "#session-publish-btn", function(){
+    $('.ssn_content_sec').on("click", "#session-publish-btn", function(){
         console.log('publish click occur');
         var publishMessage = "Are you sure you want to publish this session?",
             publishTitle = "Publish Session",
@@ -211,7 +211,20 @@ $(function() {
         var curSessionId = $(this).attr('data-session-id');
         var d = {};
         d['id'] = curSessionId;
-        $.mobile.changePage('edit-session.html', {data:d})
+        $.mobile.changePage('edit-session.html', {data:d});
+    });
+
+    $('#filter-session-listings').change(function(){
+        getAllSessionsForUser($(this).val());
+    });
+
+    $('.footer_menu_loggedin').on('click', function(e){
+        console.log('clicked on it: ' + showingSideMenu);
+        if(showingSideMenu){
+            hideSideMenuLoggedIn();
+        }else{
+            makeSideMenuLoggedIn();
+        }
     });
 
   });

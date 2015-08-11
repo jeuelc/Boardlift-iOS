@@ -98,7 +98,7 @@ $(document).on('appIsReady', function(){
                 $('#slide_menu').animate({left:'100%'},"300");
             }
         });
-        $('.footer_menu_loggedin').on('click', function(e){
+        /*$('.footer_menu_loggedin').on('click', function(e){
             console.log('just clicked on loggedin footer');
             var windowWindth = $(window).width()+'px';
             $('.main_container').css("display", "inline");
@@ -126,7 +126,7 @@ $(document).on('appIsReady', function(){
             }else{
                 $('#slide_menu').animate({left:windowWindth},"300");
             }
-        });
+        });*/
     }
 
     bottom_right_menu();

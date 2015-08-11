@@ -292,7 +292,7 @@ function getNotifications()
         //console.log(data);                    
     });
 }
-</script>    <div id="slide_menu">
+</script>    <!-- <div id="slide_menu">
     <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
         <div class="pro_pic"> 
             <a href="http://web.boardlift.com/account/users/profile" style="color:#999;">
@@ -360,7 +360,7 @@ function getNotifications()
             <li><a href="http://web.boardlift.com/account/users/logout">Log out</a></li>
         </ul>
     </div>
-</div>
+</div> -->
     <script>
         (function() {
             var image_width = $(".profile-img").width();
@@ -370,10 +370,13 @@ function getNotifications()
                 function(page, data){
                     console.log('got it');
                     console.log(JSON.stringify(data));
-                    if(data.avatar)
+                    if(data.avatar){
                         page.find('#profilePic img').attr("src", "https://boardlift-staging.s3-ap-southeast-2.amazonaws.com/"+data.avatar);
-                    else
+                        app.curUserAvatar = "https://boardlift-staging.s3-ap-southeast-2.amazonaws.com/"+data.avatar;
+                    }else{
                         page.find('#profilePic img').attr("src", "images/users/default.png");
+                        app.curUserAvatar = "images/users/default.png";
+                    }
                     page.find('#profileName').text(data.fname + " " +data.lname);
 
                     var m_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
@@ -385,10 +388,11 @@ function getNotifications()
             // show single session on click
             $('#session-list').on('click', '.single-session-driver', function(){
                 console.log('click happened000');
-                // console.log($(this).attr('id'));
-                // console.log($(this).attr('class'));
-                // $.mobile.changePage('ride-details.html');
-                showSingleSessionDriver($(this).attr('data-session-id'));
+                if($(this).attr('data-session-id') == undefined){
+                    $.mobile.changePage('session-current-listings.html');
+                }else{
+                    showSingleSessionDriver($(this).attr('data-session-id'));
+                }
             });
             // show single booking on click
             $("#bookings-list").on("click",".single-booking-user",function(){
@@ -407,36 +411,16 @@ function getNotifications()
             $('#show-all-bookings').on("click", function(){
                 $.mobile.changePage('bookings.html');
             });
-            $('.footer_menu_loggedin').on('click', function(e){
-        console.log('just clicked on loggedin footer');
-        var windowWindth = $(window).width()+'px';
-        $('.main_container').css("display", "inline");
-        if($('#slide_menu').css('left') == windowWindth){
-            // getNotifications();
-            $('#howworks').animate({'height':'0'},"500");
-            $('#howworks').css("padding-bottom","0");
-            $('body').css("overflow", "auto");
-            $('#share').animate({'top':'100%'},"500");
-            $("#filter_search").animate({'top':'100%'}, 500, function() {
-                $("#filter_search").css("display", "none");
-                $(".filtr_srchBtn").css("display", "none");
-            });
-            $("#search-filter-options").animate({top:'100%'}, 300, function() {
-                $(".submit-filter-holder").hide();
-            });
-            $('#toc-container').animate({'top':'100%'},"500");
-            $('#toc-container').css("position","fixed");
-            
-            $('#key-risk-container').animate({'top':'100%'},"500");
-            $('#key-risk-container').css("position","fixed");
-            
-            $('#slide_menu').animate({left:'30%'},"300");
 
-        }else{
-            console.log('inside else');
-            $('#slide_menu').animate({left:'30%'},"300");
-        }
-    });
+            $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+
         })();
     </script>
 </div>

@@ -213,7 +213,7 @@ ul.mb_nav li a:hover .sb_nav_img6, ul.mb_nav li a.active .sb_nav_img6{background
 .board_img1 img{width:70%;}
 .board_img2{padding-top:10%;}
 .rating_star{padding-top:2%;}
-.rating_star img{width:15%;}
+.rating_star img{width:100%;}
 .list_star_gap{margin-right:3%;}
 #list_my_session .select{border:1px solid #a9a9a9; width:52%; color:#999; text-align:center; padding:1.5% 3%; font:25px/30px AvenirLTStdRoman;}
 #list_my_session .input{border:1px solid #a9a9a9; width:52%; color:#999; text-align:center; padding:1.8% 3%; font:25px/30px AvenirLTStdRoman;}

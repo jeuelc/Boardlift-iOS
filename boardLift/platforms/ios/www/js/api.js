@@ -1,5 +1,6 @@
 var secureHost = "http://jeuel.dev.boardlift.com:3000/api/",
-    storingSingleSessionData = {};
+    storingSingleSessionData = {},
+    showingSideMenu = false;
 
 var bodyTypeInfo = {
     1 : "wheels-sedan.png",
@@ -51,6 +52,7 @@ var carCompanies = {
     36 : "Other"
 };
 
+// these are actually session status ids for queries
 var bookingStatus={
     1:"Open",
     2:"Pending",
@@ -60,6 +62,20 @@ var bookingStatus={
     6:"New",
     7:"Cancelled",
     8:"Deleted"
+};
+
+// these are booking status ids for queries
+var allBookingStatuses = {
+    1:"New",
+    2:"Accepted",
+    3:"Declined",
+    4:"Cancelled",
+    5:"Paid",
+    6:"Disputed",
+    7:"Host Completed",
+    8:"Guest Completed",
+    9:"Completed",
+    10:"Resolved"
 };
 
 var boardSkillTypes = {
@@ -213,9 +229,16 @@ function getComponent(id, element, callback){
 }
 
 $(document).on('appIsReady', function(){
+    
     $('#index-login').on('click', function(){
         console.log('click happen');
         boardLiftLogin($("#email").val(),$("#password").val());
+    });
+
+    $(".loggedin-side-bar").on("click", ".sub_menu_blk", function(){
+        if($(this).attr('href') != "#"){
+            $.mobile.changePage($(this).attr("href"));
+        }
     });
 });
 
@@ -293,6 +316,11 @@ function getUserSessionsAsDriver(){
 
             if(d.length > 0){
                 $('#total-session').text(d.length);
+                var tslength = d.length;
+
+                if(tslength > 5){
+                    d = d.slice(0,5);
+                }
 
                 for(var item in d){
 
@@ -309,6 +337,10 @@ function getUserSessionsAsDriver(){
                 }
                 // console.log('this is html');
                 // console.log(sessionHtml);
+
+                if(tslength > 5){
+                    sessionHtml += '<li class="single-session-driver"><h6 style="text-align:center;color:#333333;font:14px AvenirLTStdLight;font-weight:normal;">More sessions</h6></li><div class="v-spacer"></div>';
+                }
 
                 $('#session-list').html(sessionHtml);
 
@@ -461,6 +493,8 @@ function updateRideDetailsPage(){
         }
         $('#avail-seats').html(numSeatsHtml);
         $('#seats-cost span').text(getUrlParams("seatCost"));
+
+        $('#ride-details-edit-btn').attr('data-session-id', getUrlParams('id'));
 
         // if came from booking page, then show driver profile tab
         if(getUrlParams("from_src") === "booking"){
@@ -751,9 +785,16 @@ function initializeMap(latOrigin, lonOrigin, latDest, lonDest){
 
 
 // get all bookings for a user, for bookings.html page
-function getAllUserBookings(){
+function getAllUserBookings(id){
 
-    var fullBookingsQuery = '{"include":["session", "sessionFeedbacks"],"order":"statusModificationDate DESC","where":{"userProfileId":'+app.curUserId+',"bookingStatusId":{"inq":[1,2,3,4,5,6,7,8,9,10]}},"offset":0}';
+    var bookAll = [];
+    if(id == "all"){
+        bookAll = [1,2,3,4,5,6,7,8,9,10];
+    }else{
+        bookAll = [parseInt(id)];
+    }
+
+    var fullBookingsQuery = '{"include":["session", "sessionFeedbacks"],"order":"statusModificationDate DESC","where":{"userProfileId":'+app.curUserId+',"bookingStatusId":{"inq":['+bookAll+']}},"offset":0}';
 
     $.ajax({
         url: secureHost + "SessionBookings?filter=" + fullBookingsQuery + "&access_token=" + app.curAccessToken,
@@ -776,20 +817,25 @@ function getAllUserBookings(){
 
                 allSessionIdsOrigin[d[item]['sessionId']] = d[item]['session']['origin'];
 
-                allbookingsHtml += '<div class="ride-request-holder" data-booking-id="'+d[item]['sessionId']+'"><div class="lift-img"><a href="ride-details.html">';
-                allbookingsHtml += '<img class="pic-venue" alt="" src="http://web.boardlift.com/assets/images/sessions/session-1.jpg" data-unique-session-id="'+d[item]['sessionId']+'"></a></div>';
+                allbookingsHtml += '<div class="ride-request-holder" data-booking-id="'+d[item]['sessionId']+'"><div class="lift-img"><a href="#">';
+                allbookingsHtml += '<img class="pic-venue" alt="Booking Image" src="http://web.boardlift.com/assets/images/sessions/session-1.jpg" data-unique-session-id="'+d[item]['sessionId']+'"></a></div>';
                 allbookingsHtml += '<div class="ride-details-mobile" style="display:none;"><ul>';
-                allbookingsHtml += '<li class="ride_request_booking_status '+bookingStatus[d[item]['bookingStatusId']]+'"><span>Booking request '+bookingStatus[d[item]['bookingStatusId']]+'</span></li>';
-                allbookingsHtml += '<li><span class="title">Session: </span><span class="info"><a href="ride-details.html">'+d[item]['session']["name"]+'</a></span></li>';
-                allbookingsHtml += '<li><span class="title">To :</span><span class="info">'+d[item]['session']["destination"]+'</span></li>';
-                allbookingsHtml += '<li><span class="title">Date: </span><span class="info">'+sessionDate+'</span></li>';
-                allbookingsHtml += '<li><span class="title">Time: </span><span class="info"> 6am/12-2pm</span></li>';
-                allbookingsHtml += '<li><span class="title">Cost/seats: </span><span class="info">$'+d[item]["totalCost"]+'</span></li>';
-                allbookingsHtml += '<li><span class="title">Request seat: </span><span class="info">'+d[item]["numSeats"]+'</span></li>';
-                allbookingsHtml += '</ul></div><div class="action-buttons-holder">';
-                allbookingsHtml += '<div class="v-spacer"></div><a href="javascript:void(0)"class="cancel-booking-button">Cancel</a>';
-               allbookingsHtml += '<a href="javascript:void(0)" class="dispute-booking-button">Dispute</a>';
-                allbookingsHtml += '<a href="javascript:void(0)" class="complete-booking-button">Complete</a>';
+                allbookingsHtml += '<li class="ride_request_booking_status '+allBookingStatuses[d[item]['bookingStatusId']].toLowerCase()+'"><span>Booking request '+allBookingStatuses[d[item]['bookingStatusId']]+'</span></li>';
+                allbookingsHtml += '<table width="100%"><tbody><tr><td>';
+                allbookingsHtml += '<a href="#" data-booking-id="'+d[item]['sessonId']+'">';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">Session: </span><span class="info">'+d[item]['session']["name"]+'</span></li>';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">From: </span><span class="info">'+d[item]['session']["origin"]+'</span></li>';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">To: </span><span class="info">'+d[item]['session']["destination"]+'</span></li>';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">Date: </span><span class="info">'+sessionDate+'</span></li>';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">Time: </span><span class="info">6am - 2pm</span></li>';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">Cost/seats: </span><span class="info">'+d[item]["totalCost"]+'</span></li>';
+                allbookingsHtml += '<li style="clear:both;"><span class="title">Requested seat(s): </span><span class="info">'+d[item]['numSeats']+'</span></li>';
+                allbookingsHtml += '</a></td><td class="gt-link-holder-booking"></td></tr></tbody></table>';
+                allbookingsHtml += '</ul></div>';
+                allbookingsHtml += '<div class="action-buttons-holder">';
+                // allbookingsHtml += '<div class="v-spacer"></div><a href="#"class="cancel-booking-button">Cancel</a>';
+               // allbookingsHtml += '<a href="#" class="dispute-booking-button">Dispute</a>';
+                // allbookingsHtml += '<a href="#" class="complete-booking-button">Complete</a>';
                 allbookingsHtml += '<div class="v-spacer"></div></div><div class="v-spacer"></div></div>';
             }
             $(".user-profile-main-panel").html(allbookingsHtml);
@@ -804,9 +850,17 @@ function getAllUserBookings(){
 }
 
 // get all sessions as driver for user, for session-current-listings.html
-function getAllSessionsForUser(){
+function getAllSessionsForUser(id){
     console.log("inside get all session for user");
-    var sessionQuery = '{"where":{"driverId":'+app.curUserId+',"sessionStatusId":{"inq":[1,2,3,4,5,6,7,8,9,10]}}}';
+    var arrVal = [];
+    if(id == "all"){
+        arrVal = [1,2,3,4,5,6,7,8];
+    }else if(id == "current"){
+        arrVal = [1,2,4,6];
+    }else{
+        arrVal = [parseInt(id)];
+    }
+    var sessionQuery = '{"where":{"driverId":'+app.curUserId+',"sessionStatusId":{"inq":['+arrVal+']}}}';
     // console.log(secureHost + "Sessions?filter=" + sessionQuery + "&access_token=" + app.curAccessToken);
     $.ajax({
         url: secureHost + "Sessions?filter=" + sessionQuery + "&access_token" + app.curAccessToken,
@@ -866,7 +920,7 @@ function getAllSessionsForUser(){
                             completeSessionHtml += '';
                             break;
                         case 5:
-                            completeSessionHtml += '<a class="remove-session-link" id="session-remove-btn" data-session-id="'+d[item]['id']+'"><button class="main_btn btn btn_gap">Remove</button></a><a class="complete-session-link" id="session-complete-btn" data-session-id="'+d[item]['id']+'"><button class="main_btn btn btn_gap">Complete</button></a>';
+                            completeSessionHtml += '<a class="complete-session-link" id="session-complete-btn" data-session-id="'+d[item]['id']+'"><button class="main_btn btn btn_gap">Complete</button></a>';
                             break;
                         case 6:
                             completeSessionHtml += '<a class="publish-session-link" id="session-publish-btn" data-session-id="'+d[item]['id']+'"><button class="main_btn btn btn_gap">Publish</button></a><a class="edit-session-link" id="session-edit-btn" data-session-id="'+d[item]['id']+'"><button class="main_btn btn btn_gap">Edit</button></a>';
@@ -1302,3 +1356,15 @@ function getDataForSingleSession(id, call_from){
     });
 }
 
+// make the complete side menu (very bad idea)
+function makeSideMenuLoggedIn(){
+    showingSideMenu = true;
+    var fullHtml = '<div id="slide_menu" class="loggedin-side-bar"><div class="mobile_ryt_nav with_login" id="mobile_right_nav"><div class="pro_pic"><a href="#" style="color:#999;"><div class="actual-profile-image"></div><span class="pro_pic_name"></span></a></div><ul class="mb_nav"><li><div class="sub_menu_blk"><a href="dashboard.html"><div class="sb_nav_img sb_nav_img1"></div><h2>Dashboard</h2></a></div></li><li><div class="sub_menu_blk"><a href="message.html"><div id="message-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img2"></div><h2>Messages<span></span></h2></a></div></li><li><div class="sub_menu_blk"><a href="session-current-listings.html"><div id="session-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img3"></div><h2>Sessions<br>(As driver)</h2></a></div></li><li><div class="sub_menu_blk"><a href="bookings.html"><div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img4"></div><h2>Bookings<br>(As passenger)</h2></a></div></li><li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img5"></div><h2>Help</h2></a></div></li><li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img6"></div><h2>Account</h2></a></div></li></ul><ul class="wl_mb_nav nav_gap"><li><a href="#" id="share-friends">Invite friends</a></li><li><a href="#">Legal stuff</a></li><li><a href="#">Contact us</a></li><li><a href="#">Log out</a></li></ul></div></div>';
+    $('.main_container').after(fullHtml);
+    $('.actual-profile-image').css('background', 'url('+app.curUserAvatar+')');
+}
+
+function hideSideMenuLoggedIn(){
+    showingSideMenu = false;
+    $('.loggedin-side-bar').remove();
+}

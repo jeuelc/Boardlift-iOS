@@ -112,7 +112,8 @@ ul.tabs_crtl li a:hover, ul.tabs_crtl li a.active{color:#0079a3; border-bottom:1
 .footer_menu_loggedin{float:right;width:44px;height:42px;margin-right:10px; cursor:pointer; background:url("../images/mobile-images/footer-nav.png") no-repeat center center;background-size:cover;}
 
 /*============== Mobile Right Slide Menu ===============*/
-#slide_menu {float: left;overflow: hidden;position: absolute;left: 100%;width: 100%;}
+#slide_menu {overflow: scroll;position: absolute;left: 30%;width: 100%;}
+#slide_menu_no_login{overflow: scroll;position: absolute;left: 100%;width: 100%;}
 .mobile_ryt_nav {background:#fff;box-shadow: 4px 0 12px #000000;display: block;height:100%;overflow-y: scroll;position: fixed;top: 0;visibility: visible;width: 70%;z-index: 10;}
 .without_login .logo_pic {margin: 2% auto;max-width: 250px;padding:5%;text-align: center;}
 .without_login .mb_nav {border: 55px none;bottom: 30px;position: absolute;margin-bottom: 54px;}
@@ -134,6 +135,9 @@ ul.wl_mb_nav.nav_gap{padding-bottom:56px; margin-top:10%;}
     border-radius:50%;
     margin:auto;
     background-size:cover !important;
+    /*background:url("http://web.boardlift.com/assets/images/users/default.png");*/
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 .with_login .pro_pic{margin: 2% auto;max-width: 250px;padding:5%;text-align: center; border-radius:100%;}
 .with_login .pro_pic img{border-radius:100%;}
