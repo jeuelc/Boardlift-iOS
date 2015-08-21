@@ -1980,3 +1980,6 @@ li.ride_request_booking_status.accepted {
     display:inline-block;
 }
 /*========================================== bookings end =================================== */
+
+#ver-completed,#ver-not-complete,#pp-completed,#pp-not-complete,#ep-completed,#ep-not-complete,#ebs-completed,#ebs-not-complete,#ew-completed,#ew-not-complete,#epp-completed,#epp-not-complete 
+{display:none;}

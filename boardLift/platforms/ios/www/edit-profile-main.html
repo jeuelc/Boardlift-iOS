@@ -34,7 +34,11 @@
                         <div class="cm_col1">
                             <div class="cm_links">Edit profile</div>
                         </div>
-                        <div class="cm_col2" data-row-name="edit-profile"></div>
+                        <div class="cm_col2" data-row-name="edit-profile">
+                            <div class="acc_main_check" id="ep-completed"><img src="images/mobile-images/icon-green-check.png" alt="">
+                            </div>
+                            <div class="acc_main_red_txt2" id="ep-not-complete">not<br>completed</div>
+                        </div>
                         <div class="cm_col3">
                             <div class="cm_icon_links">&gt;</div>
                         </div>
@@ -46,7 +50,11 @@
                         <div class="cm_col1">
                             <div class="cm_links">Edit board skills</div>
                         </div>
-                        <div class="cm_col2" data-row-name="edit-board-skills"></div>
+                        <div class="cm_col2" data-row-name="edit-board-skills">
+                        <div class="acc_main_check" id="ebs-completed"><img src="images/mobile-images/icon-green-check.png" alt="">
+                            </div>
+                            <div class="acc_main_red_txt2" id="ebs-not-complete">not<br>completed</div>
+                        </div>
                         <div class="cm_col3">
                             <div class="cm_icon_links">&gt;</div>
                         </div>
@@ -56,9 +64,13 @@
                 <div class="cm_row">
                     <a href="edit-wheels.html">
                         <div class="cm_col1">
-                            <div class="cm_links">Edit preferences</div>
+                            <div class="cm_links">Edit wheels</div>
                         </div>
-                        <div class="cm_col2" data-row-name="edit-wheels"></div>
+                        <div class="cm_col2" data-row-name="edit-wheels">
+                        <div class="acc_main_check" id="ew-completed"><img src="images/mobile-images/icon-green-check.png" alt="">
+                            </div>
+                            <div class="acc_main_red_txt2" id="ew-not-complete">not<br>completed</div>
+                        </div>
                         <div class="cm_col3">
                             <div class="cm_icon_links">&gt;</div>
                         </div>
@@ -74,11 +86,15 @@
                 <div class="clearboth"></div>
             </div>
                 <div class="cm_row">
-                    <a href="edit-profile.html">
+                    <a href="edit-photos.html">
                         <div class="cm_col1">
                             <div class="cm_links">Edit profile picture</div>
                         </div>
-                        <div class="cm_col2" data-row-name="edit-profile"></div>
+                        <div class="cm_col2" data-row-name="edit-profile">
+                            <div class="acc_main_check" id="epp-completed"><img src="images/mobile-images/icon-green-check.png" alt="">
+                            </div>
+                            <div class="acc_main_red_txt2" id="epp-not-complete">not<br>completed</div>
+                        </div>
                         <div class="cm_col3">
                             <div class="cm_icon_links">&gt;</div>
                         </div>
@@ -86,7 +102,7 @@
                     <div class="clearboth"></div>
                 </div>
                 <div class="cm_row">
-                    <a href="edit-profile.html">
+                    <a href="edit-preference.html">
                         <div class="cm_col1a">
                             <div class="cm_links">Edit preferences</div>
                         </div>
@@ -140,7 +156,7 @@
         </div>
     </div>
 
-    <div id="slide_menu">
+   <!--  <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -202,10 +218,10 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
     
-    <div id="share">
+  <!--   <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
             	<div class="share_close login_mb_close">X</div>
@@ -238,7 +254,7 @@
             	
             </div>
         </div>
-    </div>
+    </div> -->
     <script type="text/javascript">
         (function(){
             console.log('edit-profile-main.html');
@@ -260,6 +276,41 @@
                 else
                     element.html('<div class="cm_check"><img src="images/mobile-images/icon-green-check.png" alt=""></div>');
             });
+
+            if(app.allCts.indexOf(2) != -1){
+                $("#ep-completed").show();
+            }else{
+                $("#ep-not-complete").show();
+            }
+
+            if(app.allCts.indexOf(4) != -1){
+                $("#ebs-completed").show();
+            }else{
+                $("#ebs-not-complete").show();
+            }
+
+            if(app.allCts.indexOf(5) != -1){
+                $("#ew-completed").show();
+            }else{
+                $("#ew-not-complete").show();
+            }
+
+            if(app.allCts.indexOf(3) != -1){
+                $("#epp-completed").show();
+            }else{
+                $("#epp-not-complete").show();
+            }
+
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+
+
         })();
     </script>
 </div>

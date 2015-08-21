@@ -145,9 +145,9 @@
                                                         </div>
                                                         <div class="edit_save_btn">
                                                             <a href="#">
-                                                                <input  data-role="none" type="button" class="btn main_btn" value="Back">
+                                                                <input id="edit-profile-back-btn" data-role="none" type="button" class="btn main_btn" value="Back">
                                                                 </a>
-                                                                <input  data-role="none" type="submit" class="btn main_btn" value="Save">
+                                                                <input id="save-user-profile-btn" data-role="none" type="submit" class="btn main_btn" value="Save">
                                                                     <div class="clearboth"></div>
                                                                 </div>
                 </form>            
@@ -296,6 +296,22 @@
     </div>
 </div>
 <script type="text/javascript">
+(function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+$('#save-user-profile-btn').on("click", function(){
+    saveUserProfile();
+});
+$('#edit-profile-back-btn').on("click", function(){
+    history.go(-1);
+});
 console.log('edit-profile.html');
 var editForm = $('.edit_pro_form');
 

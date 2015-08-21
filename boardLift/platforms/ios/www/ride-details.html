@@ -150,6 +150,9 @@
             <a href="javascript:void(0)" id="ride-driver-details" class="inactive-link change-view" style="display:none;" data-driver-id="">Driver profile</a>
         </div>
         <div class="ride-form-holder" style="display:none;">
+            <div class="reminder_message" id="reminder_alert" style="text-align: left;display:none;">
+                  Your account/profile is incomplete, please complete it before you request a seat.
+            </div>
             <select name="seat-request" id="seats-request" data-role="none">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -365,7 +368,158 @@
             </div>
         </div>
 
+        <!--- Session Booking form, sending msg from booking passenger to driver-->
+<div id="booking-slideup" style="top: 0px;display:none;">
+    <div class="booking-slideup-content">
+        <div class="list_sessn_hdng">
+            <div class="list_ssn_hdng_lt">
+                <h1>Session Booking</h1>
+            </div>
+            <div class="clearboth"></div>
+        </div>
+        <div class="booking-slideup-info">
+            <div class="booking-slideup-info" style="padding: 5px 0px;">
+                <ul>
+                   <li><div>Session:</div><span id="booking-name"></span></li>
+                   <li>
+                       <div>From:</div>
+                       <dd id="booking-from" style="float:right;width:64%;"></dd>
+                    </li>
+                   <li>
+                       <div>To:</div>
+                       <dd id="booking-to" style="float:right;width:64%;"></dd>
+                       </li>
+                    <li><div>Cost per seat:</div><span id="total_cost"></span></li>
+                    <li><div>Requested seat(s):</div><span id="num_of_seats"></span></li>
+                    <li id="booking-fee"><div>Fee:</div>$6</li>
+                    <li><div>Total:</div><span id="bookings-totalcost"></span></li>
+                </ul>
+            </div>
+        </div>
+        <form action="http://jeuel.dev.boardlift.com/index.php/account/bookings/create" accept-charset="utf-8" method="post" class="booking-form" id="booking-form" style="text-align: left;"><div style="display:none">
+<input type="hidden" name="csrf_token_name" value="7d6deb5d0bb30eeb7fdc113d4bcabf93">
+</div>            <input type="hidden" name="session_id" value="15">
+                <input type="hidden" name="seat_cost" value="31.00">
+                <input type="hidden" name="seats" value="1">
+                <input type="hidden" name="total_fee" value="6.00" onkeypress="return false;">
+                <input type="hidden" name="total_cost" value="31.00" onkeypress="return false;">
+                <input type="hidden" name="sessionName" value="Por pabor">
+                <input type="hidden" name="sessionId" value="15">
+                <input type="hidden" name="recipient" value="2">
+                <input type="hidden" name="sender" value="44">
+                <div class="booking-slideup-optional-message-holder">
+            <textarea class="textarea" rows="5" placeholder="Optional message" name="message" id="booking-optional-message"></textarea>
+        </div>
+        </form>        <div class="booking-slideup-disclaimer">
+            <p>By clicking "submit" you will request a seat(s) from a driver. The driver
+                will either accept or reject your request based on your board type skill,
+                review ratings, location etc. Drivers will usually respond within a few
+                hours.</p><br>
+            <p>A payment authorisation for your seat will be taken now on the next screen
+                however, a driver will not be paid until 24 hours after the session (to make
+                sure everyone turns up!)</p><br>
+            <p>If your seat requested is rejected or the trip is cancelled your payment
+                authorisation will be immediately cancelled.</p>
+        </div>
+
+        <div class="booking-details-holder">
+            <div class="booking-slideup-buttons-holder">
+                <a id="booking-slideup-cancel" class="booking-slideup-button" href="javascript:void(0)">Cancel</a> <a id="booking-slideup-submit" class="booking-slideup-button" href="javascript:void(0)">Submit</a>
+                <div class="v-spacer"></div>
+            </div>
+        </div>
     </div>
+</div>
+
+
+        <!--Contact form-->
+        <div id="inquire-holder" style="overflow-y: auto; top: 0px;display:none;">
+    <section class="mobile-title-page">
+        <h2>Inquire</h2>
+    </section>
+    <div class="main-row">
+        <div class="broadlift-ride">
+            <div class="list-session">
+                <div class="session-content">
+                    <h2 class="inquiry-head" id="session-name-date">Por pabor - 01/07/2015</h2>
+                    <form action="http://jeuel.dev.boardlift.com/index.php/account/messages/create" method="post" accept-charset="utf-8"><div style="display:none">
+<input type="hidden" name="csrf_token_name" value="1f99cd1134c8ed42a61ae352df0b5be7">
+</div>                    <div class="full-width">
+                        <ul class="session-detail">
+                            <li class="message-label-holder">
+                                <label>Message:</label>
+                            </li>
+                        </ul>
+                        <div class="v-spacer"></div>
+                        <div class="message-inquire-holder">
+                            <textarea id="message-inquire" name="message" rows="14" cols="70"></textarea>
+                            <input type="hidden" id="contact-session-name" name="sessionName" value="Por pabor">
+                            <input type="hidden" id="contact-session-id" name="sessionId" value="15">
+                            <input type="hidden" id="contact-recipient" name="recipient" value="2">
+                            <input type="hidden" name="reservations" value="0">
+                            <input type="hidden" id="contact-sender" name="sender" value="44">
+                        </div>
+                        <div class="v-spacer"></div>
+                        <div style="float:right;margin:4px;width:24%;">
+                            <input type="submit" class="edit-profile-btn send-inquire-btn" value="Send">
+                        </div>
+                        <div style="float:right;margin:4px;width:24%;">
+                            <input type="button" class="edit-profile-btn" id="cancel-inquire" value="Cancel">
+                        </div>
+                        <div class="v-spacer" style="height:55px;margin-bottom:55px;"></div>
+                    </div>
+                    </form>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!--Contact new booking request person-->
+    <div id="contact-passenger" style="display:none;">
+        <section class="mobile-title-page">
+            <h2>Contact Passenger</h2>
+        </section>
+        <div class="main-row">
+            <div class="broadlift-ride" style="padding-bottom:55px;">
+                <div class="list-session">
+                    <div class="session-content">
+                        <h2 class="inquiry-head" id="br-session-name">Session: pricing test - 29/08/2015</h2>
+                        <h2 class="inquiry-head">Passenger: <span id="br-passenger">jaskaran singh</span></h2>
+                                                <form action="http://jeuel.dev.boardlift.com/index.php/account/messages/create" method="post" accept-charset="utf-8"><div style="display:none">
+<input type="hidden" name="csrf_token_name" value="fd11e29c7652e00c453df5f0724bd332">
+</div>                        <div class="full-width">
+                            <ul class="session-detail">
+                                <li class="message-label-holder">
+                                    <label>Message:</label>
+                                </li>
+                            </ul>
+                            <div class="v-spacer"></div>
+                            <div class="message-inquire-holder">
+                                <textarea id="message-inquire" name="message" rows="14" cols="70"></textarea>
+                                <input type="hidden" name="br-sessionName" value="pricing test">
+                                <input type="hidden" name="br-sessionId" value="103">
+                                <input type="hidden" name="br-recipient" value="83">
+                                <input type="hidden" name="br-booking_id" value="157">
+                                <input type="hidden" name="br-contact" value="1">
+                                <input type="hidden" name="br-reservations" value="0">
+                                <input type="hidden" name="br-sender" value="44">
+                            </div>
+                            <div class="v-spacer"></div>
+                            <div style="float:right;margin:4px;width:24%;">
+                                <input type="submit" class="edit-profile-btn send-inquire-btn" value="Send">
+                            </div>
+                            <div style="float:right;margin:4px;width:24%;">
+                                <a href="http://jeuel.dev.boardlift.com/index.php/sessions/view/103"><input type="button" class="edit-profile-btn" id="cancel-inquire" value="Cancel"></a>
+                            </div>
+                            <div class="v-spacer"></div>
+                        </div>
+                        </form>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ </div>
 
 
 
@@ -461,7 +615,7 @@
             <span id="confirm-text">You are required to add the details for disputing this booking.</span>
         </p>
     </div> -->
-    <div class="dispute-your-driver-holder">
+    <!-- <div class="dispute-your-driver-holder">
     <div id="dispute-your-driver-page">
         <div class="list_sessn_hdng">
             <div class="list_ssn_hdng_lt">
@@ -502,7 +656,7 @@
             <a id="submit-dispute-btn" href="javascript:void(0)">Submit</a>
         </div>
         </form>    </div>
-</div>    <!-- <div id="slide_menu">
+</div>  -->   <!-- <div id="slide_menu">
     <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
         <div class="pro_pic"> 
             <a href="http://web.boardlift.com/account/users/profile" style="color:#999;">
@@ -767,7 +921,8 @@ function getNotifications()
         //console.log(data);                    
     });
 }
-</script>    <script>
+</script>   
+ <script>
         $("#submit-rating-btn").on("click", function(e) {
             $(".main_container").show();
              if($('#feedback-area').val().trim() == "")
@@ -820,8 +975,13 @@ function getNotifications()
         });
 
         $('#ride-details').on('pageshow', function(){
+            if(app.allCts.length != 6){
+                $("#reminder_alert").show();
+            }
+            
             updateRideDetailsPage();
-
+            if(getUrlParams('from_src') == "session")
+                getCurSessionBooking(getUrlParams("id"));
         });
                $('.change-view').on("click", function() {
             var link_id = $(this).attr("id");
@@ -867,5 +1027,101 @@ function getNotifications()
                         makeSideMenuLoggedIn();
                     }
                 });
-        
+               $("#driver-contact-btn").on('click',function(){
+                    $("#inquire-holder").show();
+                     // filling contact form data 
+                    var contactDate=new Date(Date.parse(getUrlParams('travelStartDate')));
+                    var contactDate=contactDate.dateFormat('d/m/y');
+                    var nameDate=getUrlParams('name')+" - "+contactDate;
+                    $('#session-name-date').text(nameDate);
+                    $('#contact-session-name').val(getUrlParams('name'));
+                    $('#contact-session-id').val(getUrlParams('id'));
+                    $('#contact-recipient').val(getUrlParams("driverId"));
+                    $('#contact-sender').val(app.curUserId);
+               });
+
+                $("#submit-request-btn").on('click',function(){
+                    if(app.allCts.length != 6){
+                        return false;
+                    }
+                $("#booking-slideup").show();
+                 //filling session bookings form
+                $("#num_of_seats").text($("#seats-request").val());
+                $('#booking-name').text(getUrlParams('name'));
+                $('#booking-from').text(getUrlParams('origin'));
+                $('#booking-to').text(getUrlParams("destination"));
+                $('#total_cost').text(getUrlParams("seatCost"));
+                var totalFee= parseInt(getUrlParams("seatCost")) * parseInt($("#seats-request").val()) + 6;
+                console.log(totalFee+"---------"+typeof(totalFee));
+                $('#bookings-totalcost').text("$"+parseInt(totalFee));
+                });
+                
+                $("#cancel-inquire").on('click',function(){
+                    $("#inquire-holder").hide();
+                });
+
+                $("#booking-slideup-cancel").on('click',function(){
+                    $("#booking-slideup").hide();
+                });
+                $("#booking-slideup-submit").on('click',function(){
+                    // sessionBooking();
+                });
+                $('.ride-details-requests-holder').on("click",'input[name="contact-button"]',function(){
+                    $("$contact-passenger").slideUp("slow");
+                    var contactDate=new Date(Date.parse(getUrlParams('travelStartDate')));
+                    var contactDate=contactDate.dateFormat('d/m/y');
+                    var nameDate=getUrlParams('name')+" - "+contactDate;
+                    $("#br-session-name").text(nameDate);
+                    $("#br-passenger").text($(this).attr("data-ct-name"));
+                    $("#br-sessionName").val(getUrlParams('name'));
+                    $("#br-sessionId").val()
+                });
+
+                // click on contact button in bookings request
+                $('.ride-details-requests-holder').on('click', 'input[name="contact-button"]', function(){
+                    // sid, senid, recid
+                    getMessageConversation(getUrlParams('id'), $(this).attr("data-sender-id"), $(this).attr('data-recipient-id'));
+                });
+
+                // click on cancel button in bookings request
+                $('.ride-details-requests-holder').on('click', 'input[name="cancel-button"]', function(){
+                    var publishMessage = "Are you sure you want to cancel this booking request?",
+                        publishTitle = "Cancel Booking",
+                        publishButtons = "No thanks,Yes";
+
+                    app.curCancelBookingRequest = [];
+                    app.curCancelBookingRequest.push($(this).attr('id'));
+                    app.curCancelBookingRequest.push(4);
+
+                    showConfirm(publishMessage, cancelBooking, publishButtons, publishTitle);
+                });
+
+                // click on accept button in bookings request
+                $('.ride-details-requests-holder').on('click', 'input[name="accept-button"]', function(){
+                    var publishMessage = "Are you sure you want to accept this booking request?",
+                        publishTitle = "Accept Booking",
+                        publishButtons = "No thanks,Yes";
+
+                    app.curAcceptBookingRequest = [];
+                    app.curAcceptBookingRequest.push($(this).attr('id'));
+                    app.curAcceptBookingRequest.push(2);
+
+                    showConfirm(publishMessage, acceptBooking, publishButtons, publishTitle);
+                });
+
+                // click on decline button in bookings request
+                $('.ride-details-requests-holder').on('click', 'input[name="decline-button"]', function(){
+                    var publishMessage = "Are you sure you want to decline this booking request?",
+                        publishTitle = "Decline Booking",
+                        publishButtons = "No thanks,Yes";
+
+                    app.curDeclineBookingRequest = [];
+                    app.curDeclineBookingRequest.push($(this).attr('id'));
+                    app.curDeclineBookingRequest.push(3);
+
+                    showConfirm(publishMessage, declineBooking, publishButtons, publishTitle);
+                });
+
+                
+
     </script>

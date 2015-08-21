@@ -151,7 +151,7 @@
         getAllMessage(function(data){
             var a = '';
             for (var i = 0; i < data.length; i++) {
-            a += '<div class="msg_inbox_row" data-session-id="'+data[i].session_id+'"><div class="msg_col1"><div class="msg_icon"><a href="#">';
+            a += '<div class="msg_inbox_row" data-session-id="'+data[i].session_id+'" data-sender-id="'+data[i].sender+'" data-recipient-id="'+data[i].recipient+'"><div class="msg_col1"><div class="msg_icon"><a href="#">';
                 if(data[i].unread == 1)
                     a += '<img src="images/mobile-images/icon-msg-act.png" alt=""></a>'
                 else
@@ -169,8 +169,17 @@
             $('.msg_inbox_row_container').html(a);
         });
         $('.msg_inbox_row_container').on('click', '.msg_inbox_row', function(){
-            getMessageConversation($(this).attr('data-session-id'));
+            getMessageConversation($(this).attr('data-session-id'), $(this).attr('data-sender-id'), $(this).attr('data-recipient-id'));
         });
+            $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+
     })();
     </script>
 </div>

@@ -18,6 +18,7 @@
  */
 var app = {
     userData : {},
+    userComponentIds : [],
     // Application Constructor
     initialize: function() {
         this.bindEvents();

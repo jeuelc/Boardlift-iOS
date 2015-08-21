@@ -222,6 +222,16 @@ $(function() {
     $('input[name=seat_cost]').keyup(function() {
         $("#slider").slider('option', 'value', $('input[name=seat_cost]').val());
     });
+
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+
   });
 </script>
 

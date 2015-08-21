@@ -408,9 +408,21 @@
             getAllUserBookings("all");
         });
 
+        $('.user-profile-main-panel').on("click", 'input[name="cancel-button"]', function(e){
+            e.preventDefault();
+            var publishMessage = "When cancelling a ride the driver will be notified. Please note that any ride cancellation within 24 hours of the session date will incur a cancellation fine.\n\nAre you sure you want to publish this session?",
+            publishTitle = "Cancel Booking",
+            publishButtons = "No thanks,Yes";
+
+            app.curCancelBookingRequest = [];
+            app.curCancelBookingRequest.push($(this).attr('id'));
+            app.curCancelBookingRequest.push(4);
+
+            showConfirm(publishMessage, cancelMainBooking, publishButtons, publishTitle);
+        });
+
         // go to ride details page
-        $('.user-profile-main-panel').on("click", ".ride-request-holder", function(){
-            console.log('booking clicked');
+        $('.user-profile-main-panel').on("click", ".ride-details-mobile", function(){
             showSingleSessionDriver($(this).attr('data-booking-id'), 'booking');
         });
 

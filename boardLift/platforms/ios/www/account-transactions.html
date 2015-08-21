@@ -1,29 +1,29 @@
-  <div data-role="page">
+  <div data-role="page" id="account-transactions">
 	<div class="main_container">
 		<div id="acc_main">
         	<div class="acc_hdng"><h1>Transactions &amp; Earnings</h1></div>
             <div class="acc_back"><a href="account-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a></div>
             <div class="acc_trans_links">
             	<ul class="acc_trans">
-                	<li><a href="#" class="active">Completed Transactions</a></li>
-                    <li><a href="#">Future transactions</a></li>
-                    <li class="last"><a href="#">Gross earnings</a></li>
+                	<li id="comp-tr"><a href="#" class="active">Completed Transactions</a></li>
+                    <li id="future-transactions"><a href="#">Future transactions</a></li>
+                    <li id="gross-tr" class="last"><a href="#">Gross earnings</a></li>
                 </ul>
             </div>
             <div class="acc_trans_histry">
-            	<div class="acc_trans_histry_head">
+            	<div class="acc_trans_histry_head" id="transaction-header">
                 	<div class="acc_tras_histry_col1 acc_trans_histry_hdr">Date</div>
-                    <div class="acc_tras_histry_col2 acc_trans_histry_hdr">Session name</div>
-                    <div class="acc_tras_histry_col3 acc_trans_histry_hdr">Amount</div>
-                    <div class="acc_tras_histry_col4 acc_trans_histry_hdr">Paid</div>
+                    <div class="acc_tras_histry_col2 acc_trans_histry_hdr">Session</div>
+                    <div class="acc_tras_histry_col3 acc_trans_histry_hdr">Guest</div>
+                    <div class="acc_tras_histry_col4 acc_trans_histry_hdr">Amount</div>
                     <div class="clearboth"></div>
                 </div>
-                <div class="acc_trans_histry_bdy">
-                	<div class="acc_tras_histry_col1 acc_trans_histry_cnt">13.04.15</div>
-                    <div class="acc_tras_histry_col2 acc_trans_histry_cnt">Dawny at Gunnamatta</div>
-                    <div class="acc_tras_histry_col3 acc_trans_histry_cnt">$30.00</div>
-                    <div class="acc_tras_histry_col4 acc_trans_histry_cnt">$30.00</div>
+                <div class="acc_trans_histry_head" id="gross-header" style="display:none;">
+                    <div class="acc_tras_histry_col1 acc_trans_histry_hdr" style="width: 30%;">Gross Earnings</div>
                     <div class="clearboth"></div>
+                </div>
+                <div class="acc_trans_histry_bdy" id="all-transactions">
+                	
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div id="slide_menu">
+   <!--  <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -131,9 +131,9 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
-    
+<!--     
     <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
@@ -167,5 +167,39 @@
             	
             </div>
         </div>
-    </div>
+    </div> -->
+    <script type="text/javascript">
+    $("#future-transactions").on('click',function(){
+        getUserFutureTransactions("Accepted");
+    });
+    $('#account-transactions').on('pageshow', function(){
+        getUserFutureTransactions("Completed");
+    });
+    $('#comp-tr').on("click", function(){
+       getUserFutureTransactions("Completed"); 
+    });
+    $('#gross-tr').on("click", function(){
+        getGrossEarnings();
+    });
+    $('#all-transactions').on("click", "#ssname", function(){
+        // single session, take to ride-details page
+        showSingleSessionDriver($(this).attr('data-sess-id'));
+    });
+    $('#all-transactions').on("click", "#gname", function(){
+        // take to driver profile page
+        var d = {};
+        d['id'] = $(this).attr("data-profile-id");
+        $.mobile.changePage('driver-profile.html', {data:d})
+    });
+    (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+    </script>
 </div>

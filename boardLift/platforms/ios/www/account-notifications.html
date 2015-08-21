@@ -1,11 +1,11 @@
-  <div data-role="page">
+  <div data-role="page" id="account-notification">
 
 	<div class="main_container">
 		<div id="acc_main">
         	<div class="acc_hdng"><h1>Notifications</h1></div>
-            <div class="acc_back"><a href="account-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a></div>
+            <!-- <div class="acc_back"><a href="account-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a></div> -->
             <div class="acc_notfctn">
-            	<div class="acc_notfctn_txt1">Email setting</div>
+            	<!-- <div class="acc_notfctn_txt1">Email setting</div> -->
                 <div class="acc_notfctn_txt2">I want to receive:</div>
                 <div class="acc_notfctn_txt3">You can disable these at any time.</div>
                 <div id="acc_notfctn_chck">
@@ -16,7 +16,8 @@
                     <span>General promotions, updates, news about BoardLift or general promotions for partner campaigns and services, user surveys, inspiration, and love from BoardLift.</span>
                 </div>
                 <div class="acc_notfctn_link">
-                	<button class="btn main_btn">Save</button>
+                    <button class="btn main_btn" id="go-back">Back</button>
+                	<button class="btn main_btn" id="save-notify">Save</button>
                     <div class="clearboth"></div>
                 </div>
             </div>
@@ -32,7 +33,7 @@
     </div>
 
 <!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
+   <!--  <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -94,7 +95,7 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
 
 	<div id="filter_search">
@@ -128,7 +129,7 @@
         </div>
     </div>
     
-    <div id="share">
+    <!-- <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
             	<div class="share_close login_mb_close">X</div>
@@ -161,5 +162,32 @@
             	
             </div>
         </div>
-    </div>
+    </div> -->
+    <script type="text/javascript">
+    $('#go-back').on("click", function(){
+        history.go(-1);
+    });
+    $("#account-notification").on('pageshow',function(){
+        getNotifyPrivacySettings(3);
+    });
+    $('#save-notify').on("click", function(){
+        var value = "";
+        if($('#notification_checkbox').is(':checked')){
+            value = "1";
+        }else{
+            value = "0";
+        }
+        saveUserNotifyPrivacy(3, value);
+    });
+    (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+    </script>
 </div>

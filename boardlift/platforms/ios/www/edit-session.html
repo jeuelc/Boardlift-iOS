@@ -1015,6 +1015,17 @@ console.log('just do it');
         getDataForSingleSession(getUrlParams("id"), "edit");
     });
 
+    (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+
 	</script>
 
 </div>

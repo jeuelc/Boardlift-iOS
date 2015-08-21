@@ -1,8 +1,8 @@
-  <div data-role="page">
+  <div data-role="page" id="account-privacy">
 	<div class="main_container">
 		<div id="acc_main">
         	<div class="acc_hdng"><h1>Privacy</h1></div>
-            <div class="acc_back"><a href="account-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a></div>
+            <!-- <div class="acc_back"><a href="account-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a></div> -->
             <div class="acc_privacy">
             	<div class="acc_notfctn_txt1">Add BoardLift to Facebook Timeline</div>
                 <div class="acc_notfctn_txt3">
@@ -12,14 +12,15 @@
                 	They'll show up in your Facebook Timeline and your friends' News Feed and Ticker.
                 </div>
                 <div id="acc_notfctn_chck">
-                	<input  data-role="none" id="notification_checkbox" class="checkbox" type="checkbox" name="notification">
-                    <label for="notification_checkbox">
+                	<input  data-role="none" id="privacy_checkbox" class="checkbox" type="checkbox" name="notification">
+                    <label for="privacy_checkbox">
                     	<span></span>
                     </label>
                     <span>Automatically publish my created sessions and accepted rides to my Facebook timeline (recommended)</span>
                 </div>
                 <div class="acc_notfctn_link">
-                	<button class="btn main_btn">Save</button>
+                    <button class="btn main_btn" id="go-back">Back</button>
+                	<button id="save-privacy" class="btn main_btn">Save</button>
                     <div class="clearboth"></div>
                 </div>
             </div>
@@ -35,7 +36,7 @@
     </div>
 
 <!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
+    <!-- <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -97,7 +98,7 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
 
 	<div id="filter_search">
@@ -131,7 +132,7 @@
         </div>
     </div>
     
-    <div id="share">
+  <!--   <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
             	<div class="share_close login_mb_close">X</div>
@@ -164,5 +165,32 @@
             	
             </div>
         </div>
-    </div>
+    </div> -->
+    <script type="text/javascript">
+    $('#go-back').on("click", function(){
+        history.go(-1);
+    });
+    $("#account-privacy").on('pageshow',function(){
+        getNotifyPrivacySettings(4);
+    });
+    $('#save-privacy').on("click", function(){
+        var value = "";
+        if($('#privacy_checkbox').is(':checked')){
+            value = "1";
+        }else{
+            value = "0";
+        }
+        saveUserNotifyPrivacy(4, value);
+    });
+    (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+    </script>
 </div>

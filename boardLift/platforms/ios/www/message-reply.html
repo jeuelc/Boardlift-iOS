@@ -1,4 +1,4 @@
-  <div data-role="page">
+  <div data-role="page" id="message-reply">
 	<div class="main_container">
 		<div id="message">
         	<div class="msg_hdng"><h1><span class="grayBlue">Back</span></h1></div>
@@ -8,50 +8,16 @@
             </div>
             <div id="reply_div">
                 <div class="msg_reply_box">
-                    <textarea class="default_textarea msg_txtarea" rows="4">No problem Jess.</textarea>
+                    <textarea class="default_textarea msg_txtarea" rows="4" id="reply-message">No problem Jess.</textarea>
                 </div>
-                <div class="msg_reply_btn">
-                    <button class="main_btn btn">Save</button>
+                 <div class="msg_reply_btn">
+                    <button id="messege-send" class="main_btn btn" style="margin-left:5px;">Submit</button>
+                    <button id="messege-cancel" class="main_btn btn" style="margin-right:5px;">Cancel</button>
                     <div class="clearboth"></div>
                 </div>
             </div>
             <div class="msg_reply_sec">
-                <div class="msg_reply_row1">
-                    <div class="msg_reply_sec1_lt"><img src="images/mobile-images/icon-msg-act.png" alt=""></div>
-                    <div class="msg_reply_sec1_rt">
-                    	<p class="drkgray_txtBlk28">Jess C</p>
-                        <p class="drkgray_txt26"><span class="avnrmdm">Session:</span> H Test 30March<br>
-<span class="avnrmdm">Date:</span> 03-31-2015 01:36:55 AM</p><br>
-						<p class="drkgray_txt26">Kane thanks for the vote of confidence I’ll see you in the morning.</p>
-                    </div>
-                    <div class="clearboth"></div>
-                </div>
-                <div class="msg_reply_row1">
-                	<div class="msg_reply_sec2_lt">
-                    	<div class="mn_ryt"><span class="gray_txt26">Reply sent</span></div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="msg_reply_sec2_rt">
-                    	<p class="drkgray_txtBlk28">kane M</p>
-                        <p class="drkgray_txt26"><span class="avnrmdm">Session:</span> H Test 30March<br>
-<span class="avnrmdm">Date:</span> 03-31-2015 01:36:55 AM</p><br>
-						<p class="drkgray_txt26">That should be fine</p>
-                    </div>
-                    <div class="clearboth"></div>
-                </div>
-                <div class="msg_reply_row1">
-                	<div class="msg_reply_sec2_lt">
-                    	<div class="mn_ryt"><img src="images/mobile-images/icon-msg.png" alt=""></div>
-                        <div class="clearboth"></div>
-                    </div>
-                    <div class="msg_reply_sec2_rt">
-                    	<p class="drkgray_txtBlk28">Jess C</p>
-                        <p class="drkgray_txt26"><span class="avnrmdm">Session:</span> H Test 30March<br>
-<span class="avnrmdm">Date:</span> 03-31-2015 01:36:55 AM</p><br>
-						<p class="drkgray_txt26">Kane do you mind picking me on the corner near the Hungry Jacks?</p>
-                    </div>
-                    <div class="clearboth"></div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -64,7 +30,7 @@
     </div>
 
 <!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
+<!--    <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -127,6 +93,7 @@
             </ul>
         </div>
     </div>
+-->
 <!---------------------- Slide menu end-------------------->
 
 	<div id="filter_search">
@@ -194,4 +161,58 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    (function(){
+        console.log('message-reply');
+        $('#message-reply').on('pageshow', function(){
+
+            for(i in app.conversation.message.reverse())
+            {
+                if(app.conversation.message[i].sender == app.curUserId){
+                    var a;
+                    if(app.conversation.message[i].unread == 1)
+                        a = '<div class="msg_reply_row1"><div class="msg_reply_sec1_lt"><img src="images/mobile-images/icon-msg-act.png" alt=""></div><div class="msg_reply_sec1_rt"><p class="drkgray_txtBlk28">' + app.userData.fname + ' ' + app.userData.lname + '</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' + app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' + app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' + app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
+                    else
+                        a = '<div class="msg_reply_row1"><div class="msg_reply_sec2_lt"><div class="mn_ryt"><img src="images/mobile-images/icon-msg.png" alt=""></div><div class="clearboth"></div></div><div class="msg_reply_sec2_rt"><p class="drkgray_txtBlk28">' + app.userData.fname + ' ' + app.userData.lname + '</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' + app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' +  app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' +  app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
+                    $('.msg_reply_sec').append(a);
+                }
+                else{
+                    var b = '<div class="msg_reply_row1"><div class="msg_reply_sec2_lt"><div class="mn_ryt"><span class="gray_txt26">Reply sent</span></div><div class="clearboth"></div></div><div class="msg_reply_sec2_rt"><p class="drkgray_txtBlk28">' + app.conversation.recipient.fname + ' ' + app.conversation.recipient.lname + '</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' +  app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' +  app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' + app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
+                    $('.msg_reply_sec').append(b);
+                }
+            }
+        });
+    $('#messege-send').on('click',function(){
+        messageReply(app.conversation.message[0].sessionId, app.conversation.message[0].sessionName, app.conversation.recipient.userId, $('#reply-message').val());
+
+  });
+            message_replay();
+    $('#messege-cancel').on('click',function(){
+             $( "#reply" ).trigger("click");
+        });
+        
+        function message_replay(){
+            $('#reply_div').hide();
+            $( "#reply" ).click(function() {
+                $( "#reply_div" ).slideToggle( "slow" );
+                if($(this).children('span').hasClass('reply_arrowleft'))
+                {
+                    $(this).children('span').removeClass('reply_arrowleft');
+                    $(this).children('span').addClass('reply_arrowdown');
+                }else{
+                    $(this).children('span').addClass('reply_arrowleft');
+                    $(this).children('span').removeClass('reply_arrowdown');
+                }
+            });    
+        }
+            $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+    </script>
 </div>

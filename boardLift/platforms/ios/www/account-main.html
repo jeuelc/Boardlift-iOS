@@ -1,4 +1,4 @@
-  <div data-role="page">
+  <div data-role="page" id="account-main">
 	<div class="main_container">
 		<div id="acc_main">
         	<div class="acc_main_hdng">
@@ -24,7 +24,7 @@
                 	<div class="acc_main_blk_txt">Required</div>
                 </div>
                 <div class="acc_main_col2">
-                	<div class="acc_main_red_txt1">1 &frasl; 3</div>
+                	<div class="acc_main_red_txt1">1 &frasl; 2 </div>
                 </div>
                 <div class="acc_main_col3">&nbsp;</div>
                 <div class="clearboth"></div>
@@ -34,8 +34,11 @@
                 	<div class="acc_main_links"><a href="account-verification.html">Verifications</a></div>
                 </div>
                 <div class="acc_main_col2">
-                	<div class="acc_main_check"><img src="images/mobile-images/icon-green-check.png" alt=""></div>
+                	<div class="acc_main_check" id="ver-completed"><img src="images/mobile-images/icon-green-check.png" alt="">
+                    </div>
+                    <div class="acc_main_red_txt2" id="ver-not-complete">not<br>completed</div>
                 </div>
+
                 <div class="acc_main_col3">
                 	<div class="acc_main_icon_link"><a href="account-verification.html">&gt;</a></div>
                 </div>
@@ -46,7 +49,9 @@
                 	<div class="acc_main_links"><a href="account-payout-preference-1.html">Payout preference</a></div>
                 </div>
                 <div class="acc_main_col2">
-                	<div class="acc_main_red_txt2">not<br>completed</div>
+                	<div class="acc_main_check" id="pp-completed"><img src="images/mobile-images/icon-green-check.png" alt="">
+                    </div>
+                    <div class="acc_main_red_txt2" id="pp-not-complete">not<br>completed</div>
                 </div>
                 <div class="acc_main_col3">
                 	<div class="acc_main_icon_link"><a href="account-payout-preference-1.html">&gt;</a></div>
@@ -111,10 +116,10 @@
             </div>
             <div class="acc_main_row">
             	<div class="acc_main_col1a">
-                	<div class="acc_main_links"><a href="account-session-photo.html">Session photo</a></div>
+                	<div class="acc_main_links"><a href="account-timezone.html">Timezone preference</a></div>
                 </div>
                 <div class="acc_main_col3a">
-                	<div class="acc_main_icon_link"><a href="account-session-photo.html">&gt;</a></div>
+                	<div class="acc_main_icon_link"><a href="account-timezone.html">&gt;</a></div>
                 </div>
                 <div class="clearboth"></div>
             </div>
@@ -162,7 +167,7 @@
         </div>
     </div>
 
-    <div id="slide_menu">
+    <!-- <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -224,10 +229,10 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
     
-    <div id="share">
+  <!--   <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
             	<div class="share_close login_mb_close">X</div>
@@ -260,5 +265,31 @@
             	
             </div>
         </div>
-    </div>
+    </div> -->
+    <script type="text/javascript">
+    $('#account-main').on('pageshow',function(){
+        getUserCompTypeIds();
+        if(app.allCts.indexOf(1) != -1){
+            $("#ver-completed").show();
+        }else{
+            $("#ver-not-complete").show();
+        }
+
+        if(app.allCts.indexOf(6) != -1){
+            $("#pp-completed").show();
+        }else{
+            $("#pp-not-complete").show();
+        }
+    });
+    (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+    </script>
 </div>

@@ -1,4 +1,4 @@
-  <div data-role="page">
+  <div data-role="page" id="edit-user-prefs">
 
 	<div class="main_container">
 		<div id="edit_profile">
@@ -20,78 +20,75 @@
                 </div>
                 <div class="clearboth"></div>
             </div>
-            <div class="cm_back edit_back">
-            	<a href="edit-profile-main.html"><img src="images/mobile-images/icon-back.jpg" alt=""></a>
-            </div>
-            <div class="edit_cm_sec">
+                <div class="edit_cm_sec">
                 <form class="edit_pro_form" action="">
 					<div class="edit_pro_pref">
                     	<ul class="user_pro_music_list user_pro_music">
                         	<li>
-                            	<input  data-role="none" id="music-preference-Other" type="checkbox" name="music[]" value="Other">
+                            	<input  data-role="none" id="music-preference-Other" type="checkbox" name="music[]" class="user-music" value="Other">
                                 <label for="music-preference-Other">
                                     <span></span>
                                     <div>Other</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Rock" type="checkbox" name="music[]" value="Rock">
+                            	<input  data-role="none" id="music-preference-Rock" type="checkbox" name="music[]" class="user-music" value="Rock">
                                 <label for="music-preference-Rock">
                                     <span></span>
                                     <div>Rock</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Pop" type="checkbox" name="music[]" value="Pop">
+                            	<input  data-role="none" id="music-preference-Pop" type="checkbox" name="music[]" class="user-music" value="Pop">
                                 <label for="music-preference-Pop">
                                     <span></span>
                                     <div>Pop</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Electronic" type="checkbox" name="music[]" value="Electronic">
+                            	<input  data-role="none" id="music-preference-Electronic" type="checkbox" name="music[]" class="user-music" value="Electronic">
                                 <label for="music-preference-Electronic">
                                     <span></span>
                                     <div>Electronic</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Punk" type="checkbox" name="music[]" value="Punk">
+                            	<input  data-role="none" id="music-preference-Punk" type="checkbox" name="music[]" class="user-music" value="Punk">
                                 <label for="music-preference-Punk">
                                     <span></span>
                                     <div>Punk</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Alternative" type="checkbox" name="music[]" value="Alternative">
+                            	<input  data-role="none" id="music-preference-Alternative" type="checkbox" name="music[]" class="user-music" value="Alternative">
                                 <label for="music-preference-Alternative">
                                     <span></span>
                                     <div>Alternative</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Metal" type="checkbox" name="music[]" value="Metal">
+                            	<input  data-role="none" id="music-preference-Metal" type="checkbox" name="music[]" class="user-music" value="Metal">
                                 <label for="music-preference-Metal">
                                     <span></span>
                                     <div>Metal</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Classical" type="checkbox" name="music[]" value="Classical">
+                            	<input  data-role="none" id="music-preference-Classical" type="checkbox" name="music[]" class="user-music" value="Classical">
                                 <label for="music-preference-Classical">
                                     <span></span>
                                     <div>Classical</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Talkback"type="checkbox" name="music[]" value="Talkback">
+                            	<input  data-role="none" id="music-preference-Talkback" type="checkbox" name="music[]" class="user-music" value="Talkback">
                                 <label for="music-preference-Talkback">
                                     <span></span>
                                     <div>Talkback</div>
                                 </label>
                             </li>
                             <li>
-                            	<input  data-role="none" id="music-preference-Sport" type="checkbox" name="music[]" value="Sport">
+                            	<input  data-role="none" id="music-preference-Sport" type="checkbox" name="music[]" class="user-music" value="Sport">
                                 <label for="music-preference-Sport">
                                     <span></span>
                                     <div>Sport</div>
@@ -113,7 +110,8 @@
                     </div>                                 
                 </form>                
                 <div class="edit_save_btn">
-                	<button class="btn main_btn">Save</button>
+                    <button class="btn main_btn" id="go-back">Back</button>
+                	<button class="btn main_btn" id="save-preferences">Save</button>
                     <div class="clearboth"></div>
                 </div>
             </div>
@@ -129,7 +127,7 @@
     </div>
 
 <!---------------------- Slide menu ---------------------->
-    <div id="slide_menu">
+    <!-- <div id="slide_menu">
         <div class="mobile_ryt_nav with_login">
         	<div class="pro_pic"> 
             	<img src="images/mobile-images/no_photo.jpg" alt=""> <span class="pro_pic_name">Kane Marevich</span> 
@@ -191,7 +189,7 @@
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 <!---------------------- Slide menu end-------------------->
 
 	<div id="filter_search">
@@ -225,7 +223,7 @@
         </div>
     </div>
     
-    <div id="share">
+   <!--  <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
             	<div class="share_close login_mb_close">X</div>
@@ -258,5 +256,51 @@
             	
             </div>
         </div>
-    </div>
+    </div> -->
+
+<script type="text/javascript">
+
+$("#go-back").on('click',function(){
+    history.go(-1);
+});
+
+$('#edit-user-prefs').on('pageshow', function(){
+    getUserPreferences();
+});
+
+$('#save-preferences').on('click',function(){
+    console.log("save pref clicked");
+    var userMusicPref=[],
+        userSmokePref={};
+    $(".user-music").each(function(){
+        console.log('inside this');
+        if($(this).is(':checked')){
+            userMusicPref.push($(this).val());
+        }
+    });
+   if($("#smoking-yes").is(':checked')){
+        userSmokePref["2"]="Smoking";
+    }
+    else {
+        userSmokePref["2"]="Non-Smoking";
+    }
+    // console.log(userMusicPref);
+    // console.log(JSON.stringify(userSmokePref));
+    saveUserPreferences(userMusicPref, userSmokePref);
+
+});
+
+(function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+</script>
+
 </div>
+

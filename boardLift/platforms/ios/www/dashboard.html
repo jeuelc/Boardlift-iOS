@@ -44,10 +44,10 @@ $(function() {
                 <div class="clearboth"></div>
             </div>
                         <div class="profile-row">
-                                                            <div class="reminder_message">
+                                                            <div class="reminder_message" id="profile-not-completed" style="display:none;">
                             Complete your profile information to list sessions and request seats.
                         </div>
-                                                                <div class="reminder_message">
+                                                                <div class="reminder_message" id="account-not-completed" style="display:none;">
                             Complete your account information to list sessions and request seats.
                         </div>
 <div class="profile-info" style="border-bottom: none;">
@@ -84,7 +84,7 @@ $(function() {
                     </ul>
                 </div>
                 <div class="pro-msg">
-                    <a href="#"><h3>Messages</h3><span class="read-msg"></span></a>
+                    <a href="#"><h3 id="show-all-messages">Messages</h3><span class="read-msg"></span></a>
                     <ul id="messages-list">
                                                      <li>
                                 <span style="float:left !important;font:14px AvenirLTStdLight;">You don't have any messages yet.</span>
@@ -105,57 +105,10 @@ $(function() {
         
     <div class="clearboth"></div>
 </div>
-<div id="filter_search">
-        <div class="filtr_srchBtn">
-            <a href="javascript:void(0)" id="filter-search-anchor">
-                <button id="filter-search-btn" type="button">Filter Search</button>
-            </a>
-        </div>
-        <div class="main_row">
-            <div class="search_sec">
-                <div class="close_srch_popup">X</div>
-                <div class="depart_date_holder">
-                                        <input  data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value="">
-                    <span id="clear_slideup_date" style="visibility: hidden;">X</span>
-                </div>
-                <div class="search_main_row">
-                    <a href="javascript:void(0);" id="search-in-victoria">
-                        <div class="victoria_sec">
-                            <div class="content_sec">
-                                <h1>Victoria</h1>
-                                <p>Search sessions</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:void(0);" id="search-in-sa">
-                        <div class="sa_sec spacer">
-                            <div class="content_sec">
-                                <h1>SA</h1>
-                                <p>Search sessions</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:void(0);" id="search-in-nsw">
-                        <div class="nsw_sec spacer">
-                            <div class="content_sec">
-                                <h1>NSW</h1>
-                                <p>Search sessions</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-                
-        </div>
-        <div class="v-spacer"></div>
-</div>
+
 <script type="text/javascript">
 $(document).ready(function(){
-    $("#filterBtn").click(function () {
-        $("#dialog-filter").slideToggle("slow");
-    });
-    
+
     $('#search_departureDate_regional').datetimepicker({
       format:'d/m/Y',
       minDate:0,
@@ -362,6 +315,11 @@ function getNotifications()
     </div>
 </div> -->
     <script>
+
+    $('#dashboard').on('pageshow', function(){
+        getUserProfileCompleteness();
+    });
+
         (function() {
             var image_width = $(".profile-img").width();
             $(".profile-img").height(image_width);
@@ -391,7 +349,7 @@ function getNotifications()
                 if($(this).attr('data-session-id') == undefined){
                     $.mobile.changePage('session-current-listings.html');
                 }else{
-                    showSingleSessionDriver($(this).attr('data-session-id'));
+                    showSingleSessionDriver($(this).attr('data-session-id'), "session");
                 }
             });
             // show single booking on click
@@ -411,6 +369,10 @@ function getNotifications()
             $('#show-all-bookings').on("click", function(){
                 $.mobile.changePage('bookings.html');
             });
+            // go to all messages show page
+            $('#show-all-messages').on("click", function(){
+                $.mobile.changePage('message.html');
+            });
 
             $('.footer_menu_loggedin').on('click', function(e){
                 console.log('clicked on it: ' + showingSideMenu);
@@ -421,6 +383,125 @@ function getNotifications()
                 }
             });
 
-        })();
+var searchQuery;
+    $("#filterBtn").click(function () {
+        console.log("#filterBtn");
+        if(showingSearch){
+        console.log("#filterBtn if");
+            hideSearch();
+        }else{
+        console.log("#filterBtn else");
+            makeSearch();
+        }
+/*        $("#filter_search").slideToggle("slow", function(){
+            console.log('slideToggle filter_search complete');
+        });*/
+    });
+    $('#dashboard').on('click', '.close_srch_popup', function(){
+        console.log('.close_srch_popup');
+        hideSearch();
+    });
+    
+    $('#search_departureDate_regional').datetimepicker({
+      format:'d/m/Y',
+      minDate:0,
+      timepicker: false,
+      closeOnDateSelect:true,
+      scrollMonth: false,
+      onChangeDateTime:function(){$("#clear_slideup_date").css("visibility", "visible");}
+    });
+    
+    $("#search_departureDate_regional").keydown(function (e) {
+        e.preventDefault();
+    });
+    
+    $("#search-in-victoria").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            searchQuery='origin=&destination=Victoria%2C+Australia';
+            search(searchQuery);
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            searchQuery="origin=&destination=Victoria%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd;
+            search(searchQuery);
+        }
+    });
+    
+    $("#search-in-sa").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            searchQuery='origin=&destination=South+Australia%2C+Australia';
+            search(searchQuery);
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            searchQuery="origin=&destination=South+Australia%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd;
+            search(searchQuery);
+        }
+    });
+    
+    $("#search-in-nsw").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            searchQuery='origin=&destination=New+South+Wales%2C+Australia';
+            search(searchQuery);
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            searchQuery="origin=&destination=New+South+Wales%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd;
+            search(searchQuery);
+        }
+    });
+    
+    $("#filter-search-anchor").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var today = new Date();
+            var dd = ("0" + (today.getDate())).slice(-2);
+            var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+            var yyyy = today.getFullYear();
+            searchQuery="departureDate="+yyyy+"-"+mm+"-"+dd;
+            search(searchQuery);            
+        } else {
+            var searchDate = session_date.split("/");
+            console.log(searchDate);
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            searchQuery="departureDate="+yyyy+"-"+mm+"-"+dd;
+            search(searchQuery);
+            
+        }
+    });
+})();
+
+    function  search(query){
+     $.ajax({
+        url: secureHost + "Sessions/search?"+query,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function (data) {
+            console.log(JSON.stringify(data));
+        },
+        error: function(data){
+            console.log("Cannot get data");
+        }
+    });
+    }
+    
     </script>
+
 </div>

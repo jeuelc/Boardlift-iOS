@@ -369,7 +369,7 @@
                 allData['numSeats'] = $('#numSeats').val();
                 allData['extraCost'] = $('#extraCost').val();
                 allData['seatCost'] = $('#seatCost').val();
-                getUserBoardSkills(app.curUserId);
+                getShowUserBoardSkills(app.curUserId);
                 $('.list_ssn_content.fifth').show();
             }
         }else if($('.list_ssn_content.fifth').is(':visible')) {
@@ -1010,6 +1010,17 @@ console.log('just do it');
             });
 
   	});
+
+  (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
 
 	</script>
 

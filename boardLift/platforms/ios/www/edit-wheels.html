@@ -82,7 +82,7 @@ $(function() {
                 <div class="general_message">
                     <span>*</span> A car is required to publish sessions and submit booking requests.
                 </div>
-                                <form action="http://jeuel.dev.boardlift.com/index.php/account/users/update_wheels" accept-charset="utf-8" method="post" class="edit_pro_form" data-role="none"><div style="display:none">
+                                <form id="edit-wheels-form" action="" accept-charset="utf-8" method="post" class="edit_pro_form" data-role="none"><div style="display:none">
 <input  data-role="none" type="hidden" name="csrf_token_name" value="789309b486afdeffce4321f19e90a1c9" / >
 </div>                    <input  data-role="none" type="hidden" name="user_id" value="44" data-role="none">
                      <div class="user_pro_wheels_row marginBtm8">
@@ -171,7 +171,7 @@ $(function() {
                             <span class="drkgray_txt25">Make</span>
                         </div>
                         <div class="user_pro_wheels_info">
-                            <select name="make_model_id"  class="default_select user_wheel_select" data-role="none">
+                            <select id="make_model_id" name="make_model_id"  class="default_select user_wheel_select" data-role="none">
                                 <option value="">Select make</option>
                                 <option value="1" >Abarth</option><option value="2" >AC</option><option value="3" >Alfa Romeo</option><option value="4" >Audi</option><option value="5" >BMW</option><option value="6" >Chevrolet</option><option value="7" >Chrysler</option><option value="8" >Citroen</option><option value="9" >Daewoo</option><option value="10" >Daihatsu</option><option value="11" >Dodge</option><option value="12" >Fiat</option><option value="13" >Ford</option><option value="14" >Holden</option><option value="15" >Hyundai</option><option value="16" >Isuzu</option><option value="17" selected>Jaguar</option><option value="18" >Jeep</option><option value="19" >Kia</option><option value="20" >Land Rover</option><option value="21" >Lexus</option><option value="22" >Mazda</option><option value="23" >Mercedes-Benz</option><option value="24" >MINI</option><option value="25" >Mitsubishi</option><option value="26" >Nissan</option><option value="27" >Peugeot</option><option value="28" >Porsche</option><option value="29" >Renault</option><option value="30" >Skoda</option><option value="31" >Subaru</option><option value="32" >Suzuki</option><option value="33" >Toyota</option><option value="34" >Volkswagen</option><option value="35" >Volvo</option><option value="36" >Other</option>                            </select>
                         </div>
@@ -199,15 +199,15 @@ $(function() {
                      </div>
                      </fieldset>
                 <div class="edit_save_btn">
-                    <a href="http://jeuel.dev.boardlift.com/index.php/account/users/edit"><input  data-role="none" type="button" class="btn main_btn" value="Back" ></a>
-                    <input  data-role="none" type="submit" class="btn main_btn" value="Save" >
+                    <input id="back-user-wheels" data-role="none" type="button" class="btn main_btn" value="Back" >
+                    <input id="save-user-wheels" data-role="none" type="submit" class="btn main_btn" value="Save" >
                     <div class="clearboth"></div>
                 </div>
                 </form>            </div>
             
         </div>
     </div>
-    <div id="slide_menu">
+    <!-- <div id="slide_menu">
     <div class="mobile_ryt_nav with_login" id="mobile_right_nav">
         <div class="pro_pic"> 
             <a href="http://jeuel.dev.boardlift.com/index.php/account/users/profile" style="color:#999;">
@@ -275,7 +275,7 @@ $(function() {
             <li><a href="http://jeuel.dev.boardlift.com/index.php/account/users/logout">Log out</a></li>
         </ul>
     </div>
-</div>
+</div> -->
     <div class="clearboth"></div>
 <div id="mobile_footer"> 
         <a href="http://jeuel.dev.boardlift.com/" class="footer_logo"></a> 
@@ -332,6 +332,18 @@ $(function() {
 </div>
 <script type="text/javascript">
     console.log('edit_wheels.html');
+
+// back from this page
+$('#back-user-wheels').on("click", function(){
+    history.go(-1);
+});
+
+// save user wheels
+$('#save-user-wheels').on("click", function(e){
+    e.preventDefault();
+    saveUserWheels();
+});
+
 getUserWheels(function(data, carCompanies){
     var carListingContainer = $('#car_list');
     var car_data = '';
@@ -363,5 +375,16 @@ getUserWheels(function(data, carCompanies){
     }
     carListingContainer.html(car_data);
 });
+
+  (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
 </script>
 </div>

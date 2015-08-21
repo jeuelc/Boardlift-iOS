@@ -1,4 +1,4 @@
-  <div data-role="page">
+  <div data-role="page" id="account-verify">
     <div class="main_container">
         <div id="acc_main">
             <div class="acc_hdng"><h1>Verification</h1></div>
@@ -9,10 +9,10 @@
                 </div>
             </div>
             <div class="acc_verification">
-                <span>
-                    You have not yet verified your email: xxxxxx@gmail.com. A verified email is important to allow us to securely communicate with you.
+                <span id="verify-msg">
+                    
                 </span>
-                <div class="acc_notfctn_link" style="margin-top:5%;">
+                <div id="resend-link" class="acc_notfctn_link" style="margin-top:5%;display:none;">
                     <button class="btn main_btn">Resend verification</button>
                     <div class="clearboth"></div>
                 </div>
@@ -159,4 +159,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    $('#account-verify').on('pageshow', function(){
+        if(app.userComponentIds.indexOf(1) != -1){
+            //email is verified
+            $("#verify-msg").text("You have verified your email: "+app.curUserEmail+". A verified email is important to allow us to securely communicate with you.");
+        }
+        else{
+            //email is not verified
+            $("#verify-msg").text();
+            $("#resend-link").show("You have not yet verified your email: "+app.curUserEmail+". A verified email is important to allow us to securely communicate with you.");
+        }
+    });
+    (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+    </script>
 </div>

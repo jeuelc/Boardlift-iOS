@@ -1,6 +1,9 @@
 var secureHost = "http://jeuel.dev.boardlift.com:3000/api/",
     storingSingleSessionData = {},
-    showingSideMenu = false;
+    showingSideMenu = false,
+    showingSearch = false,
+    allSessionIds = [],
+    allUserIds = {};
 
 var bodyTypeInfo = {
     1 : "wheels-sedan.png",
@@ -11,6 +14,18 @@ var bodyTypeInfo = {
     6 : "wheels-4wd.png",
     7 : "wheels-van.png",
     8 : "wheels-other.png"
+};
+
+var boardTypeForeignKey = {
+ 1:255,
+ 2:256,
+ 3:119,
+ 4:257,
+ 5:253,
+ 6:258,
+ 7:254,
+ 8:120,
+ 9:259
 };
 
 var carCompanies = {
@@ -70,7 +85,7 @@ var allBookingStatuses = {
     2:"Accepted",
     3:"Declined",
     4:"Cancelled",
-    5:"Paid",
+    5:"New",
     6:"Disputed",
     7:"Host Completed",
     8:"Guest Completed",
@@ -91,6 +106,16 @@ var boardSkillTypes = {
     10 : "Skis"
 };
 
+/*var componentIdAndValues = {
+    1 : "email verification",
+    2 : "full name",
+    3 : "avatar",
+    4 : "board skills",
+    5 : "wheels",
+    6 : "payout preference",
+    7 : "sign up"
+};
+*/
 
 function boardLiftLogin(userName, pass){
     var params = '{"email" : "'+userName+'","password" : "'+pass+'"}';
@@ -103,10 +128,13 @@ function boardLiftLogin(userName, pass){
         processData: false,
         data: params,
         success: function (data) {
-            console.log(JSON.stringify(data));
+            $("#email").val("");
+            $("#password").val("");
+            // console.log(JSON.stringify(data));
             app.curUserId = data['userId']; // stores access_token
             app.curAccessToken = data['id'];
             app.userCreated = data['created'];
+            app.curUserEmail = userName;
             $.mobile.changePage('dashboard.html');
             getUserData();
             getUserProfileCompleteness();
@@ -240,6 +268,8 @@ $(document).on('appIsReady', function(){
             $.mobile.changePage($(this).attr("href"));
         }
     });
+
+    // $('#filter_search').css('top', '100%');
 });
 
 function profileStatus(page, callback){
@@ -375,12 +405,12 @@ function getUserBookingsAsPassenger(){
 
                 for(var item in d){
 
-                    var ts = Date.parse(d[item]['travelStartDate']);
+                    var ts = Date.parse(d[item]['session']['travelStartDate']);
                     var h = new Date(ts);
                     var bookingDate = h.dateFormat('d/m/Y');
                     
                     // bookingsHtml += '<a href="http://web.boardlift.com/account/sessions/view/'+item['id']+'">';
-                    bookingsHtml += '<li class="single-booking-user" data-booking-id="'+d[item]['sessionId']+'"><h4>'+d[item]['name']+'</h4>';
+                    bookingsHtml += '<li class="single-booking-user" data-booking-id="'+d[item]['sessionId']+'"><h4>'+d[item]['session']['name']+'</h4>';
                     bookingsHtml += '<span class="time-msg"><div class="alert-icon"></div>';
                     bookingsHtml += bookingDate+'</span><div class="gt-link-to-node">&gt;</div>';
                     bookingsHtml += '<div class="v-spacer"></div></li></a><div class="v-spacer"></div>';
@@ -434,7 +464,7 @@ function getUserMessages(){
             }else{
                 $('#messages-list').html("<span style='float:left!important;font:14px AvenirLTStdLight;'>You don't have any messages yet.</span><div class='v-spacer'></div>");
             }
-
+            checkUserAcPrCompleteness();
         },
         error: function(error){
             console.log(error);
@@ -617,7 +647,7 @@ function showSingleMessage(id){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            $.mobile.changePage('ride-details.html', {data:d});
+            // $.mobile.changePage('ride-details.html', {data:d});
         },
         error: function(error){
             console.log(error);
@@ -644,24 +674,30 @@ function getAllMessage(callback){
     });
 }
 
-// function getMessageConversation(callback){
-//     console.log('getMessageConversation');
-//     $.ajax({
-//         url: secureHost + "Messages?filter={where:{sessionId:" ++ "}}&access_token=" + app.curAccessToken,
-//         type: 'GET',
-//         dataType: "json",
-//         contentType: 'application/json',
-//         processData: false,
-//         success: function(d){
-//         console.log('getMessageConversation success');
-//             console.log(d);
-//             callback(d);
-//         },
-//         error: function(error){
-//             console.log(error);
-//         }
-//     });
-// }
+ function getMessageConversation(sessionId, senderId, recipientId){
+     console.log('getMessageConversation');
+     console.log('sessionId: '+sessionId);
+     $.ajax({
+         url: secureHost + 'Messages?filter={"where":{"sessionId":"' +sessionId+ '"}}&access_token=' + app.curAccessToken,
+         type: 'GET',
+         dataType: "json",
+         contentType: 'application/json',
+         processData: false,
+         success: function(d){
+         console.log('getMessageConversation success');
+             console.log(d);
+             var temp = {message:[]}
+             if(senderId == app.curUserId)
+                getUserMessageThread(recipientId, d);
+            else
+                getUserMessageThread(senderId, d);
+         },
+         error: function(error){
+         console.log('getMessageConversation error');
+             console.log(error);
+         }
+     });
+ }
 
 // initialize the google map
 function initializeMap(latOrigin, lonOrigin, latDest, lonDest){   
@@ -833,9 +869,11 @@ function getAllUserBookings(id){
                 allbookingsHtml += '</a></td><td class="gt-link-holder-booking"></td></tr></tbody></table>';
                 allbookingsHtml += '</ul></div>';
                 allbookingsHtml += '<div class="action-buttons-holder">';
-                // allbookingsHtml += '<div class="v-spacer"></div><a href="#"class="cancel-booking-button">Cancel</a>';
-               // allbookingsHtml += '<a href="#" class="dispute-booking-button">Dispute</a>';
-                // allbookingsHtml += '<a href="#" class="complete-booking-button">Complete</a>';
+
+                if(d[item]['bookingStatusId'] == 5){
+                    allbookingsHtml += '<div class="v-spacer"></div><input id="'+d[item]['id']+'" type="button" name="cancel-button" class="cancel-booking-button" style="float:none;" value="Cancel">';                    
+                }
+
                 allbookingsHtml += '<div class="v-spacer"></div></div><div class="v-spacer"></div></div>';
             }
             $(".user-profile-main-panel").html(allbookingsHtml);
@@ -962,8 +1000,9 @@ function getDriverProfile(id){
         processData: false,
         success: function (d) {
                 console.log(d);
+                var imgUrl = "https://boardlift-development.s3-ap-southeast-2.amazonaws.com/" + d['avatar'];
                 $('#driver-name').text(d['fname']+" "+d['lname']);
-                $('.driver-photo-holder').css({'background-image':'url('+d['avatar']+')'});
+                $('.driver-photo-holder').css({'background-image':'url('+imgUrl+')'});
                 $('#driver-bio').text(d['bio']);
                 var genderurl="http://web.boardlift.com/assets/images/mobile-images/gender-"+ d['gender'] + ".png";
                 $('#driver-gender img').attr('src',genderurl);
@@ -978,16 +1017,20 @@ function getDriverProfile(id){
 
 function getUserFavouriteSpot(id){
 
-    console.log("inside get user favorite spot:");
-    var locQuery = '{"where":{"userProfileId":"'+id+'"}}';
-        $.ajax({
+    console.log("inside get user favorite spot: " + id);
+    var locQuery = '{"where":{"userProfileId":"' + parseInt(id) + '"}}';
+    $.ajax({
         url: secureHost + "UserFavorites?filter=" + locQuery + "&access_token=" + app.curAccessToken,
         type: 'GET',
         dataType: "json",
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            $("#driver-favorite-spot").text(d[0]['favoriteDetail']);
+            console.log(d);
+            if(d.length > 0){
+                $("#driver-favorite-spot").text(d[0]['favoriteDetail']);    
+            }
+            
             userMusicNSmokePref($('#ride-driver-details').attr('data-driver-id'));
         },
         error: function(error){
@@ -1051,7 +1094,7 @@ function getDriverBoardSkills(id){
                      boardRatings +='<ul class="board-matrix-head" id="board-skill-ratings"><li class="boardtype lightfont"><img src=http://web.boardlift.com/assets/images/boards/'+boardimage+'.jpg><br>'+boardSkillTypes[d[item]['boardTypeId']]+'</li>';
                     boardRatings +='<li class="boardrate"><img src=http://web.boardlift.com/assets/images/mobile_skill_rate_'+d[item]['skillRate']+'.png></li><div class="v-spacer"></div></ul>';
                       }
-                      console.log(boardRatings);
+                      // console.log(boardRatings);
                       $(".sesn-board-rating").after(boardRatings);
 
         },
@@ -1063,7 +1106,8 @@ function getDriverBoardSkills(id){
 
 
 // to show when listing a session
-function getUserBoardSkills(id){
+function getShowUserBoardSkills(id){
+
     console.log("inside board skills function");
         $.ajax({
         url: secureHost + "UserProfiles/" + id + "/boardSkills?access_token=" + app.curAccessToken,
@@ -1091,6 +1135,131 @@ function getUserBoardSkills(id){
         }
     });
 }
+
+// saving user board skills
+function saveUserBoardSkills(data){
+    // console.log('this is: ' + data);
+    // console.log(typeof(data));
+
+    for(var item in data){
+
+        var ubsQuery = '{"skillRate":'+parseInt(data[item])+',"boardTypeId":'+parseInt(item)+',"userProfileId":'+app.curUserId+'}';
+
+        $.ajax({
+            url: secureHost + "BoardSkills?access_token=" + app.curAccessToken,
+            type: "PUT",
+            dataType: 'json',
+            contentType: 'application/json',
+            processData: false,
+            data: ubsQuery,
+            success: function(d) {
+                console.log('hurray success');
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+    }
+    
+    $.mobile.changePage('edit-profile-main.html');
+
+}
+
+// save user preference
+function saveUserPreferences(musicRef, smokeRef){
+    console.log("Music:"+musicRef);
+    console.log("Music:"+JSON.stringify(smokeRef));
+
+    var SmokePrefQuery='{"value":"'+smokeRef["2"].toLowerCase()+'","preferenceTypeId":'+parseInt("2")+',"userProfileId":'+app.curUserId+'}';
+
+    $.ajax({
+        url: secureHost + "UserPreferences?access_token=" + app.curAccessToken,
+        type: "PUT",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: SmokePrefQuery,
+        success: function(d) {
+            console.log('hurray smoking success');
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+
+    for(var item in musicRef){
+        var MusicPrefQuery='{"value":"'+musicRef[item]+'","preferenceTypeId":'+parseInt("1")+',"userProfileId":'+app.curUserId+'}';
+        $.ajax({
+            url: secureHost + "UserPreferences?access_token=" + app.curAccessToken,
+            type: "PUT",
+            dataType: 'json',
+            contentType: 'application/json',
+            processData: false,
+            data: MusicPrefQuery,
+            success: function(d) {
+                console.log('hurray Music success');
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+    }
+    
+
+    $.mobile.changePage('edit-profile-main.html');
+
+}
+
+// get user preferences and update the edit preferences page
+function getUserPreferences(){
+    $.ajax({
+        url: secureHost + "UserProfiles/"+app.curUserId+"/userPreferences?&access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            // console.log(d);
+            var musicRef = [],
+                smokingRef = "",
+                smokeCount = 0;
+            
+            for(var item in d){
+                if(d[item]['preferenceTypeId'] == 2){
+                    if(d[item]['id'] > smokeCount){
+                        smokingRef = d[item]['value'];
+                        smokeCount = d[item]['id'];
+                    }
+                }else if(d[item]['preferenceTypeId'] == 1){
+                    if(musicRef.indexOf(d[item]['value']) == -1)
+                        musicRef.push(d[item]['value']);
+                }
+            }
+
+            // console.log(smokingRef);
+            // console.log(musicRef);
+            // update smoking button on page
+            if(smokingRef == "smoking"){
+                $('#smoking-yes').attr("checked", "true");
+            }else if(smokingRef == "non-smoking"){
+                $('#smoking-no').attr("checked", "true");
+            }
+
+            // update music buttons on page
+            for(var prop in musicRef){
+                $("#music-preference-"+musicRef[prop]).attr("checked", 'true');
+            }
+
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+
 // get location info, arg is object
 function getLocationInfo(args){
 // console.log("inside get location info");
@@ -1119,23 +1288,53 @@ function getLocationInfo(args){
 
 }
 
-function getUserProfile(){
-    console.log('getUserProfile');
+function getUserMessageThread(userId, data1){
+    console.log('getUserMessageThread');
     $.ajax({
-        url: secureHost + "UserProfiles/" + app.curUserId + "&access_token=" + app.curAccessToken,
+        url: secureHost + "UserProfiles/" + userId + "&access_token=" + app.curAccessToken,
         type: 'GET',
         dataType: "json",
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log('getUserProfile success');
-            console.log(d);
+            console.log('getUserMessageThread success');
+            app.conversation = "";
+            var temp ={message:[],recipient:d};
+            for(i in data1){
+            console.log("data1[i].sender: "+data1[i].sender);
+            console.log("data1[i].recipient: "+data1[i].recipient);
+                if(data1[i].sender == app.curUserId || data1[i].recipient == app.curUserId)
+                    if(data1[i].sender == userId || data1[i].recipient == userId)
+                    temp.message.push(data1[i]);
+            }
+            app.conversation = temp;
+            $.mobile.changePage('message-reply.html');
         },
         error: function(error){
             console.log(error);
         }
     });
 
+}
+
+function getUserProfile(id){
+    var giveUsername = "";
+    $.ajax({
+        url: secureHost + "UserProfiles/" + id + "&access_token=" + app.curAccessToken,
+        type: 'GET',
+        dataType: "json",
+        async : false,
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            giveUsername = d['fname'].toLowerCase() + " " + d['lname'].toLowerCase();
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+    console.log("this is name:"+giveUsername);
+    return giveUsername;
 }
 
 // get location images and update ui
@@ -1359,12 +1558,564 @@ function getDataForSingleSession(id, call_from){
 // make the complete side menu (very bad idea)
 function makeSideMenuLoggedIn(){
     showingSideMenu = true;
-    var fullHtml = '<div id="slide_menu" class="loggedin-side-bar"><div class="mobile_ryt_nav with_login" id="mobile_right_nav"><div class="pro_pic"><a href="#" style="color:#999;"><div class="actual-profile-image"></div><span class="pro_pic_name"></span></a></div><ul class="mb_nav"><li><div class="sub_menu_blk"><a href="dashboard.html"><div class="sb_nav_img sb_nav_img1"></div><h2>Dashboard</h2></a></div></li><li><div class="sub_menu_blk"><a href="message.html"><div id="message-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img2"></div><h2>Messages<span></span></h2></a></div></li><li><div class="sub_menu_blk"><a href="session-current-listings.html"><div id="session-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img3"></div><h2>Sessions<br>(As driver)</h2></a></div></li><li><div class="sub_menu_blk"><a href="bookings.html"><div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img4"></div><h2>Bookings<br>(As passenger)</h2></a></div></li><li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img5"></div><h2>Help</h2></a></div></li><li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img6"></div><h2>Account</h2></a></div></li></ul><ul class="wl_mb_nav nav_gap"><li><a href="#" id="share-friends">Invite friends</a></li><li><a href="#">Legal stuff</a></li><li><a href="#">Contact us</a></li><li><a href="#">Log out</a></li></ul></div></div>';
+    var fullHtml = '<div id="slide_menu" class="loggedin-side-bar"><div class="mobile_ryt_nav with_login" id="mobile_right_nav"><div class="pro_pic"><a href="#" style="color:#999;"><div class="actual-profile-image"></div><span class="pro_pic_name"></span></a></div><ul class="mb_nav"><li><div class="sub_menu_blk"><a href="dashboard.html"><div class="sb_nav_img sb_nav_img1"></div><h2>Dashboard</h2></a></div></li><li><div class="sub_menu_blk"><a href="message.html"><div id="message-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img2"></div><h2>Messages<span></span></h2></a></div></li><li><div class="sub_menu_blk"><a href="session-current-listings.html"><div id="session-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img3"></div><h2>Sessions<br>(As driver)</h2></a></div></li><li><div class="sub_menu_blk"><a href="bookings.html"><div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img4"></div><h2>Bookings<br>(As passenger)</h2></a></div></li><li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img5"></div><h2>Help</h2></a></div></li><li><div class="sub_menu_blk"><a href="account-main.html"><div class="sb_nav_img sb_nav_img6"></div><h2>Account</h2></a></div></li></ul><ul class="wl_mb_nav nav_gap"><li><a href="#" id="share-friends">Invite friends</a></li><li><a href="#">Legal stuff</a></li><li><a href="#">Contact us</a></li><li id="log-out"><a href="logout.html">Log out</a></li></ul></div></div>';
     $('.main_container').after(fullHtml);
     $('.actual-profile-image').css('background', 'url('+app.curUserAvatar+')');
+
 }
 
 function hideSideMenuLoggedIn(){
     showingSideMenu = false;
     $('.loggedin-side-bar').remove();
+}
+
+// save user profile on edit-profile page
+function saveUserProfile(){
+
+    var formdata = $(".edit_pro_form").serializeArray();
+    var data = {};
+    $(formdata ).each(function(index, obj){
+        data[obj.name] = obj.value;
+    });
+    var params = data;
+
+    // console.log('this is : ' + params);
+
+    $.ajax({
+        url: secureHost + "UserProfiles/" + app.curUserId + "&access_token=" + app.curAccessToken,
+        type: 'PUT',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify(params),
+        success: function (data) {
+            // console.log(JSON.stringify(data));
+            $.mobile.changePage('edit-profile-main.html');
+        },
+        error: function(data){
+            console.log(JSON.stringify(data));
+        }
+    });
+}
+
+// save user wheels
+function saveUserWheels(){
+
+    var wheelsForm = $('#edit-wheels-form');
+
+    var allRadioChecked = wheelsForm.find(':radio:checked');
+
+    var bt = "",
+        hasRoof = "",
+        vmmi = "";
+
+    if($('#radio01a').is(':checked') == false){
+        bt = 0;
+        hasRoof = "";
+        vmmi = 0;
+    }else{
+        allRadioChecked.each(function(){
+            if($(this).attr("name") == "body_type_id"){
+                bt = $(this).val();
+                bt = parseInt(bt);
+            }else if($(this).attr('name') == "roof_rack"){
+                hasRoof = $(this).val();
+            }
+        });
+        vmmi = parseInt($('#make_model_id').val());
+    }
+
+    
+
+    var finalQuery = '{"bodyType":'+bt+',"hasRoofRack":"'+hasRoof+'","vehicleMakeModelId":'+vmmi+',"userProfileId":'+app.curUserId+'}';
+
+    $.ajax({
+        url: secureHost + "UserWheels/" + app.curUserId + "?access_token=" + app.curAccessToken,
+        type: 'PUT',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: finalQuery,
+        success: function (data) {
+            console.log(data);
+            $.mobile.changePage('edit-profile-main.html');
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+
+}
+
+// get user componentTypeIds
+function getUserCompTypeIds(){
+    var query = '{"where":{"userId":'+app.curUserId+'}}';
+    $.ajax({
+        url: secureHost + "ProfileCompleteness?filter="+query+"&access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            for(var item in d){
+                app.userComponentIds.push(d[item]['componentTypeId']);
+            }
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+// gets notification value, facebook value and user timezone preference
+function getNotifyPrivacySettings(type){
+
+    var query = '{"where":{"preferenceTypeId":'+type+'}}';
+    $.ajax({
+        url: secureHost + "UserProfiles/"+app.curUserId+"/userPreferences?filter="+query+"&access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            // console.log(d);
+            if(d[0]["preferenceTypeId"] == 3){
+                //notifications loop
+                var notCount=0;
+                for(var item in d){
+                    if(d[item]["id"] > notCount){
+                        if(d[item]["value"] == "1"){
+                            $("#notification_checkbox").prop("checked",true);
+                        }else{
+                            $("#notification_checkbox").prop("checked",false);
+                        }
+                        notCount = d[item]["id"];
+                    }
+                } 
+            }else if(d[0]["preferenceTypeId"] == 4){
+                //privacy loop
+                var privCount=0;
+                for(var item in d){
+                    if(d[item]["id"] > privCount){
+                        if(d[item]["value"] == "1"){
+                            $("#privacy_checkbox").prop("checked",true);
+                        }else{
+                            $("#privacy_checkbox").prop("checked",false);
+                        }
+                        privCount=d[item]["id"];
+                    }
+                }
+            }else if(d[0]["preferenceTypeId"] == 6){
+                // timezone
+                timeCount = 0;
+                for(var item in d){ 
+                    if(d[item]['id'] > timeCount){
+                        $('#time-zone-preference').val(d[item]['value']);
+                        timeCount=d[item]["id"];         
+                    }
+                }
+            }
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+// saves user notify value, facebook value and user timezone preference
+function saveUserNotifyPrivacy(id, value){
+
+    var query ='{"value":"'+value+'","preferenceTypeId":'+parseInt(id)+',"userProfileId":'+app.curUserId+'}';
+
+    $.ajax({
+        url: secureHost + "UserPreferences?access_token=" + app.curAccessToken,
+        type: "PUT",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: query,
+        success: function(d) {
+            console.log('hurray this is a success');
+            $.mobile.changePage("account-main.html");
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+function getUserFutureTransactions(type){
+    var ftQuery = '{"where":{"status":"'+type+'"}}';
+
+    $.ajax({
+        url: secureHost + "UserProfiles/"+app.curUserId+"/hostTransactions?filter="+ftQuery+"&access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            // console.log(d);
+            var ftHtml = "";
+            if(d.length > 0){
+                for(var item in d){
+                    // make html over here, get session name too
+                    var dn = new Date(Date.parse(d[item]['transactionDate']));
+                    var fd = dn.dateFormat('d/m/Y');
+
+                    allSessionIds.push(d[item]['sessionId']);
+                    allUserIds[d[item]['sessionId']] = d[item]['guestId'];
+
+                    ftHtml += '<div id="single-ftransaction" data-session-id="'+d[item]['sessionId']+'" class="acc_trans_histry_bdy"><div class="acc_tras_histry_col1 acc_trans_histry_cnt">'+fd+'</div>';
+                    ftHtml += '<div class="acc_tras_histry_col2 acc_trans_histry_cnt"><a data-sess-id="'+d[item]['sessionId']+'" href="# id="ssname"></a>';
+                    ftHtml += '</div><div class="acc_tras_histry_col3 acc_trans_histry_cnt">';
+                    ftHtml += '<a href="#" data-profile-id="'+d[item]['guestId']+'" id="gname"></a>';
+                    ftHtml += '</div><div class="acc_tras_histry_col4 acc_trans_histry_cnt">$'+d[item]['amountPaid'].toFixed(2)+'</div>';
+                    ftHtml += '<div class="clearboth"></div></div>';
+                }
+                $('#all-transactions').html(ftHtml);
+                $("#transaction-header").show();  
+                $("#gross-header").hide();
+                getSingleSessionName();
+                getTransactionGuestName();
+            }else{
+                ftHtml += '<div class="acc_trans_histry_cnt">You don\'t have any transactions yet.</div>';
+                $('#all-transactions').html(ftHtml);
+            }            
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+
+}
+
+
+function getSingleSessionName(){
+    for(var item in allSessionIds){
+        $.ajax({
+            url: secureHost + "Sessions/" + parseInt(allSessionIds[item]) + "?access_token=" + app.curAccessToken,
+            type: 'GET',
+            dataType: "json",
+            contentType: 'application/json',
+            processData: false
+        }).done(function(d){
+            console.log(d['name']);
+            $('#single-ftransaction[data-session-id="'+allSessionIds[item]+'"]').find('#ssname').text(d['name']);
+        });
+    }
+}
+
+function getTransactionGuestName(){
+    for(var elem in allUserIds){
+        $.ajax({
+            url: secureHost + "UserProfiles/" + parseInt(allUserIds[elem]) + "?access_token=" + app.curAccessToken,
+            type: 'GET',
+            dataType: "json",
+            contentType: 'application/json',
+            processData: false
+        }).done(function(d){
+            $('#single-ftransaction[data-session-id="'+elem+'"]').find('#gname').text(d['fname'] + " " + d['lname']);
+        });
+    }
+}
+
+function getGrossEarnings(){
+
+    $.ajax({
+        url: secureHost + "UserProfiles/"+app.curUserId+"/grossEarnings?access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d) {
+            var ghtml= "";
+            if(d[0]["gross_earnings"]==null){
+                ghtml += '<div class="acc_tras_histry_col1 acc_trans_histry_cnt" style="width: 30%;">0.00&nbsp;AUD</div>';
+            } else{
+                ghtml+='<div class="acc_tras_histry_col1 acc_trans_histry_cnt" style="width: 30%;">'+d[0]["gross_earnings"]+'&nbsp;AUD</div>';
+            }  
+            $("#transaction-header").hide();  
+            $("#gross-header").show();
+            $("#all-transactions").html(ghtml);    
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+function getDriverProfilePageWheelsInfo(id){
+    $.ajax({
+        url: secureHost + "UserProfiles/" + parseInt(id) + "/userWheels?access_token=" + app.curAccessToken,
+        type: 'GET',
+        dataType: "json",
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            // console.log('inside vehicle call');
+            // console.log(d);
+            if(d['error']){
+
+            }else{
+                if(d.length > 0){
+                    d = d[0];
+                    // console.log('this is image');
+                    var carImage = "http://web.boardlift.com/assets/images/"+bodyTypeInfo[d['bodyType']];
+                    console.log(carImage);
+                    $('#driver-type-wheels').find('img').attr("src", carImage);
+                    var vehDesc = carCompanies[d['vehicleMakeModelId']];
+
+                    if(d['hasRoofRack'] == "yes"){
+                        vehDesc += " with roof rack";
+                    }else{
+                        vehDesc += " without roof rack";
+                    }
+                    $('#driver-type-wheels img').after(vehDesc);
+                }
+                
+            }
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+// stores which details user has completed in its profile
+function checkUserAcPrCompleteness(){
+     console.log('call came to this fn at sp');
+    $.ajax({
+        url: secureHost + "UserProfiles/"+app.curUserId+"/profileCompleteness?access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            console.log("d: "+d);
+            if(d.length > 0){
+                var allCts = [];
+                for(var item in d){
+                    allCts.push(d[item]['componentTypeId']);
+                }
+                app.allCts = allCts;
+                console.log(app.allCts);
+                console.log(app.allCts.length);
+                // if($.mobile.activePage.is("#dashboard")){
+                //     console.log("active page: "+$.mobile.activePage);
+                // }
+                    console.log($.mobile.activePage.attr("id"));
+                
+                if($.mobile.activePage.is("#dashboard")){
+
+                    if(app.allCts.indexOf(1) == -1 || app.allCts.indexOf(6) == -1){
+                        $("#account-not-completed").show();
+                    }
+                    if(app.allCts.indexOf(2) == -1 || app.allCts.indexOf(4) == -1 || app.allCts.indexOf(5) == -1){
+                        $("#profile-not-completed").show();
+                    } 
+                }
+            }
+        }
+    });
+}
+
+// gets all bookings for a session
+function getCurSessionBooking(id){
+    console.log('this is the error');
+    $.ajax({
+        url: secureHost + "Sessions/" + id + "/sessionBookings?access_token=" + app.curAccessToken,
+        type: "GET",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            console.log(d);
+            if(d.length > 0){
+                var bookHtml = "";
+                for(var elem in d){
+                    var userImage = "https://boardlift-development.s3-ap-southeast-2.amazonaws.com/users/" + d[elem]['userProfileId'] + ".jpg";
+                    console.log(userImage);
+                    var thisName = getUserProfile(d[elem]['userProfileId']);
+                    // var thisName = "karan sharma";
+                    var chthisName = thisName.split(' ')[0] + " " + thisName.split(' ')[1][0];
+                    bookHtml += '<div class="ride-details-request"><div class="ride-details-request-status '+allBookingStatuses[d[elem]['bookingStatusId']].toLowerCase()+'">'+allBookingStatuses[d[elem]['bookingStatusId']]+' booking</div>';
+                    bookHtml += '<div class="requesters-photo"><a href="#">';
+                    bookHtml += '<div class="guest-profile-img" style="background:url('+userImage+') no-repeat center center"></div>';
+                    bookHtml += '<br>'+chthisName+'</a></div><div class="ride-details-request-info">';
+                    bookHtml += '<li class="ride-details-request-info-label">Requested seat(s):</li>';
+                    bookHtml += '<li>'+d[elem]['numSeats']+'</li><li class="ride-details-request-info-label">Pickup location:</li>';
+                    bookHtml += '<li>'+d[elem]['pickupPoint']+'</li></div><div class="ride-details-request-actions-holder '+allBookingStatuses[d[elem]['bookingStatusId']].toLowerCase()+'">';
+                    if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 1){
+                        //accepted booking and session is OPEN - show only contact and cancel button
+                        bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="cancel-button" class="form-button" style="float:none;" value="Cancel">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'app.curUserId'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                    }else if(d[elem]['bookingStatusId'] == 1 || d[elem]['bookingStatusId'] == 5){
+                        // new or paid, show all buttons
+                        bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="accept-button" class="form-button" style="float:none;" value="Accept">';
+                        bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="decline-button" class="form-button" style="float:none;" value="Decline">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'app.curUserId'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                    }else if(d[elem]['bookingStatusId'] == 3 || d[elem]['bookingStatusId'] == 4){
+                        // declined or cancelled, show nothing
+
+                    }else if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 4){
+                        // accepted booking and session is ACTIVE, show only contact button
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'app.curUserId'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                    }
+                    bookHtml += '<div class="v-spacer"></div></div>';
+                }
+                $('.ride-details-requests-holder').html(bookHtml);
+            }
+        }
+    });
+
+}
+
+
+function messageReply(sessionId, sessionName, recipient, message){
+    console.log('messageReply');
+var query = {
+  "sessionId": sessionId,
+  "sessionName": sessionName,
+  "message": message,
+  "sender": app.curUserId,
+  "recipient": recipient,
+  "messageDate": new Date()
+};
+    $.ajax({
+        url: secureHost + "Messages?access_token=" + app.curAccessToken,
+        type: 'PUT',
+        dataType: "json",
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify(query),
+        success: function(d){
+            console.log(d);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+// make the complete side menu (very bad idea)
+
+function makeSearch(){
+    showingSearch = true;
+    var fullHtml = '<div id="filter_search"> <div class="filtr_srchBtn"> <a href="#" id="filter-search-anchor"> <button id="filter-search-btn" type="button">Filter Search</button> </a> </div><div class="main_row"> <div class="search_sec"> <div class="close_srch_popup">X</div><div class="depart_date_holder"> <input data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value=""> <span id="clear_slideup_date" style="visibility: hidden;">X</span> </div><div class="search_main_row"> <a href="#" id="search-in-victoria"> <div class="victoria_sec"> <div class="content_sec"> <h1>Victoria</h1> <p>Search sessions</p></div></div></a> <a href="#" id="search-in-sa"> <div class="sa_sec spacer"> <div class="content_sec"> <h1>SA</h1> <p>Search sessions</p></div></div></a> <a href="#" id="search-in-nsw"> <div class="nsw_sec spacer"> <div class="content_sec"> <h1>NSW</h1> <p>Search sessions</p></div></div></a> </div><div class="clearboth"></div></div></div><div class="v-spacer"></div></div>';
+    $('.main_container').after(fullHtml);
+}
+
+function hideSearch(){
+    console.log('hideSearch');
+    showingSearch = false;
+    console.log($('#filter_search').length);
+    $('#filter_search').remove();
+    console.log($('#filter_search').length);
+}
+// to change bookingStatus of bookings for driver from passenger
+function changeBookingStatus(id, newId){
+    
+    var query = '{"id":'+parseInt(id)+',"bookingStatusId":'+parseInt(newId)+'}';
+
+    $.ajax({
+        url: secureHost + "SessionBookings/"+parseInt(id)+"?access_token=" + app.curAccessToken,
+        type: "PUT",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: query,
+        success: function(d) {
+            console.log('booking status id has been changed.');
+            getCurSessionBooking(getUrlParams('id'));
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+function changeBookingStatusByUser(id, newId){
+    
+    var query = '{"id":'+parseInt(id)+',"bookingStatusId":'+parseInt(newId)+'}';
+
+    $.ajax({
+        url: secureHost + "SessionBookings/"+parseInt(id)+"?access_token=" + app.curAccessToken,
+        type: "PUT",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        data: query,
+        success: function(d) {
+            console.log('booking status id has been changed.');
+            getAllUserBookings("all");
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+// driver accepted the booking request
+var acceptBooking = function(yes){
+    if(yes){
+        // means user clicked on no thanks
+
+    }else{
+        // means user clicked on yes
+        changeBookingStatus(app.curAcceptBookingRequest[0], app.curAcceptBookingRequest[1]);
+    }
+};
+
+// driver cancelled the booking request
+var cancelBooking = function(yes){
+    if(yes){
+        // means user clicked on no thanks
+
+    }else{
+        // means user clicked on yes
+        changeBookingStatus(app.curCancelBookingRequest[0], app.curCancelBookingRequest[1]);
+    }
+};
+
+// driver declined the booking request
+var declineBooking = function(yes){
+    if(yes){
+        // means user clicked on no thanks
+
+    }else{
+        // means user clicked on yes
+        changeBookingStatus(app.curDeclineBookingRequest[0], app.curDeclineBookingRequest[1]);
+    }
+};
+
+// user cancelled its own booking request
+var cancelMainBooking = function(yes){
+    if(yes){
+        // means user clicked on no thanks
+
+    }else{
+        // means user clicked on yes
+        changeBookingStatusByUser(app.curCancelBookingRequest[0], app.curCancelBookingRequest[1]);
+    }
+};
+
+function userLogout(){
+    console.log("inside logout");
+    $.ajax({
+        url: secureHost + "users/logout?access_token=" + app.curAccessToken,
+        type: "POST",
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function(d) {
+            // console.log("logged out: ");
+            // console.log(JSON.stringify(d));
+            app = {};
+            // var d = {};
+            // d['fromLog'] = "logout";
+            $.mobile.changePage('index.html');
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
 }
