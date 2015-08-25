@@ -1948,18 +1948,18 @@ function getCurSessionBooking(id){
                     if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 1){
                         //accepted booking and session is OPEN - show only contact and cancel button
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="cancel-button" class="form-button" style="float:none;" value="Cancel">';
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'app.curUserId'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
                     }else if(d[elem]['bookingStatusId'] == 1 || d[elem]['bookingStatusId'] == 5){
                         // new or paid, show all buttons
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="accept-button" class="form-button" style="float:none;" value="Accept">';
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="decline-button" class="form-button" style="float:none;" value="Decline">';
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'app.curUserId'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
                     }else if(d[elem]['bookingStatusId'] == 3 || d[elem]['bookingStatusId'] == 4){
                         // declined or cancelled, show nothing
 
                     }else if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 4){
                         // accepted booking and session is ACTIVE, show only contact button
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'app.curUserId'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
                     }
                     bookHtml += '<div class="v-spacer"></div></div>';
                 }
