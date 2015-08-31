@@ -1024,6 +1024,21 @@ console.log('just do it');
                     makeSideMenuLoggedIn();
                 }
             });
+
+
+        var page=$("#edit-session-page");
+            $('.footer_srch').on('click', function(){
+                console.log('clicked on it: ' + showingSearch);
+                if(showingSearch){
+                    hideSearch(page);
+                }else{
+                    makeSearch(page);
+                }
+            });
+            page.on('click', '.close_srch_popup', function(){
+                    hideSearch(page);
+            });
+
     })();
 
 	</script>

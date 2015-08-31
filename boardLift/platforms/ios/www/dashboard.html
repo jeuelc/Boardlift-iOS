@@ -99,7 +99,7 @@ $(function() {
     <div class="clearboth"></div>
 <div id="mobile_footer"> 
         <a href="message.html" class="footer_logo"></a> 
-    <a href="#" class="footer_srch"></a>
+    <a href="#" class="footer_srch" id="filterBtn"></a>
         
             <div class="footer_menu_loggedin"></div>
         
@@ -318,6 +318,7 @@ function getNotifications()
 
     $('#dashboard').on('pageshow', function(){
         getUserProfileCompleteness();
+        
     });
 
         (function() {
@@ -373,6 +374,9 @@ function getNotifications()
             $('#show-all-messages').on("click", function(){
                 $.mobile.changePage('message.html');
             });
+            $('#dashboard').on('click','.single-message-driver',function(){
+               getMessageConversation($(this).attr('data-sess-msg-id'), $(this).attr('data-sender-id'), $(this).attr('data-recipient-id'));
+            });
 
             $('.footer_menu_loggedin').on('click', function(e){
                 console.log('clicked on it: ' + showingSideMenu);
@@ -384,24 +388,7 @@ function getNotifications()
             });
 
 var searchQuery;
-    $("#filterBtn").click(function () {
-        console.log("#filterBtn");
-        if(showingSearch){
-        console.log("#filterBtn if");
-            hideSearch();
-        }else{
-        console.log("#filterBtn else");
-            makeSearch();
-        }
-/*        $("#filter_search").slideToggle("slow", function(){
-            console.log('slideToggle filter_search complete');
-        });*/
-    });
-    $('#dashboard').on('click', '.close_srch_popup', function(){
-        console.log('.close_srch_popup');
-        hideSearch();
-    });
-    
+  
     $('#search_departureDate_regional').datetimepicker({
       format:'d/m/Y',
       minDate:0,
@@ -485,6 +472,20 @@ var searchQuery;
         }
     });
 })();
+        (function(){
+            var page=$("#dashboard");
+            $('.footer_srch').on('click', function(){
+                console.log('clicked on it: ' + showingSearch);
+                if(showingSearch){
+                    hideSearch(page);
+                }else{
+                    makeSearch(page);
+                }
+            });
+            page.on('click', '.close_srch_popup', function(){
+                    hideSearch(page);
+            });
+        })();
 
     function  search(query){
      $.ajax({

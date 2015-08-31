@@ -5,6 +5,11 @@ var secureHost = "http://jeuel.dev.boardlift.com:3000/api/",
     allSessionIds = [],
     allUserIds = {};
 
+// the following will be used by side menu
+app.totalSessionNotify = 0;
+app.totalMsgNotify = 0;
+app.totalBookingNotify = 0;
+
 var bodyTypeInfo = {
     1 : "wheels-sedan.png",
     2 : "wheels-wagon.png",
@@ -137,7 +142,6 @@ function boardLiftLogin(userName, pass){
             app.curUserEmail = userName;
             $.mobile.changePage('dashboard.html');
             getUserData();
-            getUserProfileCompleteness();
         },
         error: function(data){
             console.log("Cannot get data");
@@ -269,6 +273,10 @@ $(document).on('appIsReady', function(){
         }
     });
 
+    $('#mobile_footer .footer_logo').on('click',function(e){
+        e.prevenDefault();
+        $.mobile.changePage("dashboard.html");
+    });
     // $('#filter_search').css('top', '100%');
 });
 
@@ -289,7 +297,7 @@ function profileStatus(page, callback){
     });
 }
 
-function getNotification(){
+/*function getNotification(){
     console.log('getNotification');
     $.ajax({
     url: secureHost + "Notifications/getUserNotifications?profileId="+app.curUserId+"&access_token="+app.curAccessToken,
@@ -304,9 +312,10 @@ function getNotification(){
       console.log("Cannot get data");
     }
     });
-}
+}*/
 
 function getUserProfileCompleteness(){
+        console.log("profile completeness");
     $.ajax({
         url: secureHost + "UserProfiles/" + app.curUserId + "/completeness?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -332,7 +341,7 @@ function getUserProfileCompleteness(){
 }
 
 function getUserSessionsAsDriver(){
-    // console.log('this call is going, catch it');
+    console.log('this call is going, catch it');
     var sessionQuery = '{"where":{"driverId":'+app.curUserId+',"sessionStatusId":{"inq":[1,2,4,6]}}}',
         sessionHtml = "";
     // console.log(secureHost + "Sessions?filter=" + sessionQuery + "&access_token=" + app.curAccessToken);
@@ -433,7 +442,7 @@ function getUserBookingsAsPassenger(){
 }
 
 function getUserMessages(){
-    // console.log('messages call this is it');
+     console.log('messages call this is it');
     $.ajax({
         url: secureHost + "UserProfiles/" + app.curUserId + "/thread?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -446,25 +455,27 @@ function getUserMessages(){
             if(d.length > 0){
 
                 for(var item in d){
-
                     var ts = Date.parse(d[item]['message_date']);
                     var h = new Date(ts);
                     var messageDate = h.dateFormat('d/m/Y');
                     
-                    messagesHtml += '<a href="http://web.boardlift.com/account/sessions/view/'+item['id']+'">';
-                    messagesHtml += '<li><h4>'+d[item]['message']+'</h4>';
+                    if(d[item]['sender'] == app.curUserId){
+                    messagesHtml += '<li class="single-message-driver" data-sender-id="'+d[item]['sender']+'" data-recipient-id="'+d[item]['recipient']+'" data-sess-msg-id="'+d[item]['session_id']+'"><h4>You</h4>';
+                    }else{
+                    messagesHtml += '<li class="single-message-driver" data-sess-msg-id='+d[item]['session_id']+'><h4>'+d[item]['profile_fname']+' '+d[item]['profile_lname'].charAt(0)+'</h4>';
+                    }
                     messagesHtml += '<span class="time-msg"><div class="alert-icon"></div>';
                     messagesHtml += messageDate+'</span><div class="gt-link-to-node">&gt;</div>';
-                    messagesHtml += '<div class="v-spacer"></div></li></a><div class="v-spacer"></div>';
+                    messagesHtml += '<div class="v-spacer"></div></li><div class="v-spacer"></div>';
 
                 }
-
-                $('#messages-list').html(messagesHtml);
+                    $('#messages-list').html(messagesHtml);
 
             }else{
                 $('#messages-list').html("<span style='float:left!important;font:14px AvenirLTStdLight;'>You don't have any messages yet.</span><div class='v-spacer'></div>");
             }
             checkUserAcPrCompleteness();
+            getUserNotificationsNew();
         },
         error: function(error){
             console.log(error);
@@ -478,6 +489,7 @@ function getUserDetails(){}
 
 // updates ride-details page with current session data
 function showSingleSessionDriver(id, fromBack){
+    console.log(id);
     $.ajax({
         url: secureHost + "Sessions/" + parseInt(id) + "?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -676,7 +688,7 @@ function getAllMessage(callback){
 
  function getMessageConversation(sessionId, senderId, recipientId){
      console.log('getMessageConversation');
-     console.log('sessionId: '+sessionId);
+     console.log('sessionId: '+sessionId + "---" + senderId + "---" + recipientId);
      $.ajax({
          url: secureHost + 'Messages?filter={"where":{"sessionId":"' +sessionId+ '"}}&access_token=' + app.curAccessToken,
          type: 'GET',
@@ -684,8 +696,7 @@ function getAllMessage(callback){
          contentType: 'application/json',
          processData: false,
          success: function(d){
-         console.log('getMessageConversation success');
-             console.log(d);
+         console.log('getMessageConversation success: '+ JSON.stringify(d));
              var temp = {message:[]}
              if(senderId == app.curUserId)
                 getUserMessageThread(recipientId, d);
@@ -855,7 +866,7 @@ function getAllUserBookings(id){
 
                 allbookingsHtml += '<div class="ride-request-holder" data-booking-id="'+d[item]['sessionId']+'"><div class="lift-img"><a href="#">';
                 allbookingsHtml += '<img class="pic-venue" alt="Booking Image" src="http://web.boardlift.com/assets/images/sessions/session-1.jpg" data-unique-session-id="'+d[item]['sessionId']+'"></a></div>';
-                allbookingsHtml += '<div class="ride-details-mobile" style="display:none;"><ul>';
+                allbookingsHtml += '<div class="ride-details-mobile" data-booking-id="'+d[item]['sessionId']+'" style="display:none;"><ul>';
                 allbookingsHtml += '<li class="ride_request_booking_status '+allBookingStatuses[d[item]['bookingStatusId']].toLowerCase()+'"><span>Booking request '+allBookingStatuses[d[item]['bookingStatusId']]+'</span></li>';
                 allbookingsHtml += '<table width="100%"><tbody><tr><td>';
                 allbookingsHtml += '<a href="#" data-booking-id="'+d[item]['sessonId']+'">';
@@ -1000,9 +1011,8 @@ function getDriverProfile(id){
         processData: false,
         success: function (d) {
                 console.log(d);
-                var imgUrl = "https://boardlift-development.s3-ap-southeast-2.amazonaws.com/" + d['avatar'];
                 $('#driver-name').text(d['fname']+" "+d['lname']);
-                $('.driver-photo-holder').css({'background-image':'url('+imgUrl+')'});
+                $('.driver-photo-holder').css({'background-image':'url('+d['avatar']+')'});
                 $('#driver-bio').text(d['bio']);
                 var genderurl="http://web.boardlift.com/assets/images/mobile-images/gender-"+ d['gender'] + ".png";
                 $('#driver-gender img').attr('src',genderurl);
@@ -1289,7 +1299,7 @@ function getLocationInfo(args){
 }
 
 function getUserMessageThread(userId, data1){
-    console.log('getUserMessageThread');
+    console.log('getUserMessageThread: '+JSON.stringify(data1));
     $.ajax({
         url: secureHost + "UserProfiles/" + userId + "&access_token=" + app.curAccessToken,
         type: 'GET',
@@ -1297,7 +1307,7 @@ function getUserMessageThread(userId, data1){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log('getUserMessageThread success');
+            console.log('getUserMessageThread success: '+ JSON.stringify(d));
             app.conversation = "";
             var temp ={message:[],recipient:d};
             for(i in data1){
@@ -1305,9 +1315,10 @@ function getUserMessageThread(userId, data1){
             console.log("data1[i].recipient: "+data1[i].recipient);
                 if(data1[i].sender == app.curUserId || data1[i].recipient == app.curUserId)
                     if(data1[i].sender == userId || data1[i].recipient == userId)
-                    temp.message.push(data1[i]);
+                        temp.message.push(data1[i]);
             }
             app.conversation = temp;
+            console.log("app conversation: "+ JSON.stringify(app.conversation));
             $.mobile.changePage('message-reply.html');
         },
         error: function(error){
@@ -1557,8 +1568,25 @@ function getDataForSingleSession(id, call_from){
 
 // make the complete side menu (very bad idea)
 function makeSideMenuLoggedIn(){
+        
     showingSideMenu = true;
-    var fullHtml = '<div id="slide_menu" class="loggedin-side-bar"><div class="mobile_ryt_nav with_login" id="mobile_right_nav"><div class="pro_pic"><a href="#" style="color:#999;"><div class="actual-profile-image"></div><span class="pro_pic_name"></span></a></div><ul class="mb_nav"><li><div class="sub_menu_blk"><a href="dashboard.html"><div class="sb_nav_img sb_nav_img1"></div><h2>Dashboard</h2></a></div></li><li><div class="sub_menu_blk"><a href="message.html"><div id="message-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img2"></div><h2>Messages<span></span></h2></a></div></li><li><div class="sub_menu_blk"><a href="session-current-listings.html"><div id="session-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img3"></div><h2>Sessions<br>(As driver)</h2></a></div></li><li><div class="sub_menu_blk"><a href="bookings.html"><div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img4"></div><h2>Bookings<br>(As passenger)</h2></a></div></li><li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img5"></div><h2>Help</h2></a></div></li><li><div class="sub_menu_blk"><a href="account-main.html"><div class="sb_nav_img sb_nav_img6"></div><h2>Account</h2></a></div></li></ul><ul class="wl_mb_nav nav_gap"><li><a href="#" id="share-friends">Invite friends</a></li><li><a href="#">Legal stuff</a></li><li><a href="#">Contact us</a></li><li id="log-out"><a href="logout.html">Log out</a></li></ul></div></div>';
+    var fullHtml = '<div id="slide_menu" class="loggedin-side-bar"><div class="mobile_ryt_nav with_login" id="mobile_right_nav"><div class="pro_pic"><a href="#" style="color:#999;"><div class="actual-profile-image"></div><span class="pro_pic_name"></span></a></div><ul class="mb_nav"><li><div class="sub_menu_blk"><a href="dashboard.html"><div class="sb_nav_img sb_nav_img1"></div><h2>Dashboard</h2></a></div></li>';
+        if(app.totalMsgNotify>0){
+            fullHtml +='<li><div class="sub_menu_blk"><a href="message.html"><div id="message-side-notification" class="side-menu-notification">'+app.totalMsgNotify+'</div><div class="sb_nav_img sb_nav_img2"></div><h2>Messages<span></span></h2></a></div></li>';
+        }else{
+            fullHtml +='<li><div class="sub_menu_blk"><a href="message.html"><div id="message-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img2"></div><h2>Messages<span></span></h2></a></div></li>';
+        }
+        if(app.totalSessionNotify>0){
+            fullHtml +='<li><div class="sub_menu_blk"><a href="session-current-listings.html"><div id="session-side-notification" class="side-menu-notification">'+app.totalSessionNotify+'</div><div class="sb_nav_img sb_nav_img3"></div><h2>Sessions<br>(As driver)</h2></a></div></li>';
+        }else{
+            fullHtml +='<li><div class="sub_menu_blk"><a href="session-current-listings.html"><div id="session-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img3"></div><h2>Sessions<br>(As driver)</h2></a></div></li>';
+        }
+        if(app.totalBookingNotify>0){
+            fullHtml +='<li><div class="sub_menu_blk"><a href="bookings.html"><div id="booking-side-notification" class="side-menu-notification">'+app.totalBookingNotify+'</div><div class="sb_nav_img sb_nav_img4"></div><h2>Bookings<br>(As passenger)</h2></a></div></li>';
+        }else{
+            fullHtml +='<li><div class="sub_menu_blk"><a href="bookings.html"><div id="booking-side-notification" class="side-menu-notification" style="display:none;"></div><div class="sb_nav_img sb_nav_img4"></div><h2>Bookings<br>(As passenger)</h2></a></div></li>';
+        }
+    fullHtml +='<li><div class="sub_menu_blk"><a href="#"><div class="sb_nav_img sb_nav_img5"></div><h2>Help</h2></a></div></li><li><div class="sub_menu_blk"><a href="account-main.html"><div class="sb_nav_img sb_nav_img6"></div><h2>Account</h2></a></div></li></ul><ul class="wl_mb_nav nav_gap"><li><a href="#" id="share-friends">Invite friends</a></li><li><a href="#">Legal stuff</a></li><li><a href="#">Contact us</a></li><li id="log-out"><a href="logout.html">Log out</a></li></ul></div></div>';
     $('.main_container').after(fullHtml);
     $('.actual-profile-image').css('background', 'url('+app.curUserAvatar+')');
 
@@ -1915,6 +1943,7 @@ function checkUserAcPrCompleteness(){
                     } 
                 }
             }
+            // getUserNotificationsNew();
         }
     });
 }
@@ -1948,7 +1977,7 @@ function getCurSessionBooking(id){
                     if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 1){
                         //accepted booking and session is OPEN - show only contact and cancel button
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="cancel-button" class="form-button" style="float:none;" value="Cancel">';
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="' + app.curUserId + '" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
                     }else if(d[elem]['bookingStatusId'] == 1 || d[elem]['bookingStatusId'] == 5){
                         // new or paid, show all buttons
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="accept-button" class="form-button" style="float:none;" value="Accept">';
@@ -1998,18 +2027,130 @@ var query = {
 }
 // make the complete side menu (very bad idea)
 
-function makeSearch(){
+function makeSearch(page){
     showingSearch = true;
-    var fullHtml = '<div id="filter_search"> <div class="filtr_srchBtn"> <a href="#" id="filter-search-anchor"> <button id="filter-search-btn" type="button">Filter Search</button> </a> </div><div class="main_row"> <div class="search_sec"> <div class="close_srch_popup">X</div><div class="depart_date_holder"> <input data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value=""> <span id="clear_slideup_date" style="visibility: hidden;">X</span> </div><div class="search_main_row"> <a href="#" id="search-in-victoria"> <div class="victoria_sec"> <div class="content_sec"> <h1>Victoria</h1> <p>Search sessions</p></div></div></a> <a href="#" id="search-in-sa"> <div class="sa_sec spacer"> <div class="content_sec"> <h1>SA</h1> <p>Search sessions</p></div></div></a> <a href="#" id="search-in-nsw"> <div class="nsw_sec spacer"> <div class="content_sec"> <h1>NSW</h1> <p>Search sessions</p></div></div></a> </div><div class="clearboth"></div></div></div><div class="v-spacer"></div></div>';
-    $('.main_container').after(fullHtml);
+    var fullHtml = '<div id="filter_search"> <div class="filtr_srchBtn"> <a href="#" id="filter-search-anchor"> <button id="filter-search-btn" type="button">Filter Search</button> </a> </div><div class="main_row"> <div class="search_sec"> <div class="close_srch_popup">X</div><div class="depart_date_holder"> <input data-role="none" data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value=""> <span id="clear_slideup_date" style="visibility: hidden;">X</span> </div><div class="search_main_row"> <a href="#" id="search-in-victoria"> <div class="victoria_sec"> <div class="content_sec"> <h1>Victoria</h1> <p>Search sessions</p></div></div></a> <a href="#" id="search-in-sa"> <div class="sa_sec spacer"> <div class="content_sec"> <h1>SA</h1> <p>Search sessions</p></div></div></a> <a href="#" id="search-in-nsw"> <div class="nsw_sec spacer"> <div class="content_sec"> <h1>NSW</h1> <p>Search sessions</p></div></div></a> </div><div class="clearboth"></div></div></div><div class="v-spacer"></div></div>';
+    page.find('.main_container').after(fullHtml);
+    
+    page.find('#search_departureDate_regional').datetimepicker({
+        timepicker:false,
+        format:'d/m/Y',
+        minDate:0,
+        closeOnDateSelect:true,
+        scrollMonth:false,
+        inline:false
+    });
+
+    page.find('#search_departureDate_regional').on("keydown", function(e){
+        e.preventDefault();
+    });
+
+
+    page.find("#search-in-victoria").click(function(e) {
+        e.preventDefault();
+        var session_date = page.find("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var d = {};
+            d['destination'] = "Victoria, Australia";
+            $.mobile.changePage("search-result.html", {data:d});
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            
+            var d = {};
+            d['destination'] = "Victoria, Australia";
+            d['departureDate'] = yyyy+"-"+mm+"-"+dd;
+            $.mobile.changePage('search-result.html', {data:d});
+        }
+    });
+
+    page.find("#search-in-victoria").on("click", function(e){
+        e.preventDefault();
+    });
+    
+    page.find("#search-in-sa").click(function(e) {
+        e.preventDefault();
+        var session_date = page.find("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var d = {};
+            d['destination'] = "South Australia, Australia";
+            $.mobile.changePage("search-result.html", {data:d});
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            
+            var d = {};
+            d['destination'] = "South Australia, Australia";
+            d['departureDate'] = yyyy+"-"+mm+"-"+dd;
+            $.mobile.changePage('search-result.html', {data:d});
+        }
+    });
+
+    page.find("#search-in-sa").on("click", function(e){
+        e.preventDefault();
+    });
+    
+    page.find("#search-in-nsw").click(function(e) {
+        e.preventDefault();
+        var session_date = page.find("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var d = {};
+            d['destination'] = "New South Wales, Australia";
+            $.mobile.changePage("search-result.html", {data:d});
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            
+            var d = {};
+            d['destination'] = "New South Wales, Australia";
+            d['departureDate'] = yyyy+"-"+mm+"-"+dd;
+            $.mobile.changePage('search-result.html', {data:d});
+        }
+    });
+
+    page.find("#search-in-nsw").on("click", function(e){
+        e.preventDefault();
+    });
+    
+    page.find("#filter-search-anchor").click(function(e) {
+        e.preventDefault();
+        var session_date = page.find("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var today = new Date();
+            var dd = ("0" + (today.getDate())).slice(-2);
+            var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+            var yyyy = today.getFullYear();
+            
+            var d = {};
+            d['departureDate'] = yyyy+"-"+mm+"-"+dd;
+            $.mobile.changePage("search-result.html", {data:d});
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            
+            var d = {};
+            d['departureDate'] = yyyy+"-"+mm+"-"+dd;
+            $.mobile.changePage("search-result.html", {data:d});
+        }
+    });
+
+
 }
 
-function hideSearch(){
+function hideSearch(page){
     console.log('hideSearch');
     showingSearch = false;
-    console.log($('#filter_search').length);
-    $('#filter_search').remove();
-    console.log($('#filter_search').length);
+    console.log(page.find('#filter_search').length);
+    page.find('#filter_search').remove();
+    console.log(page.find('#filter_search').length);
 }
 // to change bookingStatus of bookings for driver from passenger
 function changeBookingStatus(id, newId){
@@ -2118,4 +2259,168 @@ function userLogout(){
             console.log(error);
         }
     });
+}
+
+function encodeQueryData(data){
+    var ret = [];
+    for (var d in data)
+    {
+        //if(data[d] != "")
+        //{
+            ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+        //}
+    }
+    return ret.join("&");
+}
+
+function searchSessions(query){
+    var acQuery = encodeQueryData(query);
+    console.log("query data: "+acQuery);
+    console.log('this fn is called');
+    console.log(secureHost + "Sessions/search?"+acQuery+'&access_token='+app.curAccessToken);
+    $.ajax({
+        url: secureHost + "Sessions/search?"+acQuery+'&access_token='+app.curAccessToken,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        processData: false,
+        success: function (data) {
+            console.log(data);
+            var searchResult = "";
+
+            searchResult += '<div id="our-custom-div"><h2>';
+
+            if(query['origin'] != undefined){
+                searchResult += 'From: ' + query['origin'] + '<br>';
+            }else if(query['destination'] != undefined){
+                searchResult += 'To: ' + query['destination'] + '<br>';
+            }
+            searchResult += '</h2>';
+
+            // console.log(searchResult);
+            // searchResult += '<h2>From: <span id="search-from"></span><br>To: <span id="search-to"></span><br></h2>';
+
+            if(data.length>0){
+                for(var item in data){
+                    var ts = Date.parse(data[item]['travel_start_date']);
+                    var h = new Date(ts);
+                    var sessionDate = h.dateFormat('d/m/Y')
+
+                    var imgUrl = 'https://boardlift-development.s3-ap-southeast-2.amazonaws.com/users/'+ data[item]['driver_id']+'.jpg';
+                    // console.log(imgUrl);
+                    searchResult += '<div class="srh-result" data-session-id='+data[item]['id']+' style="background-image:url()"><div style="padding-top:70%;clear:both;">&nbsp;</div><div class="result-text"><div class="rt-block">';
+                    searchResult += '<div class="rst-text"><h2><strong>Session:</strong>'+data[item]['name']+'</h2><h2><strong>Departure:</strong>'+h.toString().split(" ")[0] + " " +sessionDate+'</h2><h2><strong>To:</strong>'+data[item]['destination']+'</h2><h2><strong>From:</strong>'+data[item]['origin']+'</h2></div>';
+                    searchResult += '<div class="ru-pic" style="border-radius:50%;background-size:cover !important; background:url('+imgUrl+') center center no-repeat;"></div>';
+                }
+            }else {
+                searchResult += '<div style="margin: 30px;padding: 10px;height:auto;font: 22px AvenirLTStdHeavy;color:#e56a73;text-align:center;">No rides found.</div>';
+            }
+            // console.log(searchResult);
+            searchResult += '</div>';
+            $('#our-custom-div').remove();
+            $('.filer-sec').after(searchResult);
+        },
+        error: function(error){
+            console.log(error);
+            $('#our-custom-div').remove();
+            alert("error occurred");
+            console.log("Cannot get data");
+        }
+    });
+
+}
+
+
+// for getting user notifications
+
+function getUserNotificationsNew(){
+    console.log("noti calles");
+    // var query = '{"where":{"userProfileId":'+app.curUserId+'}}';
+
+    app.totalSessionNotify = 0;
+    app.totalMsgNotify = 0;
+    app.totalBookingNotify = 0;
+
+    $.ajax({
+        url: secureHost + "Notifications/getUserNotifications?profileId=" + app.curUserId + "&access_token=" + app.curAccessToken,
+        type: 'GET',
+        dataType: "json",
+        contentType: 'application/json',
+        processData: false,
+        success: function(d){
+            console.log(d);
+
+            if(d.length > 0){
+
+                window.localStorage.setItem("allNotifications", JSON.stringify(d));
+
+                for(var item in d){
+
+
+                    if(d[item]['type'] == "Session"){
+
+                        app.totalSessionNotify += d[item]['notification_count'];
+
+                        // now update dashboard page session show
+                        var someVal = $('#session-list .single-session-driver[data-session-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text();
+
+                        console.log('value of someVal: ' + $('#session-list .single-session-driver[data-session-id='+d[item]['object_id']+'] h4').text());
+
+                        var txt = "";
+
+                        // means not present
+                        if(someVal == undefined || someVal == ""){
+                            someVal = d[item]['notification_count'];
+                            txt = '<span class="dashboard-notification">'+someVal+'</span>';
+                            $('#session-list .single-session-driver[data-session-id="'+d[item]['object_id']+'"] h4').append(txt);
+                        }else{
+                            $('#session-list .single-session-driver[data-session-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text(parseInt(someVal)+1);
+                        }
+            
+
+                    }else if(d[item]['type'] == "Message"){
+
+                        app.totalMsgNotify += d[item]['notification_count'];
+
+                        var someVal = $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['object_id'].split('_')[0]+'"]').find('.dashboard-notification').text();
+                        var txt = '';
+
+                        if(someVal == undefined || someVal == ""){
+                            someVal = d[item]['notification_count'];
+                            txt = '<span class="dashboard-notification">'+someVal+'</span>';
+                            $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['object_id'].split('_')[0]+'"] h4').append(txt);
+                        }else{
+                            $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['object_id'].split('_')[0]+'"] h4').append(txt);
+                        }
+
+
+                    }else{
+
+                        app.totalBookingNotify += d[item]['notification_count'];
+
+                        var someVal = $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text();
+
+                        var txt = "";
+
+                        // means not present
+                        if(someVal == undefined || someVal == ""){
+                            someVal = d[item]['notification_count'];
+                            txt = '<span class="dashboard-notification">'+someVal+'</span>';
+                            $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['object_id']+'"] h4').append(txt);
+                        }else{
+                            $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text(parseInt(someVal)+1);
+                        }
+                    }
+
+
+                }
+
+            }
+
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+
 }

@@ -1,375 +1,103 @@
-  <div data-role="page">
-
-    <div class="search_results_holder">
-        <div class="filer-sec">
-            <a class="filter-button-link" type="button" id="filter-search-btn" href="javascript:void(0)">Filter Search</a>
-        </div>
-        <h2>Boardlift rides:<br>Departs Wednesday 14/02/15</h2>
+   <div data-role="page" id="search-result">
+    <style type="text/css">
+        #clear_origin {
+            background-color: #e56a73;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            height: 16px;
+            position: relative;
+            right: 20px;
+            text-align: center;
+            top: 0;
+            width: 12px;
+            visibility:hidden;
+        }
         
-        <a href="ride-details.html">
-            <div class="srh-result" style="background-image:url('images/sessions/session-1.jpg')">
-                <div style="padding-top:70%;clear:both;">&nbsp;</div>
-                <div class="result-text">
-                    <div class="rt-block">
-                        <div class="rt-seat">
-                            <ul>
-                                <li><img src="images/result-seat.png" alt=""></li>
-                                <li><img src="images/result-seat.png" alt=""></li>
-                                <li><img src="images/result-seat.png" alt=""></li>
-                            </ul>
-                        </div>
-                        <div class="rst-text">
-                            <h2><strong>Session:</strong>Dawny at Gunnamatta</h2>
-                            <h2><strong>To:</strong>Mornington Peninsula</h2>
-                            <h2><strong>From:</strong>Wheelers Hill</h2>
-                        </div>
-                        <div class="ru-pic">
-                            <img src="images/users/user-1.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
+        #clear_date {
+            background-color: #e56a73;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            height: 16px;
+            position: relative;
+            right: 25px;
+            text-align: center;
+            top: 0;
+            width: 14px;
+            visibility:hidden;
+        }
         
-        <a href="ride-details.html">
-            <div class="srh-result" style="background-image:url('images/sessions/session-2.jpg')">
-                <div style="padding-top:70%;clear:both;">&nbsp;</div>
-                <div class="result-text">
-                    <div class="rt-block">
-                        <div class="rt-seat">
-                            <ul>
-                                <li><img src="images/result-seat.png" alt=""></li>
-                                <li><img src="images/result-seat.png" alt=""></li>
-                                <li><img src="images/result-seat.png" alt=""></li>
-                            </ul>
-                        </div>
-                        <div class="rst-text">
-                            <h2><strong>Session:</strong>Dawny at Gunnamatta</h2>
-                            <h2><strong>To:</strong>Mornington Peninsula</h2>
-                            <h2><strong>From:</strong>Glen Iris</h2>
-                        </div>
-                        <div class="ru-pic">
-                            <img src="images/users/user-1.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
+        #clear_destination {
+            background-color: #e56a73;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            height: 16px;
+            position: relative;
+            right: 22px;
+            text-align: center;
+            top: 0;
+            width: 14px;
+            visibility:hidden;
+        }
         
-        <div class="v-spacer"></div>
-    </div>
+        #search_departureDate2, #search_destination {
+            width: 84%;
+        }
+    </style>
 
-    <div class="clearboth"></div>
-    <div id="search-filter-options" style="top: 100%;">
-    <div class="site-main">
-        <div class="search-filter-main">
-            <div id="search-filter-close" class="pre-reg-close"><img alt="" src="images/close-pri.png"> </div>
-                <fieldset class="search-filter-fieldset" style="text-align:center;">
-                    <legend style="padding-top:20px;">Where are you leaving from?</legend>
-                    <li>
-                        <input  data-role="none" type="text" name="search_origin" id="search_origin" class="blue_buble placeholder" value="" placeholder="From" autocomplete="off">
-                    </li>
-                </fieldset>
-                <fieldset class="search-filter-fieldset basic-filter" style="width:100%;">
-                    <legend>Where and when would you like to go?</legend>
-                    
-                    <li><input  data-role="none" type="text" name="search_destination" id="search_destination" placeholder="Destination" class="placeholder"></li>
-                    <li>
-                    <input  data-role="none" type="text" name="search_departureDate" id="search_departureDate" value="" placeholder="Date" readonly="readonly" class="placeholder">
-                    
-                    </li>
-                </fieldset>
-                <div class="v-spacer"></div>
-                <fieldset class="search-filter-fieldset">
-                    <legend>Select vehicle type</legend>
-                    <div class="search-options">
-                        <li style="width:100%;float:none;text-align:center;">Seats<img src="images/current-avail.png" style="margin:0 3%;width:4%;height:auto;">
-                            <select id="search_numSeat" style="background:#FFFFFF;float:none !important;">
-                            <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select>
-                        </li>
-                        <div class="v-spacer"></div>
-                        <ul class="vehicle-type-container">
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_1" class="checkbox wheels-bodytype" value="1">
-                                    <label style="width:18%;" for="vehicle_body_type_1"><span style="margin:auto;"></span><br>Sedan</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_2" class="checkbox wheels-bodytype" value="2">
-                                    <label style="width:18%;" for="vehicle_body_type_2"><span style="margin:auto;"></span><br>Station Wagon</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_3" class="checkbox wheels-bodytype" value="3">
-                                    <label style="width:18%;" for="vehicle_body_type_3"><span style="margin:auto;"></span><br>Hatch</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_4" class="checkbox wheels-bodytype" value="4">
-                                    <label style="width:18%;" for="vehicle_body_type_4"><span style="margin:auto;"></span><br>SUV</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_5" class="checkbox wheels-bodytype" value="5">
-                                    <label style="width:18%;" for="vehicle_body_type_5"><span style="margin:auto;"></span><br>SUV</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_6" class="checkbox wheels-bodytype" value="6">
-                                    <label style="width:18%;" for="vehicle_body_type_6"><span style="margin:auto;"></span><br>4WD</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_7" class="checkbox wheels-bodytype" value="7">
-                                    <label style="width:18%;" for="vehicle_body_type_7"><span style="margin:auto;"></span><br>Van</label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_8" class="checkbox wheels-bodytype" value="8">
-                                    <label style="width:18%;" for="vehicle_body_type_8"><span style="margin:auto;"></span><br>Other</label>
-                                </li>
-                            </ul>
-                    </div>
-                </fieldset>
-                
-                <fieldset class="search-filter-fieldset">
-                    <legend>Select board type</legend>
-                    <div class="search-options">
-                        <ul class="board-type-container">
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-1" name="boardTypes" value="1">
-                                <label for="search-filter-boardtype-1"><span></span><br>Short Board</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-2" name="boardTypes" value="2">
-                                <label for="search-filter-boardtype-2"><span></span><br>Mini Mal</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-3" name="boardTypes" value="3">
-                                <label for="search-filter-boardtype-3"><span></span><br>Long Board</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-4" name="boardTypes" value="4">
-                                <label for="search-filter-boardtype-4"><span></span><br>SUP</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-5" name="boardTypes" value="5">
-                                <label for="search-filter-boardtype-5"><span></span><br>Skate Board</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-6" name="boardTypes" value="6">
-                                <label for="search-filter-boardtype-6"><span></span><br>Body Board</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-7" name="boardTypes" value="7">
-                                <label for="search-filter-boardtype-7"><span></span><br>Wake Board</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-8" name="boardTypes" value="8">
-                                <label for="search-filter-boardtype-8"><span></span><br>Snow Board</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="search-filter-boardtype-9" name="boardTypes" value="9">
-                                <label for="search-filter-boardtype-9"><span></span><br>Kite Board</label>
-                            </li>
-                            <div class="v-spacer"></div>
-                        </ul>
-                    </div>
-                </fieldset>
-                
-                <fieldset class="search-filter-fieldset">
-                    <legend>Select music preference</legend>
-                    <div class="search-options">
-                        <ul class="user-profile-music-list">
-                                                                        <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-alternative" class="user-profile-music" name="preference_1" value="alternative">
-                                    <label for="register-music-alternative"><span></span><br><div>Alternative</div></label>
-                                </li>
-                                                                        <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-metal" class="user-profile-music" name="preference_1" value="metal">
-                                    <label for="register-music-metal"><span></span><br><div>Metal</div></label>
-                                </li>
-                                                                        <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-pop" class="user-profile-music" name="preference_1" value="pop">
-                                    <label for="register-music-pop"><span></span><br><div>Pop</div></label>
-                                </li>
-                                                                        <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-electronic" class="user-profile-music" name="preference_1" value="electronic">
-                                    <label for="register-music-electronic"><span></span><br><div>Electronic</div></label>
-                                </li>
-                                                                        <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-punk" class="user-profile-music" name="preference_1" value="punk">
-                                    <label for="register-music-punk"><span></span><br><div>Punk</div></label>
-                                </li>
-                                                                        <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-talkback" class="user-profile-music" name="preference_1" value="talkback">
-                                    <label for="register-music-talkback"><span></span><br><div>Talkback</div></label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-rock" class="user-profile-music" name="preference_1" value="rock">
-                                    <label for="register-music-rock"><span></span><br><div>Rock</div></label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-sport" class="user-profile-music" name="preference_1" value="sport">
-                                    <label for="register-music-sport"><span></span><br><div>Sport</div></label>
-                                </li>
-                                <li>
-                                    <input  data-role="none" type="checkbox" id="register-music-classical" class="user-profile-music" name="preference_1" value="classical">
-                                    <label for="register-music-classical"><span></span><br><div>Classical</div></label>
-                                </li>
-                                                                </ul>
-                    </div>
-                </fieldset>
-                
-                <fieldset class="search-filter-fieldset">
-                    <legend>Smoking preference</legend>
-                    <div class="search-options">
-                        <ul class="smoking-options-container">
-                            <li>
-                                <input  data-role="none" type="checkbox" id="user-profile-smoking-yes" class="radio smoking" name="preference_2" value="smoking">
-                                <label for="user-profile-smoking-yes"><span>&nbsp;</span><br>Smoking</label>
-                            </li>
-                            <li>
-                                <input  data-role="none" type="checkbox" id="user-profile-smoking-no" class="radio smoking" name="preference_2" value="non smoking">
-                                <label for="user-profile-smoking-no"><span>&nbsp;</span><br>Non-Smoking</label>
-                            </li>
-                        </ul>
-                    </div>
-                </fieldset>
-                <div style="height:38px;clear:both;"></div>
-                <div class="submit-filter-holder">
-                    <button type="button" onclick="redirectResult2();" id="submit-filter">Search</button>
-                </div>
-        </div>
-    </div>
-</div>
-    <div id="mobile_footer"> 
-        <a href="index.html" class="footer_logo">
-        </a> <a href="" class="footer_srch"></a>
-        <div class="footer_menu"></div>
-        <div class="clearboth"></div>
-    </div>
-
-<!---------------------- Slide menu ---------------------->
-<div id="slide_menu">
-  <div class="mobile_ryt_nav without_login">
-    <div class="logo_pic"><img src="images/mobile-images/logo-mb.png" alt=""></div>
-   
-    <ul class="wl_mb_nav">
-      <li><a href="#">Log in</a></li>
-      <li><a href="#">Invite friends</a></li>
-      <li><a href="#">Legal stuff</a></li>
-    </ul>
-  </div>
-</div>
-<!---------------------- Slide menu end-------------------->
-
-	<div id="filter_search">
-        <div class="filtr_srchBtn">
-        	<button type="button">Filter Search</button>
-        </div>
-        <div class="main_row">
-        	<div class="search_sec">
-            	<div class="close_srch_popup">X</div>
-                <div class="depart_date_holder">
-                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
-                </div>
-                <div class="search_main_row">
-                	<div class="victoria_sec">
-                        <div class="content_sec">
-                            <h1>Victoria</h1>
-                            <p>Search sessions</p>
-                        </div>
-                    </div>
-                    <div class="sa_sec spacer">
-                        <div class="content_sec">
-                            <h1>SA</h1>
-                            <p>Search sessions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-            
-        </div>
-    </div>
-
-
-    <div id="login">
-        <div class="loginhead">
-            <div id="liup" class="signup_close">
-            	<div class="login_mb_close login_mb_close1">X</div>
-            </div>
-        </div>
-        <div class="main_row2">
-            <div class="fb_login">
-            	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
-            </div>
-        	<div class="or_divider">or</div>
-            <div class="main_form">
-                <form action="" method="get">
-                    <ul>
-                        <li>
-                        	<input  data-role="none" type="text" id="email" class="inp" placeholder="Email">
-                        </li>
-                        <li>
-                        	<input  data-role="none" type="password" id="password" class="inp" placeholder="password">
-                        </li>
-                        <li>
-                        	<input  data-role="none" type="submit" class="submit_btn" value="Log in">
-                        </li>
-                        <li>Not a BoardLift user? <a href="#">Sign up</a></li>
-                        <li>Forgotten password? <a href="#">Help</a></li>
-                    </ul>
-                </form>
-            </div>
-        </div>
-    </div>
+    <script type="text/javascript">
     
-    <div id="signup">
-        <div class="loginhead">
-            <div id="liup2" class="signup_close">
-            	<div class="login_mb_close2 login_mb_close">X</div>
-            </div>
-        </div>
-        <div class="main_row2">
-            <div class="fb_login">
-            	<button id="login-fb-btn" type="button"><i class="fa fa-facebook"></i> &nbsp;Log in using Facebook</button>
-            </div>
-        	<div class="or_divider">or</div>
-            <div class="main_form">
-                <form action="" method="get">
-                    <ul>
-                        <li>
-                        	<input  data-role="none" type="text" id="email2" class="inp" placeholder="Email">
-                        </li>
-                        <li>
-                        	<input  data-role="none" type="password" id="password2" class="inp" placeholder="password">
-                        </li>
-                        <li>
-                        	<input  data-role="none" type="password" id="confrm_password2a" class="inp" placeholder="Confirm password">
-                        </li>
-                        <li>
-                        	<input  data-role="none" type="text" id="capthca" class="inp" placeholder="capthca">
-                        </li>
-                        <li class="checkbox_gap">
-                        	<input  data-role="none" type="checkbox">
-                        	Give me news and updates from BoardLift</li>
-                        <li class="txt_gap">By signing up, I agree to BoardLift’s<br>
-                        	<a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                        </li>
-                        <li>
-                        	<input  data-role="none" type="submit" class="submit_btn" value="Sign up">
-                        </li>
-                        <li>Already a BoardLift’s user? <a href="#">Log in</a></li>
-                    </ul>
-                </form>
-            </div>
-        </div>
-    </div>
+    var availableDestinations = [];
+    var destinationData = [];
 
-<script>
-    $(document).ready(function() {
+    (function(){
+        // fetchDestinations();
+        
+        var searchAutocomplete = new google.maps.places.Autocomplete((document.getElementById('search_origin')),{ types: ['geocode'] });      
+        google.maps.event.addListener(searchAutocomplete, 'place_changed', function(){changeSearchBarLocation(searchAutocomplete);});
+        
+        $( "#search_destination" ).autocomplete({
+          source: availableDestinations
+        });
+        $( "#search_destination" ).on( "autocompleteselect", changeSearchBarLocation2 );
+        
+        $("#search_origin").keydown(function (e) {
+            $("#search_originLatitude").val("");
+            $("#search_originLongitude").val("");
+            
+            if(($("#search_origin").val() == "") && ($("#search_destination").val() == "") && ($("#search_departureDate").val() == ""))
+            {
+                $("#rideBtn").attr('disabled','disabled');
+            }
+            else
+            {
+                $("#rideBtn").removeAttr('disabled');
+            }
+        });
+        
+        $("#search_destination").keydown(function (e) {
+            $("#search_destinationLatitude").val("");
+            $("#search_destinationLongitude").val("");
+            
+            if(($("#search_origin").val() == "") && ($("#search_destination").val() == "") && ($("#search_departureDate").val() == ""))
+            {
+                $("#rideBtn").attr('disabled','disabled');
+            }
+            else
+            {
+                $("#rideBtn").removeAttr('disabled');
+            }
+        });
+        
+        $("#filterBtn").click(function () {
+            $("#dialog-filter").slideToggle("slow");
+        });
+        
         $('#search_departureDate').datetimepicker({
             format:'Y-m-d',
             minDate:0,
@@ -379,19 +107,887 @@
             onChangeDateTime:function(){$("#rideBtn").removeAttr('disabled');}
         });
         
-    });
-    $("#filter-search-btn").on("click", function(e) {
-        $("#search-filter-options").css("position", "absolute");
-        $("#search-filter-options").animate({top:'0px'}, 300, function() {
-            $(".submit-filter-holder").show();
+        $("#search_departureDate").keydown(function (e) {
+            e.preventDefault();
         });
+        
+    })();
+
+    function changeSearchBarLocation(input)
+    {
+        $("#search_originLatitude").val(input.getPlace().geometry.location.lat());
+        $("#search_originLongitude").val(input.getPlace().geometry.location.lng());
+        //$("#rideBtn").removeAttr('disabled');
+    }
+    
+    function changeSearchBarLocation2(event, ui)
+    {
+        $("#search_destinationLatitude").val(getLatLng(ui.item.value).latitude);
+        $("#search_destinationLongitude").val(getLatLng(ui.item.value).longitude);
+    }
+
+    function fetchDestinations()
+    {
+    console.log('destinations data');
+        $.ajax({
+            url: 'http://jeuel.dev.boardlift.com/index.php/home/get_destinations',
+            type: 'get', 
+            success: function(resp){ 
+                destinationData = jQuery.parseJSON(resp);
+                console.log(destinationData);
+                for(var i in destinationData)
+                {
+                    availableDestinations.push(destinationData[i].fullDestination);
+                }
+            }
+        });
+    }
+
+    function getLatLng(destination)
+    {
+        for(var i in destinationData)
+        {
+            if(destinationData[i].fullDestination == destination)
+            {
+                return destinationData[i];
+            }
+        }
+    }
+    
+    function redirectResult()
+    {
+        $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?"+getUrlQuery());
+    }
+
+    function getUrlQuery()
+    {
+        if($("#search_origin").val() == "From" || $("#search_origin").val() == "From:" || $("#search_origin").val() == "")
+        {
+            var from = "";
+        }
+        else
+        {
+            var from = $("#search_origin").val();
+        }
+        
+        if($("#search_destination").val() == "To" || $("#search_destination").val() == "To:")
+        {
+            var to = "";
+        }
+        else
+        {
+            var to = $("#search_destination").val();
+        }
+        
+        var data = {
+                origin: from,
+                destination: to,
+                numSeat: 1,
+                departureDate: $("#search_departureDate").val()
+            }
+        
+        return encodeQueryData(data);
+    }
+    
+    function redirectResult2()
+    {
+        console.log('inside redirectResult2');
+    //final search call query
+     getUrlQuery2();
+    }
+    
+    function getUrlQuery2()
+    {
+        console.log('inside getUrlQuery2');
+        if($("#search_origin").val() == "From" || $("#search_origin").val() == "From:" || $("#search_origin").val() == "")
+        {
+            var from = "";
+        }
+        else
+        {
+            var from = $("#search_origin").val();
+        }
+        
+        if($("#search_destination").val() == "To:" || $("#search_destination").val() == "To")
+        {
+            var to = "";
+        }
+        else
+        {
+            var to = $("#search_destination").val();
+        }
+        if($("#search_departureDate2").val() == "" || $("#search_departureDate2").val() == "Date") 
+        {
+            var date_of_departure = "";
+        }
+        else
+        {       var departure = $("#search_departureDate2").val();
+                var searchDate = departure.split("/");
+                var dd = searchDate[0];
+                var mm = searchDate[1];
+                var yyyy = searchDate[2]
+                var date_of_departure = yyyy+"-"+mm+"-"+dd;
+           
+        }
+        
+        var data = {
+                //originLatitude: $("#originLatitude").val(),
+                //originLongitude: $("#originLongitude").val(),
+                origin: from,
+                //destinationLatitude: $("#destinationLatitude").val(),
+                //destinationLongitude: $("#destinationLongitude").val(),
+                numSeat: $("#search_numSeat").val(),
+                boardTypes: getBoardTypesFilter(),
+                vehicleTypes: getVehicleBodyTypesFilter(),
+                destination: to,
+                departureDate: date_of_departure
+            }
+        data = getPreferencesFilters(data);
+        // data =  encodeQueryData(data);
+        console.log('filter search data: ');
+        console.log(JSON.stringify(data));
+        data = JSON.stringify(data);
+        searchSessions(data);
+    }
+    
+    
+    
+    function getBoardTypesFilter()
+    {
+        var allVals = new Array();
+        var selectedVals = [];
+        $('input[name="boardTypes"]').each(function() {
+            if($(this).prop( "checked" ))
+            {
+                selectedVals.push($(this).val());
+            }
+            allVals.push($(this).val());
+        });
+        
+        if(selectedVals.length > 0)
+        {
+            return selectedVals;
+        }
+        else
+        {
+            return allVals;
+        }
+    }
+
+    function getVehicleBodyTypesFilter()
+    {
+        var allVals = [];
+        var selectedVals = [];
+        $('input[name="vehicleTypes"]').each(function() {
+            if($(this).prop( "checked" ))
+            {
+                selectedVals.push($(this).val());
+            }
+            allVals.push($(this).val());
+        });
+        
+        if(selectedVals.length > 0)
+        {
+            return selectedVals;
+        }
+        else
+        {
+            return allVals;
+        }
+    }
+    
+    // function getPreferencesFilters(data)
+    // {
+    //     var scanned = [];
+    //     var preferences = []
+    //     var field_name;
+    //     var allVals = [];
+    //     var selectedVals = [];
+    //     $('input[name*="preference_"]').each(function() {
+    //         if (typeof scanned[$(this).prop( "name" )] != 'undefined') {
+    //             if($(this).prop( "checked" ))
+    //             {
+    //                 selectedVals.push($(this).val());
+    //             }
+    //             allVals.push($(this).val());
+    //         }
+    //         else
+    //         {
+    //             if(!jQuery.isEmptyObject(scanned))
+    //             {
+    //                 if(selectedVals.length > 0)
+    //                 {
+    //                     data[field_name] = selectedVals;
+    //                 }
+    //                 else
+    //                 {
+    //                     //data[field_name] = allVals;
+    //                 }
+    //             }
+                
+    //             field_name = $(this).prop( "name" );
+    //             scanned[$(this).prop( "name" )] = 1;
+    //             allVals = [];
+    //             selectedVals = [];
+                
+    //             if($(this).prop( "checked" ))
+    //             {
+    //                 selectedVals.push($(this).val());
+    //             }
+    //             allVals.push($(this).val());
+    //         }
+            
+    //     });
+        
+    //     if(selectedVals.length > 0)
+    //     {
+    //         data[field_name] = selectedVals;
+    //     }
+    //     else
+    //     {
+    //         //data[field_name] = allVals;
+    //     }
+        
+    //     return data;
+    // }
+
+    </script>
+    
+    <div class="search_results_holder">
+        <div class="filer-sec">
+            <a class="filter-button-link" type="button" id="filter-search-btn" href="javascript:void(0)">Filter Search</a>
+        </div>
+<!--         <h2>Boardlift rides:<br>Departs Wednesday 14/02/15</h2> -->
+        
+        
+        <div class="v-spacer"></div>
+    </div>
+    
+    <div class="clearboth"></div>
+    <div id="search-filter-options" style="top: 0px;">
+    <div class="site-main">
+        <div class="search-filter-main">
+            <div id="search-filter-close" class="pre-reg-close"><img alt="" src="http://jeuel.dev.boardlift.com/assets/images/close-pri.png"> </div>
+                <fieldset class="search-filter-fieldset basic-filter" style="text-align:center; width: 100%;">
+                    <legend style="padding-top:20px;">Where are you leaving from?</legend>
+                    <li style=" width: 100%; text-align: center;">
+                        <input type="text" name="search_origin" id="search_origin" class="blue_buble placeholder" value="Delhi" placeholder="From" style="padding-right: 18px;" autocomplete="off">
+                        <span id="clear_origin" style="visibility: visible;">X</span>
+                        <input type="hidden" id="search_originLatitude" value="">
+                        <input type="hidden" id="search_originLongitude" value="">
+                    </li>
+                </fieldset>
+                <fieldset class="search-filter-fieldset basic-filter" style="text-align:center; width: 100%;">
+                    <legend>Where and when would you like to go?</legend>
+                    <li>
+                        <input type="text" name="search_destination" id="search_destination" class="red_buble ui-autocomplete-input" value="Victoria, Australia" placeholder="To" autocomplete="off">
+                        <input type="hidden" id="search_destinationLatitude" value="">
+                        <input type="hidden" id="search_destinationLongitude" value="">
+                        <span id="clear_destination" style="visibility: visible;">X</span>
+                    </li>
+                    <li>
+                    <input type="text" name="search_departureDate" id="search_departureDate2" value="31/08/2015" placeholder="Date" readonly="readonly" class="placeholder">
+                    <span id="clear_date" style="visibility: visible;">X</span>
+                    </li>
+                </fieldset>
+                <div class="v-spacer"></div>
+                <fieldset class="search-filter-fieldset">
+                    <div class="search-options">
+                        <li style="width:100%;float:none;text-align:center;">Seats<img src="http://jeuel.dev.boardlift.com/assets/images/current-avail.png" style="margin:0 3%;width:3%;height:auto;">
+                            <select data-role="none" id="search_numSeat" style="float:none !important;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                        </select>
+                        </li>
+                    </div>
+                </fieldset>
+                <fieldset class="search-filter-fieldset">
+                    <legend>Select vehicle type</legend>
+                    <div class="search-options">
+                        <ul class="vehicle-type-container">
+                                                                <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_1" class="checkbox wheels-bodytype" value="1">
+                                        <label style="width:18%;" for="vehicle_body_type_1"><span style="margin:auto;"></span><br>Sedan</label>
+                                    </li>
+                                                                    <li>
+                                        <input  data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_2" class="checkbox wheels-bodytype" value="2">
+                                        <label style="width:18%;" for="vehicle_body_type_2"><span style="margin:auto;"></span><br>Station Wagon</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_3" class="checkbox wheels-bodytype" value="3">
+                                        <label style="width:18%;" for="vehicle_body_type_3"><span style="margin:auto;"></span><br>Hatch</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_4" class="checkbox wheels-bodytype" value="4">
+                                        <label style="width:18%;" for="vehicle_body_type_4"><span style="margin:auto;"></span><br>SUV</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_5" class="checkbox wheels-bodytype" value="5">
+                                        <label style="width:18%;" for="vehicle_body_type_5"><span style="margin:auto;"></span><br>Ute</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_6" class="checkbox wheels-bodytype" value="6">
+                                        <label style="width:18%;" for="vehicle_body_type_6"><span style="margin:auto;"></span><br>4WD</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_7" class="checkbox wheels-bodytype" value="7">
+                                        <label style="width:18%;" for="vehicle_body_type_7"><span style="margin:auto;"></span><br>Van</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" name="vehicleTypes" id="vehicle_body_type_8" class="checkbox wheels-bodytype" value="8">
+                                        <label style="width:18%;" for="vehicle_body_type_8"><span style="margin:auto;"></span><br>Other</label>
+                                    </li>
+                                                            <div class="v-spacer"></div>
+                        </ul>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="search-filter-fieldset">
+                    <legend>Select board type</legend>
+                    <div class="search-options">
+                        <ul class="board-type-container">
+                                                                <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-1" name="boardTypes" value="1">
+                                        <label for="search-filter-boardtype-1"><span></span><br>Short Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-2" name="boardTypes" value="2">
+                                        <label for="search-filter-boardtype-2"><span></span><br>Mini Mal</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-3" name="boardTypes" value="3">
+                                        <label for="search-filter-boardtype-3"><span></span><br>Long Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-4" name="boardTypes" value="4">
+                                        <label for="search-filter-boardtype-4"><span></span><br>SUP</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-5" name="boardTypes" value="5">
+                                        <label for="search-filter-boardtype-5"><span></span><br>Skate Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-6" name="boardTypes" value="6">
+                                        <label for="search-filter-boardtype-6"><span></span><br>Body Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-7" name="boardTypes" value="7">
+                                        <label for="search-filter-boardtype-7"><span></span><br>Wake Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-8" name="boardTypes" value="8">
+                                        <label for="search-filter-boardtype-8"><span></span><br>Snow Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-9" name="boardTypes" value="9">
+                                        <label for="search-filter-boardtype-9"><span></span><br>Kite Board</label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="search-filter-boardtype-10" name="boardTypes" value="10">
+                                        <label for="search-filter-boardtype-10"><span></span><br>Skis</label>
+                                    </li>
+                                                            <div class="v-spacer"></div>
+                        </ul>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="search-filter-fieldset">
+                    <legend>Select music preference</legend>
+                    <div class="search-options">
+                        <ul class="user-profile-music-list">
+                                                                <li>
+                                        <input data-role="none" type="checkbox" id="register-music-alternative" class="user-profile-music" name="preference_1" value="alternative">
+                                        <label for="register-music-alternative"><span></span><br><div>Alternative</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-metal" class="user-profile-music" name="preference_1" value="metal">
+                                        <label for="register-music-metal"><span></span><br><div>Metal</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-pop" class="user-profile-music" name="preference_1" value="pop">
+                                        <label for="register-music-pop"><span></span><br><div>Pop</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-electronic" class="user-profile-music" name="preference_1" value="electronic">
+                                        <label for="register-music-electronic"><span></span><br><div>Electronic</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-punk" class="user-profile-music" name="preference_1" value="punk">
+                                        <label for="register-music-punk"><span></span><br><div>Punk</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-talkback" class="user-profile-music" name="preference_1" value="talkback">
+                                        <label for="register-music-talkback"><span></span><br><div>Talkback</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-rock" class="user-profile-music" name="preference_1" value="rock">
+                                        <label for="register-music-rock"><span></span><br><div>Rock</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-sport" class="user-profile-music" name="preference_1" value="sport">
+                                        <label for="register-music-sport"><span></span><br><div>Sport</div></label>
+                                    </li>
+                                                                    <li>
+                                        <input data-role="none" type="checkbox" id="register-music-classical" class="user-profile-music" name="preference_1" value="classical">
+                                        <label for="register-music-classical"><span></span><br><div>Classical</div></label>
+                                    </li>
+                                                         </ul>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="search-filter-fieldset">
+                    <legend>Smoking preference</legend>
+                    <div class="search-options">
+                        <ul class="smoking-options-container">
+                            <li>
+                                <input data-role="none" type="checkbox" id="user-profile-smoking-yes" class="radio smoking" name="preference_2" value="smoking">
+                                <label for="user-profile-smoking-yes"><span></span><br>Smoking</label>
+                            </li>
+                            <li>
+                                <input data-role="none" type="checkbox" id="user-profile-smoking-no" class="radio smoking" name="preference_2" value="non smoking">
+                                <label for="user-profile-smoking-no"><span></span><br>Non-Smoking</label>
+                            </li>
+                        </ul>
+                    </div>
+                </fieldset>
+                <div style="height:38px;clear:both;"></div>
+            </div>
+        </div>
+        <div class="submit-filter-holder" style="display: block;">
+            <button type="button" id="submit-filter">Search</button>
+        </div>
+    </div>
+    
+    <div class="clearboth"></div>
+<div id="mobile_footer"> 
+        <a href="http://jeuel.dev.boardlift.com/" class="footer_logo"></a> 
+    <a href="#" class="footer_srch"></a>
+        
+            <div class="footer_menu_loggedin"></div>
+        
+    <div class="clearboth"></div>
+</div>
+<script type="text/javascript">
+(function(){
+    $("#filterBtn").click(function () {
+        $("#dialog-filter").slideToggle("slow");
     });
     
-    $("#search-filter-close").on("click", function(e) {
-        $("#search-filter-options").animate({top:'100%'}, 300, function() {
-            $("#search-filter-options").css("position", "fixed");
-            $(".submit-filter-holder").hide();
+    $('#search_departureDate_regional').datetimepicker({
+      format:'d/m/Y',
+      minDate:0,
+      timepicker: false,
+      closeOnDateSelect:true,
+      scrollMonth: false,
+      onChangeDateTime:function(){$("#clear_slideup_date").css("visibility", "visible");}
+    });
+    
+    $("#search_departureDate_regional").keydown(function (e) {
+        e.preventDefault();
+    });
+    
+    $("#search-in-victoria").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?origin=&destination=Victoria%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?origin=&destination=Victoria%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#search-in-sa").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?origin=&destination=South+Australia%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?origin=&destination=South+Australia%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#search-in-nsw").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?origin=&destination=New+South+Wales%2C+Australia");
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?origin=&destination=New+South+Wales%2C+Australia&departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+    
+    $("#filter-search-anchor").click(function(e) {
+        e.preventDefault();
+        var session_date = $("#search_departureDate_regional").val();
+        if(session_date == "" || session_date == "Date") {
+            var today = new Date();
+            var dd = ("0" + (today.getDate())).slice(-2);
+            var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+            var yyyy = today.getFullYear();
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?departureDate="+yyyy+"-"+mm+"-"+dd);
+        } else {
+            var searchDate = session_date.split("/");
+            var dd = searchDate[0];
+            var mm = searchDate[1];
+            var yyyy = searchDate[2];
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?departureDate="+yyyy+"-"+mm+"-"+dd);
+        }
+    });
+})();
+</script><script>
+
+function getNotifications()
+{
+    $.ajax({
+        method: "GET",
+        url: "http://jeuel.dev.boardlift.com/index.php/account/users/get_user_notifications"
+    }).done(function( msg ) {
+        data = jQuery.parseJSON(msg);
+        
+        if(data.count.Message > 0)
+        {
+            $('#message-side-notification').text(data.count.Message);
+            $('#message-side-notification').show();
+        }
+        else
+        {
+            $('#message-side-notification').hide();
+        }
+        
+        if(data.count.Session > 0)
+        {
+            $('#session-side-notification').text(data.count.Session);
+            $('#session-side-notification').show();
+        }
+        else
+        {
+            $('#session-side-notification').hide();
+        }
+        
+        if(data.count.Booking > 0)
+        {
+            $('#booking-side-notification').text(data.count.Booking);
+            $('#booking-side-notification').show();
+        }
+        else
+        {
+            $('#booking-side-notification').hide();
+        }
+        
+        /*
+        $( ".sessions-notification" ).text();
+        
+        jQuery.each( data.Booking, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#booking_"+i ).length ) { $( "#booking_"+i ).text(val);
         });
-    })
-</script>
+        
+        jQuery.each( data.Session, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#session_"+i ).length ) { $( "#session_"+i ).text(val);
+        });
+        
+        jQuery.each( data.Message, function( i, val ) {
+          //$( "#" + i ).append( document.createTextNode( " - " + val ) );
+          if ( $( "#message_"+i ).length ) { $( "#message_"+i ).text(val);
+        });
+        
+        
+        */
+        //console.log(data);                    
+    });
+}
+</script>       
+ <script type="text/javascript">
+        (function() {
+            $('#search_departureDate2').datetimepicker({
+                format:'d/m/Y',
+                minDate:0,
+                timepicker: false,
+                closeOnDateSelect:true,
+                scrollMonth: false,
+            });
+            
+
+            
+            
+                     
+            $('#search_origin').focus(function() {
+                clear_origin();
+            });
+
+            $('#search_origin').keyup(function() {
+                clear_origin();
+            });
+
+            $('#clear_origin').click(function () {
+                $('#search_origin').val('');
+                $('#clear_origin').css('visibility', 'hidden');
+            });
+
+            $('#search_departureDate2').focus(function() {
+                clear_date();
+            });
+
+            $('#search_departureDate2').change(function() {
+                clear_date();
+            });
+
+            $('#clear_date').click(function () {
+                $('#search_departureDate2').val('');
+                $('#clear_date').css('visibility', 'hidden');
+            });
+
+            $('#search_destination').focus(function() {
+                clear_destination();
+            });
+
+            $('#search_destination').keyup(function() {
+                clear_destination();
+            });
+
+            $('#clear_destination').click(function () {
+                $('#search_destination').val('');
+                $('#clear_destination').css('visibility', 'hidden');
+            });
+            
+            clear_origin();
+            clear_date();
+            clear_destination()
+
+            updatePageLinks();
+        })();
+
+        function clear_origin() {
+            var visible = ($('#search_origin').val() != '') ? 'visible' : 'hidden';
+            $('#clear_origin').css('visibility', visible);
+        }
+
+        function clear_date() {
+            var visible = ($('#search_departureDate2').val() != '') ? 'visible' : 'hidden';
+            $('#clear_date').css('visibility', visible);
+        }
+
+        function clear_destination() {
+            var visible = ($('#search_destination').val() != '') ? 'visible' : 'hidden';
+            $('#clear_destination').css('visibility', visible);
+        }
+        
+        function redirectResult()
+        {
+            $(location).attr('href',"http://jeuel.dev.boardlift.com/index.php/sessions/search?"+getUrlQuery());
+        }
+        
+        /*function getUrlQuery()
+        {
+            if($("#search_origin").val() == "From" || $("#search_origin").val() == "From:" || $("#search_origin").val() == "")
+            {
+                var from = "";
+            }
+            else
+            {
+                var from = $("#search_origin").val();
+            }
+            
+            if($("#search_destination").val() == "To:" || $("#search_destination").val() == "To")
+            {
+                var to = "";
+            }
+            else
+            {
+                var to = $("#search_destination").val();
+            }
+            if($("#search_departureDate2").val() == "" || $("#search_departureDate2").val() == "Date") 
+            {
+                var date_of_departure = "";
+            }
+            else
+            {
+                var departure = $("#search_departureDate2").val();
+                var searchDate = departure.split("/");
+                var dd = searchDate[0];
+                var mm = searchDate[1];
+                var yyyy = searchDate[2]
+                var date_of_departure = yyyy+"-"+mm+"-"+dd;
+            }
+            
+            var data = {
+                    origin: from,
+                    numSeat: $("#search_numSeat").val(),
+                    boardTypes: getBoardTypesFilter(),
+                    vehicleTypes: getVehicleBodyTypesFilter(),
+                    destination: to,
+                    departureDate: date_of_departure,
+                    advance: 1
+                }
+            data = getPreferencesFilters(data);
+            
+            return encodeQueryData(data);
+        }
+        
+        function encodeQueryData(data)
+        {
+            var ret = [];
+            for (var d in data)
+            {
+                ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+            }
+            return ret.join("&");
+        }*/
+        
+        /*function getBoardTypesFilter()
+        {
+            var allVals = new Array();
+            var selectedVals = [];
+            $('input[name="boardTypes"]').each(function() {
+                if($(this).prop( "checked" ))
+                {
+                    selectedVals.push($(this).val());
+                }
+                allVals.push($(this).val());
+            });
+            
+            if(selectedVals.length > 0)
+            {
+                return selectedVals;
+            }
+            else
+            {
+                return allVals;
+            }
+        }
+
+        function getVehicleBodyTypesFilter()
+        {
+            var allVals = [];
+            var selectedVals = [];
+            $('input[name="vehicleTypes"]').each(function() {
+                if($(this).prop( "checked" ))
+                {
+                    selectedVals.push($(this).val());
+                }
+                allVals.push($(this).val());
+            });
+            
+            if(selectedVals.length > 0)
+            {
+                return selectedVals;
+            }
+            else
+            {
+                return allVals;
+            }
+        }*/
+        
+        function getPreferencesFilters(data)
+    {
+        var selectedVals = [];
+        $('input[name*="preference_"]').each(function() {
+            
+            if($(this).attr("name") != "undefined"){
+                if($(this).is(":checked")){
+                    selectedVals.push($(this).val());
+                }
+            }
+            
+        });
+        
+        if(selectedVals.length > 0){
+            data["preferences"] = selectedVals;
+        }
+        else{
+            //data[field_name] = allVals;
+        }
+        
+        return data;
+    }
+
+        function updatePageLinks()
+        {
+            $('a[class=page-links]').each(function() {
+                $(this).attr('href', $(this).attr('href') + '?' + getUrlQuery());
+            });
+        }
+
+        (function(){
+            $('#submit-filter').on('click',function(){
+                redirectResult2();
+                $(".submit-filter-holder").hide();
+                $("#search-filter-options").css('top','100%');
+                  $(".search_results_holder").show();
+            });
+        })();
+
+        $('#search-result').on('pageshow',function(){
+            hideSearch($("search-result"));
+            var dest = getUrlParams('destination');
+            var ddate = getUrlParams('departureDate');
+            var d = {};
+
+            if(dest != undefined){
+                d['destination'] = dest;
+            }
+
+            if(ddate != undefined){
+                d['departureDate'] = ddate;
+            }
+
+            // d = encodeQueryData(d);
+            console.log("d value: "+d);
+            searchSessions(d);
+
+            $("#search-result").on("click", "#filter-search-btn", function(e) {
+                    $("#search-filter-options").css("top",'0%');
+                    $(".submit-filter-holder").show();
+                    $(".search_results_holder").hide();
+              
+                fetchDestinations();
+            });
+
+            $("#search-filter-close").on("click", function(e) {
+                $("#search-filter-options").css('top','100%');
+                $(".search_results_holder").show();
+                $(".submit-filter-holder").hide();
+                
+            });
+            
+
+        });
+        $(".search_results_holder").on('click','.srh-result',function(){
+            showSingleSessionDriver($(this).attr("data-session-id"),"booking");
+        });
+
+        $('#search-filter-options').css('top', '100%');
+        $(".submit-filter-holder").hide();
+
+
+        (function(){
+        $('.footer_menu_loggedin').on('click', function(e){
+                console.log('clicked on it: ' + showingSideMenu);
+                if(showingSideMenu){
+                    hideSideMenuLoggedIn();
+                }else{
+                    makeSideMenuLoggedIn();
+                }
+            });
+    })();
+
+    </script>
 </div>

@@ -96,37 +96,7 @@
 -->
 <!---------------------- Slide menu end-------------------->
 
-	<div id="filter_search">
-        <div class="filtr_srchBtn">
-        	<button type="button">Filter Search</button>
-        </div>
-        <div class="main_row">
-        	<div class="search_sec">
-            	<div class="close_srch_popup">X</div>
-                <div class="depart_date_holder">
-                	<input  data-role="none" id="search_departureDate" type="text" readonly placeholder="Date" value="">
-                    <!--<i class="fa fa-calendar"></i>-->
-                </div>
-                <div class="search_main_row">
-                	<div class="victoria_sec">
-                        <div class="content_sec">
-                            <h1>Victoria</h1>
-                            <p>Search sessions</p>
-                        </div>
-                    </div>
-                    <div class="sa_sec spacer">
-                        <div class="content_sec">
-                            <h1>SA</h1>
-                            <p>Search sessions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-            
-        </div>
-    </div>
-    
+	    
     <div id="share">
         <div class="loginhead">
             <div id="liup2" class="signup_close">
@@ -171,9 +141,9 @@
                 if(app.conversation.message[i].sender == app.curUserId){
                     var a;
                     if(app.conversation.message[i].unread == 1)
-                        a = '<div class="msg_reply_row1"><div class="msg_reply_sec1_lt"><img src="images/mobile-images/icon-msg-act.png" alt=""></div><div class="msg_reply_sec1_rt"><p class="drkgray_txtBlk28">' + app.userData.fname + ' ' + app.userData.lname + '</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' + app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' + app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' + app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
+                        a = '<div class="msg_reply_row1"><div class="msg_reply_sec1_lt"><img src="images/mobile-images/icon-msg-act.png" alt=""></div><div class="msg_reply_sec1_rt"><p class="drkgray_txtBlk28"> You</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' + app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' + app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' + app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
                     else
-                        a = '<div class="msg_reply_row1"><div class="msg_reply_sec2_lt"><div class="mn_ryt"><img src="images/mobile-images/icon-msg.png" alt=""></div><div class="clearboth"></div></div><div class="msg_reply_sec2_rt"><p class="drkgray_txtBlk28">' + app.userData.fname + ' ' + app.userData.lname + '</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' + app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' +  app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' +  app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
+                        a = '<div class="msg_reply_row1"><div class="msg_reply_sec2_lt"><div class="mn_ryt"><img src="images/mobile-images/icon-msg.png" alt=""></div><div class="clearboth"></div></div><div class="msg_reply_sec2_rt"><p class="drkgray_txtBlk28">You</p><p class="drkgray_txt26"><span class="avnrmdm">Session: </span>' + app.conversation.message[i].sessionName + '<br><span class="avnrmdm">Date: </span>' +  app.conversation.message[i].messageDate + '</p><br><p class="drkgray_txt26">' +  app.conversation.message[i].message + '</p></div><div class="clearboth"></div></div>';
                     $('.msg_reply_sec').append(a);
                 }
                 else{
@@ -214,5 +184,20 @@
                 }
             });
     })();
+
+    (function(){
+                    var page=$("#message-reply");
+                    $('.footer_srch').on('click', function(){
+                        console.log('clicked on it: ' + showingSearch);
+                        if(showingSearch){
+                            hideSearch(page);
+                        }else{
+                            makeSearch(page);
+                        }
+                    });
+                    page.on('click', '.close_srch_popup', function(){
+                            hideSearch(page);
+                    });
+                })();
     </script>
 </div>

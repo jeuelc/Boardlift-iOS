@@ -242,7 +242,7 @@
 
         <div id="ride-session-driver-container" style="width: 98%; margin: auto; left: 0px; right: 0px;display:none;">
                         <a href="http://web.boardlift.com/users/profile/2">
-                <div class="driver-photo-holder" style="background:url('https://graph.facebook.com/10153157075722356/picture?width=350') center center no-repeat">
+                <div class="driver-photo-holder">
                 
                 </div>
             </a>
@@ -734,51 +734,6 @@
         
     <div class="clearboth"></div>
 </div>
-<div id="filter_search">
-        <div class="filtr_srchBtn">
-            <a href="javascript:void(0)" id="filter-search-anchor">
-                <button id="filter-search-btn" type="button">Filter Search</button>
-            </a>
-        </div>
-        <div class="main_row">
-            <div class="search_sec">
-                <div class="close_srch_popup">X</div>
-                <div class="depart_date_holder">
-                                        <input  data-role="none" id="search_departureDate_regional" type="text" readonly placeholder="Date" value="">
-                    <span id="clear_slideup_date" style="visibility: hidden;">X</span>
-                </div>
-                <div class="search_main_row">
-                    <a href="javascript:void(0);" id="search-in-victoria">
-                        <div class="victoria_sec">
-                            <div class="content_sec">
-                                <h1>Victoria</h1>
-                                <p>Search sessions</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:void(0);" id="search-in-sa">
-                        <div class="sa_sec spacer">
-                            <div class="content_sec">
-                                <h1>SA</h1>
-                                <p>Search sessions</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:void(0);" id="search-in-nsw">
-                        <div class="nsw_sec spacer">
-                            <div class="content_sec">
-                                <h1>NSW</h1>
-                                <p>Search sessions</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="clearboth"></div>
-            </div>
-                
-        </div>
-        <div class="v-spacer"></div>
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
     $("#filterBtn").click(function () {
@@ -1122,6 +1077,19 @@ function getNotifications()
                     showConfirm(publishMessage, declineBooking, publishButtons, publishTitle);
                 });
 
-                
+                (function(){
+                    var page=$("#ride-details");
+                    $('.footer_srch').on('click', function(){
+                        console.log('clicked on it: ' + showingSearch);
+                        if(showingSearch){
+                            hideSearch(page);
+                        }else{
+                            makeSearch(page);
+                        }
+                    });
+                    page.on('click', '.close_srch_popup', function(){
+                            hideSearch(page);
+                    });
+                })();
 
     </script>
