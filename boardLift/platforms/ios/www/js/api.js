@@ -124,7 +124,7 @@ var boardSkillTypes = {
 
 function boardLiftLogin(userName, pass){
     var params = '{"email" : "'+userName+'","password" : "'+pass+'"}';
-    console.log('boardLiftLogin');
+    //console.log('boardLiftLogin');
     $.ajax({
         url: secureHost + "users/login",
         type: 'POST',
@@ -144,13 +144,13 @@ function boardLiftLogin(userName, pass){
             getUserData();
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
 
 function getUserData(callback){
-    console.log('getUserData');
+    //console.log('getUserData');
     $.ajax({
         url: secureHost + "UserProfiles?filter[where][id]=" +app.curUserId+ "&filter[include]=addresses&filter[include]=contactDetails&filter[include]=userWheels&filter[include]=userPreferences&filter[include]=profileCompleteness&filter[include]=userFavorites&filter[include]=sessions",
         type: 'GET',
@@ -164,13 +164,13 @@ function getUserData(callback){
                 callback();
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
 
 function getUserFavoritesSport(callback){
-    console.log('getUserFavoritesSport');
+    //console.log('getUserFavoritesSport');
     $.ajax({
         url: secureHost + "UserFavorites?filter[where][userProfileId]=" +app.curUserId+ "&access_token="+app.curAccessToken,
         type: 'GET',
@@ -183,13 +183,13 @@ function getUserFavoritesSport(callback){
             callback();
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
 
 function getUserBoardSkills(callback){
-    console.log('getUserBoardSkills');
+    //console.log('getUserBoardSkills');
     $.ajax({
         url: secureHost + "UserProfiles/" +app.curUserId+ "/boardSkills?access_token="+app.curAccessToken,
         type: 'GET',
@@ -201,13 +201,13 @@ function getUserBoardSkills(callback){
             callback(data);
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
 
 function getUserWheels(callback){
-    console.log('getUserWheels');
+    //console.log('getUserWheels');
     $.ajax({
         url: secureHost + "UserProfiles/" +app.curUserId+ "/userWheels?access_token="+app.curAccessToken,
         type: 'GET',
@@ -219,13 +219,13 @@ function getUserWheels(callback){
             callback(data, carCompanies);
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
 
 function getAllComponents(){
-    console.log('getAllComponents');
+    //console.log('getAllComponents');
     $.ajax({
         url: secureHost + "ProfileComponentTypes?access_token="+app.curAccessToken,
         type: 'GET',
@@ -236,13 +236,13 @@ function getAllComponents(){
             // console.log(JSON.stringify(data));
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
 
 function getComponent(id, element, callback){
-        console.log('getComponent');
+        //console.log('getComponent');
         var sessionQuery = '{"where":{"userId":'+app.curUserId+',"componentTypeId":"'+id+'"}}';
     $.ajax({
         url: secureHost + "ProfileCompleteness?filter=" + sessionQuery,
@@ -255,7 +255,7 @@ function getComponent(id, element, callback){
             callback(element, data); 
         },
         error: function(data){
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 }
@@ -263,7 +263,7 @@ function getComponent(id, element, callback){
 $(document).on('appIsReady', function(){
     
     $('#index-login').on('click', function(){
-        console.log('click happen');
+        //console.log('click happen');
         boardLiftLogin($("#email").val(),$("#password").val());
     });
 
@@ -281,7 +281,7 @@ $(document).on('appIsReady', function(){
 });
 
 function profileStatus(page, callback){
-    console.log('profileStatus');
+    //console.log('profileStatus');
     $.ajax({
     url: secureHost + "UserProfiles/"+app.curUserId+"?access_token="+app.curAccessToken,
     type: 'GET',
@@ -292,13 +292,13 @@ function profileStatus(page, callback){
       callback(page, data);
     },
     error: function(data){
-      console.log("Cannot get data");
+      //console.log("Cannot get data");
     }
     });
 }
 
 /*function getNotification(){
-    console.log('getNotification');
+    //console.log('getNotification');
     $.ajax({
     url: secureHost + "Notifications/getUserNotifications?profileId="+app.curUserId+"&access_token="+app.curAccessToken,
     type: 'GET',
@@ -306,16 +306,16 @@ function profileStatus(page, callback){
     contentType: 'application/json',
     processData: false,
     success: function (data) {
-      console.log(JSON.stringify(data));
+      //console.log(JSON.stringify(data));
     },
     error: function(data){
-      console.log("Cannot get data");
+      //console.log("Cannot get data");
     }
     });
 }*/
 
 function getUserProfileCompleteness(){
-        console.log("profile completeness");
+        //console.log("profile completeness");
     $.ajax({
         url: secureHost + "UserProfiles/" + app.curUserId + "/completeness?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -335,13 +335,13 @@ function getUserProfileCompleteness(){
             getUserSessionsAsDriver();
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 function getUserSessionsAsDriver(){
-    console.log('this call is going, catch it');
+    //console.log('this call is going, catch it');
     var sessionQuery = '{"where":{"driverId":'+app.curUserId+',"sessionStatusId":{"inq":[1,2,4,6]}}}',
         sessionHtml = "";
     // console.log(secureHost + "Sessions?filter=" + sessionQuery + "&access_token=" + app.curAccessToken);
@@ -390,7 +390,7 @@ function getUserSessionsAsDriver(){
             getUserBookingsAsPassenger();
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -436,13 +436,13 @@ function getUserBookingsAsPassenger(){
             getUserMessages();
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 function getUserMessages(){
-     console.log('messages call this is it');
+     //console.log('messages call this is it');
     $.ajax({
         url: secureHost + "UserProfiles/" + app.curUserId + "/thread?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -478,7 +478,7 @@ function getUserMessages(){
             getUserNotificationsNew();
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -489,7 +489,7 @@ function getUserDetails(){}
 
 // updates ride-details page with current session data
 function showSingleSessionDriver(id, fromBack){
-    console.log(id);
+    //console.log(id);
     $.ajax({
         url: secureHost + "Sessions/" + parseInt(id) + "?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -502,7 +502,7 @@ function showSingleSessionDriver(id, fromBack){
             $.mobile.changePage('ride-details.html', {data:d});
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 
@@ -510,8 +510,8 @@ function showSingleSessionDriver(id, fromBack){
 }
 
 function updateRideDetailsPage(){
-        console.log('this is the data thnat ais sent from the previous page');
-        console.log(window.location.href);
+        //console.log('this is the data thnat ais sent from the previous page');
+        //console.log(window.location.href);
         
         $('#session-name').text(getUrlParams('name'));
         $('#session-from').text(getUrlParams('origin'));
@@ -564,7 +564,7 @@ function getSessionPickupDetails(fromSrc){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log("session data:"+d);
+            //console.log("session data:"+d);
             // if(d['pickupTypeId'] == 1 || d['pickupTypeId'] == null){
             //     $("#session-pickup-loc").text("Passenger's can specify location (reasonable distance)");
             // }else if(d['pickupTypeId'] == 2){
@@ -579,7 +579,7 @@ function getSessionPickupDetails(fromSrc){
 
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -645,7 +645,7 @@ function getSessionVehicleInfo(){
             }
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -662,13 +662,13 @@ function showSingleMessage(id){
             // $.mobile.changePage('ride-details.html', {data:d});
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 function getAllMessage(callback){
-    console.log('getAllMessage');
+    //console.log('getAllMessage');
     $.ajax({
         url: secureHost + "UserProfiles/" + app.curUserId + "/thread?filter=[where][and][0][reservations]=0&filter=[where][and][1][archived]=0&access_token=" + app.curAccessToken,
         type: 'GET',
@@ -676,19 +676,19 @@ function getAllMessage(callback){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-        console.log('getAllMessage success');
-            console.log(d);
+        //console.log('getAllMessage success');
+            //console.log(d);
             callback(d);
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
  function getMessageConversation(sessionId, senderId, recipientId){
-     console.log('getMessageConversation');
-     console.log('sessionId: '+sessionId + "---" + senderId + "---" + recipientId);
+     //console.log('getMessageConversation');
+     //console.log('sessionId: '+sessionId + "---" + senderId + "---" + recipientId);
      $.ajax({
          url: secureHost + 'Messages?filter={"where":{"sessionId":"' +sessionId+ '"}}&access_token=' + app.curAccessToken,
          type: 'GET',
@@ -696,7 +696,7 @@ function getAllMessage(callback){
          contentType: 'application/json',
          processData: false,
          success: function(d){
-         console.log('getMessageConversation success: '+ JSON.stringify(d));
+         //console.log('getMessageConversation success: '+ JSON.stringify(d));
              var temp = {message:[]}
              if(senderId == app.curUserId)
                 getUserMessageThread(recipientId, d);
@@ -704,8 +704,8 @@ function getAllMessage(callback){
                 getUserMessageThread(senderId, d);
          },
          error: function(error){
-         console.log('getMessageConversation error');
-             console.log(error);
+         //console.log('getMessageConversation error');
+             //console.log(error);
          }
      });
  }
@@ -852,10 +852,10 @@ function getAllUserBookings(id){
         success: function(d){
             var allbookingsHtml = "",
                 allSessionIdsOrigin = {};
-            console.log('these are all bookings');
-            console.log(d);
-            console.log('all bookings ends');
-            // console.log(d);
+            //console.log('these are all bookings');
+            //console.log(d);
+            //console.log('all bookings ends');
+            // //console.log(d);
             for(var item in d){
 
                 var ts = Date.parse(d[item]['session']['travelStartDate']);
@@ -893,14 +893,14 @@ function getAllUserBookings(id){
             
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 // get all sessions as driver for user, for session-current-listings.html
 function getAllSessionsForUser(id){
-    console.log("inside get all session for user");
+    //console.log("inside get all session for user");
     var arrVal = [];
     if(id == "all"){
         arrVal = [1,2,3,4,5,6,7,8];
@@ -996,13 +996,13 @@ function getAllSessionsForUser(id){
 
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 function getDriverProfile(id){
-    console.log("inside get driver profile id");
+    //console.log("inside get driver profile id");
    $.ajax({
         url: secureHost + "UserProfiles/"+id+"?access_token="+app.userData.id,
         type: 'GET',
@@ -1010,7 +1010,7 @@ function getDriverProfile(id){
         contentType: 'application/json',
         processData: false,
         success: function (d) {
-                console.log(d);
+                //console.log(d);
                 $('#driver-name').text(d['fname']+" "+d['lname']);
                 $('.driver-photo-holder').css({'background-image':'url('+d['avatar']+')'});
                 $('#driver-bio').text(d['bio']);
@@ -1020,14 +1020,14 @@ function getDriverProfile(id){
               
         },
         error: function(data){
-          console.log("Cannot get data");
+          //console.log("Cannot get data");
         }
     });
 }
 
 function getUserFavouriteSpot(id){
 
-    console.log("inside get user favorite spot: " + id);
+    //console.log("inside get user favorite spot: " + id);
     var locQuery = '{"where":{"userProfileId":"' + parseInt(id) + '"}}';
     $.ajax({
         url: secureHost + "UserFavorites?filter=" + locQuery + "&access_token=" + app.curAccessToken,
@@ -1036,7 +1036,7 @@ function getUserFavouriteSpot(id){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log(d);
+            //console.log(d);
             if(d.length > 0){
                 $("#driver-favorite-spot").text(d[0]['favoriteDetail']);    
             }
@@ -1044,13 +1044,13 @@ function getUserFavouriteSpot(id){
             userMusicNSmokePref($('#ride-driver-details').attr('data-driver-id'));
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 function userMusicNSmokePref(id){
-    console.log("inside music preference function");
+    //console.log("inside music preference function");
     $.ajax({
         url: secureHost + "UserProfiles/" + id + "/userPreferences?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -1082,13 +1082,13 @@ function userMusicNSmokePref(id){
             getDriverBoardSkills($('#ride-driver-details').attr('data-driver-id'));
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 function getDriverBoardSkills(id){
-    console.log("inside board skills function");
+    //console.log("inside board skills function");
         $.ajax({
         url: secureHost + "UserProfiles/" + id + "/boardSkills?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -1109,7 +1109,7 @@ function getDriverBoardSkills(id){
 
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1118,7 +1118,7 @@ function getDriverBoardSkills(id){
 // to show when listing a session
 function getShowUserBoardSkills(id){
 
-    console.log("inside board skills function");
+    //console.log("inside board skills function");
         $.ajax({
         url: secureHost + "UserProfiles/" + id + "/boardSkills?access_token=" + app.curAccessToken,
         type: 'GET',
@@ -1136,12 +1136,12 @@ function getShowUserBoardSkills(id){
                         boardRatings += '<div class="board_rtng_col2"><div class="rating_star"><img src="http://web.boardlift.com/assets/images/mobile_skill_rate_'+d[item]['skillRate']+'.png" class="list_star_gap" alt=""></div></div>';
                         boardRatings += '<div class="board_rtng_col3"><div class="radio txt_center"><input  data-role="none" id="board_skill_mask_'+boardSkillTypes[d[item]['boardTypeId']]+'" type="checkbox" class="checkbox board-skill-session" name="skills[]" value="'+d[item]['boardTypeId']+'"><label for="board_skill_mask_'+boardSkillTypes[d[item]['boardTypeId']]+'"><span></span></label></div></div><div class="clearboth"></div></div>';
                       }
-                      console.log(boardRatings);
+                      //console.log(boardRatings);
                       $(".board_rtng_box").append(boardRatings);
 
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1163,10 +1163,10 @@ function saveUserBoardSkills(data){
             processData: false,
             data: ubsQuery,
             success: function(d) {
-                console.log('hurray success');
+                //console.log('hurray success');
             },
             error: function(error){
-                console.log(error);
+                //console.log(error);
             }
         });
 
@@ -1178,8 +1178,8 @@ function saveUserBoardSkills(data){
 
 // save user preference
 function saveUserPreferences(musicRef, smokeRef){
-    console.log("Music:"+musicRef);
-    console.log("Music:"+JSON.stringify(smokeRef));
+    //console.log("Music:"+musicRef);
+    //console.log("Music:"+JSON.stringify(smokeRef));
 
     var SmokePrefQuery='{"value":"'+smokeRef["2"].toLowerCase()+'","preferenceTypeId":'+parseInt("2")+',"userProfileId":'+app.curUserId+'}';
 
@@ -1191,10 +1191,10 @@ function saveUserPreferences(musicRef, smokeRef){
         processData: false,
         data: SmokePrefQuery,
         success: function(d) {
-            console.log('hurray smoking success');
+            //console.log('hurray smoking success');
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 
@@ -1208,10 +1208,10 @@ function saveUserPreferences(musicRef, smokeRef){
             processData: false,
             data: MusicPrefQuery,
             success: function(d) {
-                console.log('hurray Music success');
+                //console.log('hurray Music success');
             },
             error: function(error){
-                console.log(error);
+                //console.log(error);
             }
         });
 
@@ -1264,7 +1264,7 @@ function getUserPreferences(){
 
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1277,7 +1277,7 @@ function getLocationInfo(args){
 
         // make query
         var locQuery = '{"where":{"fullDestination":"'+args[item]+'"}}';
-        console.log(locQuery);
+        //console.log(locQuery);
 
         $.ajax({
             url: secureHost + "SurfSpots?filter=" + locQuery + "&access_token=" + app.curAccessToken,
@@ -1286,11 +1286,11 @@ function getLocationInfo(args){
             contentType: 'application/json',
             processData: false,
             success: function(d){
-                console.log(d);
+                //console.log(d);
                 getLocationImageUI(d[0]['surfSpotPhoto'], item);
             },
             error: function(error){
-                console.log(error);
+                //console.log(error);
             }
         });
 
@@ -1299,7 +1299,7 @@ function getLocationInfo(args){
 }
 
 function getUserMessageThread(userId, data1){
-    console.log('getUserMessageThread: '+JSON.stringify(data1));
+    //console.log('getUserMessageThread: '+JSON.stringify(data1));
     $.ajax({
         url: secureHost + "UserProfiles/" + userId + "&access_token=" + app.curAccessToken,
         type: 'GET',
@@ -1307,22 +1307,22 @@ function getUserMessageThread(userId, data1){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log('getUserMessageThread success: '+ JSON.stringify(d));
+            //console.log('getUserMessageThread success: '+ JSON.stringify(d));
             app.conversation = "";
             var temp ={message:[],recipient:d};
             for(i in data1){
-            console.log("data1[i].sender: "+data1[i].sender);
-            console.log("data1[i].recipient: "+data1[i].recipient);
+            //console.log("data1[i].sender: "+data1[i].sender);
+            //console.log("data1[i].recipient: "+data1[i].recipient);
                 if(data1[i].sender == app.curUserId || data1[i].recipient == app.curUserId)
                     if(data1[i].sender == userId || data1[i].recipient == userId)
                         temp.message.push(data1[i]);
             }
             app.conversation = temp;
-            console.log("app conversation: "+ JSON.stringify(app.conversation));
+            //console.log("app conversation: "+ JSON.stringify(app.conversation));
             $.mobile.changePage('message-reply.html');
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 
@@ -1341,10 +1341,10 @@ function getUserProfile(id){
             giveUsername = d['fname'].toLowerCase() + " " + d['lname'].toLowerCase();
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
-    console.log("this is name:"+giveUsername);
+    //console.log("this is name:"+giveUsername);
     return giveUsername;
 }
 
@@ -1365,7 +1365,7 @@ function getLocationImageUI(id, where){
             $('[data-unique-session-id="'+where+'"]').attr('src', finalImage);
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1390,7 +1390,7 @@ var messageQuery = '{where:{and :[{or:[{and:[{sender:'+app.curUserId+'},{recipie
             $('[data-unique-session-id="'+where+'"]').attr('src', finalImage);
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1432,9 +1432,9 @@ var buttonLabels = "Yes,No";
 
 var callback = function(yes){
     if(yes){
-        console.log('yes by user');
+        //console.log('yes by user');
     }else{
-        console.log('no by user');
+        //console.log('no by user');
     }
 };
 
@@ -1468,18 +1468,18 @@ var publishUserSingleSession = function(yes){
 
 // single function that takes data and either cancels the session or published it
 function cancelOrPublishSession(type){
-    console.log('call got here: ' + type);
+    //console.log('call got here: ' + type);
     var message = "";
     if(type == "cancel"){
         storingSingleSessionData['sessionStatusId'] = 7;
         message = "The session has been cancelled.";
     }else{
         storingSingleSessionData['sessionStatusId'] = 2;
-        console.log("The session has been submitted for publishing.");
+        //console.log("The session has been submitted for publishing.");
     }
 
-    console.log(storingSingleSessionData);
-    console.log(typeof(storingSingleSessionData));
+    //console.log(storingSingleSessionData);
+    //console.log(typeof(storingSingleSessionData));
     
     var query = JSON.stringify(storingSingleSessionData);
 
@@ -1494,22 +1494,22 @@ function cancelOrPublishSession(type){
         processData: false,
         data: JSON.stringify(query),
         success: function(d){
-            console.log(d);
+            //console.log(d);
             $('.success_message').text(message);
             // all-sessions-page
             getAllSessionsForUser();
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 // update edit session page to put all the set values in their fields
 function updateEditSessionPage(){
-    console.log('updating edit session page now.....');
+    //console.log('updating edit session page now.....');
     
-    console.log(storingSingleSessionData);
+    //console.log(storingSingleSessionData);
 
     $("#name").val(storingSingleSessionData['name']);
     
@@ -1561,7 +1561,7 @@ function getDataForSingleSession(id, call_from){
             }
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1621,7 +1621,7 @@ function saveUserProfile(){
             $.mobile.changePage('edit-profile-main.html');
         },
         error: function(data){
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));
         }
     });
 }
@@ -1665,11 +1665,11 @@ function saveUserWheels(){
         processData: false,
         data: finalQuery,
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             $.mobile.changePage('edit-profile-main.html');
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 
@@ -1690,7 +1690,7 @@ function getUserCompTypeIds(){
             }
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1745,7 +1745,7 @@ function getNotifyPrivacySettings(type){
             }
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1763,11 +1763,11 @@ function saveUserNotifyPrivacy(id, value){
         processData: false,
         data: query,
         success: function(d) {
-            console.log('hurray this is a success');
+            //console.log('hurray this is a success');
             $.mobile.changePage("account-main.html");
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1811,7 +1811,7 @@ function getUserFutureTransactions(type){
             }            
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 
@@ -1827,7 +1827,7 @@ function getSingleSessionName(){
             contentType: 'application/json',
             processData: false
         }).done(function(d){
-            console.log(d['name']);
+            //console.log(d['name']);
             $('#single-ftransaction[data-session-id="'+allSessionIds[item]+'"]').find('#ssname').text(d['name']);
         });
     }
@@ -1867,7 +1867,7 @@ function getGrossEarnings(){
             $("#all-transactions").html(ghtml);    
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -1889,7 +1889,7 @@ function getDriverProfilePageWheelsInfo(id){
                     d = d[0];
                     // console.log('this is image');
                     var carImage = "http://web.boardlift.com/assets/images/"+bodyTypeInfo[d['bodyType']];
-                    console.log(carImage);
+                    //console.log(carImage);
                     $('#driver-type-wheels').find('img').attr("src", carImage);
                     var vehDesc = carCompanies[d['vehicleMakeModelId']];
 
@@ -1904,14 +1904,14 @@ function getDriverProfilePageWheelsInfo(id){
             }
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
 
 // stores which details user has completed in its profile
 function checkUserAcPrCompleteness(){
-     console.log('call came to this fn at sp');
+     //console.log('call came to this fn at sp');
     $.ajax({
         url: secureHost + "UserProfiles/"+app.curUserId+"/profileCompleteness?access_token=" + app.curAccessToken,
         type: "GET",
@@ -1919,19 +1919,19 @@ function checkUserAcPrCompleteness(){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log("d: "+d);
+            //console.log("d: "+d);
             if(d.length > 0){
                 var allCts = [];
                 for(var item in d){
                     allCts.push(d[item]['componentTypeId']);
                 }
                 app.allCts = allCts;
-                console.log(app.allCts);
-                console.log(app.allCts.length);
+                //console.log(app.allCts);
+                //console.log(app.allCts.length);
                 // if($.mobile.activePage.is("#dashboard")){
                 //     console.log("active page: "+$.mobile.activePage);
                 // }
-                    console.log($.mobile.activePage.attr("id"));
+                    //console.log($.mobile.activePage.attr("id"));
                 
                 if($.mobile.activePage.is("#dashboard")){
 
@@ -1950,7 +1950,7 @@ function checkUserAcPrCompleteness(){
 
 // gets all bookings for a session
 function getCurSessionBooking(id){
-    console.log('this is the error');
+    //console.log('this is the error');
     $.ajax({
         url: secureHost + "Sessions/" + id + "/sessionBookings?access_token=" + app.curAccessToken,
         type: "GET",
@@ -1958,12 +1958,12 @@ function getCurSessionBooking(id){
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log(d);
+            //console.log(d);
             if(d.length > 0){
                 var bookHtml = "";
                 for(var elem in d){
                     var userImage = "https://boardlift-development.s3-ap-southeast-2.amazonaws.com/users/" + d[elem]['userProfileId'] + ".jpg";
-                    console.log(userImage);
+                    //console.log(userImage);
                     var thisName = getUserProfile(d[elem]['userProfileId']);
                     // var thisName = "karan sharma";
                     var chthisName = thisName.split(' ')[0] + " " + thisName.split(' ')[1][0];
@@ -1977,18 +1977,18 @@ function getCurSessionBooking(id){
                     if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 1){
                         //accepted booking and session is OPEN - show only contact and cancel button
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="cancel-button" class="form-button" style="float:none;" value="Cancel">';
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="' + app.curUserId + '" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="' + app.curUserId + '" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-passenger-button" class="form-button" style="float:none;" value="Contact">';
                     }else if(d[elem]['bookingStatusId'] == 1 || d[elem]['bookingStatusId'] == 5){
                         // new or paid, show all buttons
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="accept-button" class="form-button" style="float:none;" value="Accept">';
                         bookHtml += '<input id="'+d[elem]['id']+'" type="button" name="decline-button" class="form-button" style="float:none;" value="Decline">';
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-passenger-button" class="form-button" style="float:none;" value="Contact">';
                     }else if(d[elem]['bookingStatusId'] == 3 || d[elem]['bookingStatusId'] == 4){
                         // declined or cancelled, show nothing
 
                     }else if(d[elem]['bookingStatusId'] == 2 && getUrlParams('sessionStatusId') == 4){
                         // accepted booking and session is ACTIVE, show only contact button
-                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-button" class="form-button" style="float:none;" value="Contact">';
+                        bookHtml += '<input data-ct-name="'+thisName+'" id="'+d[elem]['id']+'" type="button" data-sender-id="'+app.curUserId+'" data-recipient-id="'+d[elem]['userProfileId']+'" name="contact-passenger-button" class="form-button" style="float:none;" value="Contact">';
                     }
                     bookHtml += '<div class="v-spacer"></div></div>';
                 }
@@ -2001,7 +2001,7 @@ function getCurSessionBooking(id){
 
 
 function messageReply(sessionId, sessionName, recipient, message){
-    console.log('messageReply');
+    //console.log('messageReply');
 var query = {
   "sessionId": sessionId,
   "sessionName": sessionName,
@@ -2018,10 +2018,10 @@ var query = {
         processData: false,
         data: JSON.stringify(query),
         success: function(d){
-            console.log(d);
+            //console.log(d);
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -2146,11 +2146,11 @@ function makeSearch(page){
 }
 
 function hideSearch(page){
-    console.log('hideSearch');
+    //console.log('hideSearch');
     showingSearch = false;
-    console.log(page.find('#filter_search').length);
+    //console.log(page.find('#filter_search').length);
     page.find('#filter_search').remove();
-    console.log(page.find('#filter_search').length);
+    //console.log(page.find('#filter_search').length);
 }
 // to change bookingStatus of bookings for driver from passenger
 function changeBookingStatus(id, newId){
@@ -2165,11 +2165,11 @@ function changeBookingStatus(id, newId){
         processData: false,
         data: query,
         success: function(d) {
-            console.log('booking status id has been changed.');
+            //console.log('booking status id has been changed.');
             getCurSessionBooking(getUrlParams('id'));
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -2186,11 +2186,11 @@ function changeBookingStatusByUser(id, newId){
         processData: false,
         data: query,
         success: function(d) {
-            console.log('booking status id has been changed.');
+            //console.log('booking status id has been changed.');
             getAllUserBookings("all");
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -2240,7 +2240,7 @@ var cancelMainBooking = function(yes){
 };
 
 function userLogout(){
-    console.log("inside logout");
+    //console.log("inside logout");
     $.ajax({
         url: secureHost + "users/logout?access_token=" + app.curAccessToken,
         type: "POST",
@@ -2256,7 +2256,7 @@ function userLogout(){
             $.mobile.changePage('index.html');
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 }
@@ -2273,11 +2273,24 @@ function encodeQueryData(data){
     return ret.join("&");
 }
 
+function makeQueryFromDict(d){
+    var toReturn = "";
+    
+    for(var item in d){
+        toReturn += item + "=" + d[item];
+        toReturn += "&amp;";
+    }
+
+    return toReturn;
+
+}
+
 function searchSessions(query){
-    var acQuery = encodeQueryData(query);
-    console.log("query data: "+acQuery);
-    console.log('this fn is called');
-    console.log(secureHost + "Sessions/search?"+acQuery+'&access_token='+app.curAccessToken);
+    // var acQuery = encodeQueryData(query);
+    var acQuery = makeQueryFromDict(query);
+    //console.log("query data: "+acQuery);
+    //console.log('this fn is called');
+    //console.log(secureHost + "Sessions/search?"+acQuery+'&access_token='+app.curAccessToken);
     $.ajax({
         url: secureHost + "Sessions/search?"+acQuery+'&access_token='+app.curAccessToken,
         type: 'GET',
@@ -2285,7 +2298,7 @@ function searchSessions(query){
         contentType: 'application/json',
         processData: false,
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             var searchResult = "";
 
             searchResult += '<div id="our-custom-div"><h2>';
@@ -2321,10 +2334,10 @@ function searchSessions(query){
             $('.filer-sec').after(searchResult);
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
             $('#our-custom-div').remove();
             alert("error occurred");
-            console.log("Cannot get data");
+            //console.log("Cannot get data");
         }
     });
 
@@ -2334,21 +2347,21 @@ function searchSessions(query){
 // for getting user notifications
 
 function getUserNotificationsNew(){
-    console.log("noti calles");
-    // var query = '{"where":{"userProfileId":'+app.curUserId+'}}';
+    //console.log("noti calles");
+    var query = '{"where":{"userProfileId":'+app.curUserId+'}}';
 
     app.totalSessionNotify = 0;
     app.totalMsgNotify = 0;
     app.totalBookingNotify = 0;
 
     $.ajax({
-        url: secureHost + "Notifications/getUserNotifications?profileId=" + app.curUserId + "&access_token=" + app.curAccessToken,
+        url: secureHost + "Notifications?filter=" + query + "&access_token=" + app.curAccessToken,
         type: 'GET',
         dataType: "json",
         contentType: 'application/json',
         processData: false,
         success: function(d){
-            console.log(d);
+            //console.log(d);
 
             if(d.length > 0){
 
@@ -2356,62 +2369,64 @@ function getUserNotificationsNew(){
 
                 for(var item in d){
 
+                    if(d[item]['status'] != "Read"){
 
-                    if(d[item]['type'] == "Session"){
+                        if(d[item]['type'] == "Session"){
 
-                        app.totalSessionNotify += d[item]['notification_count'];
+                            app.totalSessionNotify += 1;
 
-                        // now update dashboard page session show
-                        var someVal = $('#session-list .single-session-driver[data-session-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text();
+                            // now update dashboard page session show
+                            var someVal = $('#session-list .single-session-driver[data-session-id="'+d[item]['objectId']+'"]').find('.dashboard-notification').text();
 
-                        console.log('value of someVal: ' + $('#session-list .single-session-driver[data-session-id='+d[item]['object_id']+'] h4').text());
+                            //console.log('value of someVal: ' + $('#session-list .single-session-driver[data-session-id='+d[item]['objectId']+'] h4').text());
 
-                        var txt = "";
+                            var txt = "";
 
-                        // means not present
-                        if(someVal == undefined || someVal == ""){
-                            someVal = d[item]['notification_count'];
-                            txt = '<span class="dashboard-notification">'+someVal+'</span>';
-                            $('#session-list .single-session-driver[data-session-id="'+d[item]['object_id']+'"] h4').append(txt);
+                            // means not present
+                            if(someVal == undefined || someVal == ""){
+                                someVal = app.totalSessionNotify;
+                                txt = '<span class="dashboard-notification">'+someVal+'</span>';
+                                $('#session-list .single-session-driver[data-session-id="'+d[item]['objectId']+'"] h4').append(txt);
+                            }else{
+                                $('#session-list .single-session-driver[data-session-id="'+d[item]['objectId']+'"]').find('.dashboard-notification').text(parseInt(someVal)+1);
+                            }
+                
+
+                        }else if(d[item]['type'] == "Message"){
+
+                            app.totalMsgNotify += 1;
+
+                            var someVal = $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['objectId'].split('_')[0]+'"]').find('.dashboard-notification').text();
+                            var txt = '';
+
+                            if(someVal == undefined || someVal == ""){
+                                someVal = app.totalMsgNotify;
+                                txt = '<span class="dashboard-notification">'+someVal+'</span>';
+                                $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['objectId'].split('_')[0]+'"] h4').append(txt);
+                            }else{
+                                $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['objectId'].split('_')[0]+'"] h4').append(txt);
+                            }
+
+
                         }else{
-                            $('#session-list .single-session-driver[data-session-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text(parseInt(someVal)+1);
-                        }
-            
 
-                    }else if(d[item]['type'] == "Message"){
+                            app.totalBookingNotify += 1;
 
-                        app.totalMsgNotify += d[item]['notification_count'];
+                            var someVal = $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['objectId']+'"]').find('.dashboard-notification').text();
 
-                        var someVal = $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['object_id'].split('_')[0]+'"]').find('.dashboard-notification').text();
-                        var txt = '';
+                            var txt = "";
 
-                        if(someVal == undefined || someVal == ""){
-                            someVal = d[item]['notification_count'];
-                            txt = '<span class="dashboard-notification">'+someVal+'</span>';
-                            $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['object_id'].split('_')[0]+'"] h4').append(txt);
-                        }else{
-                            $('#messages-list .single-message-driver[data-sess-msg-id="'+d[item]['object_id'].split('_')[0]+'"] h4').append(txt);
+                            // means not present
+                            if(someVal == undefined || someVal == ""){
+                                someVal = app.totalBookingNotify;
+                                txt = '<span class="dashboard-notification">'+someVal+'</span>';
+                                $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['objectId']+'"] h4').append(txt);
+                            }else{
+                                $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['objectId']+'"]').find('.dashboard-notification').text(parseInt(someVal)+1);
+                            }
                         }
 
-
-                    }else{
-
-                        app.totalBookingNotify += d[item]['notification_count'];
-
-                        var someVal = $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text();
-
-                        var txt = "";
-
-                        // means not present
-                        if(someVal == undefined || someVal == ""){
-                            someVal = d[item]['notification_count'];
-                            txt = '<span class="dashboard-notification">'+someVal+'</span>';
-                            $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['object_id']+'"] h4').append(txt);
-                        }else{
-                            $('#bookings-list .single-booking-driver[data-booking-id="'+d[item]['object_id']+'"]').find('.dashboard-notification').text(parseInt(someVal)+1);
-                        }
                     }
-
 
                 }
 
@@ -2419,7 +2434,7 @@ function getUserNotificationsNew(){
 
         },
         error: function(error){
-            console.log(error);
+            //console.log(error);
         }
     });
 

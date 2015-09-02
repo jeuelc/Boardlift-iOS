@@ -475,7 +475,7 @@
 </div>
 
         <!--Contact new booking request person-->
-    <div id="contact-passenger" style="display:none;">
+    <div id="contact-passenger" style="overflow-y: auto; top: 0px;display:none;">
         <section class="mobile-title-page">
             <h2>Contact Passenger</h2>
         </section>
@@ -1021,15 +1021,10 @@ function getNotifications()
                 $("#booking-slideup-submit").on('click',function(){
                     // sessionBooking();
                 });
-                $('.ride-details-requests-holder').on("click",'input[name="contact-button"]',function(){
-                    $("$contact-passenger").slideUp("slow");
-                    var contactDate=new Date(Date.parse(getUrlParams('travelStartDate')));
-                    var contactDate=contactDate.dateFormat('d/m/y');
-                    var nameDate=getUrlParams('name')+" - "+contactDate;
-                    $("#br-session-name").text(nameDate);
-                    $("#br-passenger").text($(this).attr("data-ct-name"));
-                    $("#br-sessionName").val(getUrlParams('name'));
-                    $("#br-sessionId").val()
+                $('.ride-details-requests-holder').on("click",'input[name="contact-passenger-button"]',function(){
+                    console.log("booking person contact clicked");
+                    // args are session id, sender id and recipient id
+                     getMessageConversation(getUrlParams('id'), $(this).attr("data-sender-id"), $(this).attr('data-recipient-id'));
                 });
 
                 // click on contact button in bookings request

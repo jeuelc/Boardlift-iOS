@@ -1851,7 +1851,7 @@ ul.board-matrix-head li.boardrate {
     vertical-align:middle !important;
 }
 
-#inquire-holder {
+#inquire-holder,#contact-passenger {
     height:100%;
     width:100%;
     position:fixed;
@@ -1859,6 +1859,7 @@ ul.board-matrix-head li.boardrate {
     z-index:2;
     background:#ffffff;
 }
+
 .mobile-title-page {
         display:block;
         padding:8px 12px;

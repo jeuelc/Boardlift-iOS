@@ -231,22 +231,48 @@
         }
         
         var data = {
-                //originLatitude: $("#originLatitude").val(),
-                //originLongitude: $("#originLongitude").val(),
                 origin: from,
-                //destinationLatitude: $("#destinationLatitude").val(),
-                //destinationLongitude: $("#destinationLongitude").val(),
                 numSeat: $("#search_numSeat").val(),
                 boardTypes: getBoardTypesFilter(),
                 vehicleTypes: getVehicleBodyTypesFilter(),
                 destination: to,
                 departureDate: date_of_departure
             }
-        data = getPreferencesFilters(data);
+        // data = getPreferencesFilters(data);
         // data =  encodeQueryData(data);
-        console.log('filter search data: ');
-        console.log(JSON.stringify(data));
-        data = JSON.stringify(data);
+        // console.log('filter search data: ');
+        // console.log(JSON.stringify(data));
+        // data = JSON.stringify(data);
+
+        // following is for the preferences
+        var dpref1 = {"preferenceTypeId":"1", "preference":[]};
+        var dpref2 = {"preferenceTypeId":"2", "preference":[]};
+
+        $('input[name*="preference_"]').each(function() {
+            
+            if($(this).attr("name") != "undefined"){
+                if($(this).is(":checked")){
+                    // selectedVals.push($(this).val());
+                    var v = $(this).val();
+                    // console.log(v);
+                    if(v.indexOf("smoking") == -1){
+                        // means music
+                        dpref1['preference'].push(v);
+                    }else{
+                        // means smoking preference
+                        dpref2['preference'].push(v)
+                    }
+                }
+            }
+            
+        });
+
+        var somePrefs = [];
+        somePrefs.push(dpref1);
+        somePrefs.push(dpref2);
+
+        data['preferences'] = somePrefs;
+
         searchSessions(data);
     }
     
@@ -899,15 +925,31 @@ function getNotifications()
         function getPreferencesFilters(data)
     {
         var selectedVals = [];
+
+        var dpref1 = {"preferenceTypeId":"1", "preference":[]};
+        var dpref2 = {"preferenceTypeId":"2", "preference":[]};
+
         $('input[name*="preference_"]').each(function() {
             
             if($(this).attr("name") != "undefined"){
                 if($(this).is(":checked")){
-                    selectedVals.push($(this).val());
+                    // selectedVals.push($(this).val());
+                    var v = $(this).val();
+                    console.log(v);
+                    if(v.indexOf("smoking") == -1){
+                        // means music
+                        dpref1['preference'].push(v);
+                    }else{
+                        // means smoking preference
+                        dpref2['preference'].push(v)
+                    }
                 }
             }
             
         });
+
+        selectedVals.push(dpref1);
+        selectedVals.push(dpref2);
         
         if(selectedVals.length > 0){
             data["preferences"] = selectedVals;
